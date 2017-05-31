@@ -17,17 +17,14 @@ import { GlobalFunctionsService } from '../services/global-functions.service';
 
 export class ContactinfoComponent implements OnInit, OnDestroy {
 
+    countries: Country[];
+    addMultipleStudents: boolean;
+    order: Order = new Order();
+
     constructor(
         private countryService: CountryService,
         private globalFunctionsService: GlobalFunctionsService
     ) { }
-    
-    countries: Country[];
-    selectedCountry: Country;
-    addMultipleStudents: boolean;
-
-    order: Order = new Order();
-    contactAddressNumber: string;
 
     getCountries(): void {
         this.countryService.getCountries().then(countries => this.countries = countries);

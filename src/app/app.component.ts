@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Form } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -14,6 +13,14 @@ import { GlobalFunctionsService } from './services/global-functions.service';
 })
 
 export class AppComponent implements OnInit, OnDestroy {
+
+  subscription: Subscription;
+  subscriptionActiveTab: Subscription;
+  enabledTabCount = 1;
+  selectedTab = 'courseSelect'; // TODO: Reset to 'courseSelect'; (contactInfo, paymentInfo, signupConfirmed)
+  providerContactMail: string;
+  errors = false;
+
   constructor(
     private globalFunctionsService: GlobalFunctionsService
   ) {
@@ -21,16 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptionActiveTab = this.globalFunctionsService.activeTabChanged().subscribe(activeTab => this.selectTab(activeTab));
   }
 
-  subscription: Subscription;
-  subscriptionActiveTab: Subscription;
-  enabledTabCount: number = 1;
-  selectedTab: string = 'courseSelect'; // TODO: Reset to 'courseSelect'; (contactInfo, paymentInfo, signupConfirmed)
-  providerContactMail: string;
-  errors: boolean = false;
-
   selectTab(selectedTab: string): void {
-    console.debug('Selected tab: ' + selectedTab);
-
     let tabIndex = 0;
     switch (selectedTab) {
       case 'courseSelect':
@@ -43,16 +41,16 @@ export class AppComponent implements OnInit, OnDestroy {
         tabIndex = 3;
         break;
       case 'signupConfirmed':
-        this.errors = false;  
+        this.errors = false;
         tabIndex = 4;
         break;
       case 'signupFailed':
-        this.errors = true;  
+        this.errors = true;
         tabIndex = 4;
         break;
     }
 
-    if ((tabIndex <= this.enabledTabCount && this.enabledTabCount != 4) || (tabIndex == 4 && this.enabledTabCount == 4)) {
+    if ((tabIndex <= this.enabledTabCount && this.enabledTabCount !== 4) || (tabIndex === 4 && this.enabledTabCount === 4)) {
       this.selectedTab = selectedTab;
     }
   }
