@@ -1,0 +1,76 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav nav-tabs" role="tablist">
+                <li role="presentation" [class.active]="selectedTab == 'courseSelect'" [class.disabled]="enabledTabCount == 4">
+                    <a aria-controls="courseSelect" role="tab" (click)="selectTab('courseSelect')">Stap 1: Inschrijven cursus
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li role="presentation" [class.active]="selectedTab == 'contactInfo'" [class.disabled]="enabledTabCount < 2 || enabledTabCount == 4">
+                    <a aria-controls="contactInfo" role="tab" (click)="selectTab('contactInfo')">Stap 2: Contactgegevens</a>
+                </li>
+                <li role="presentation" [class.active]="selectedTab == 'paymentInfo'" [class.disabled]="enabledTabCount < 3 || enabledTabCount == 4">
+                    <a aria-controls="paymentInfo" role="tab" (click)="selectTab('paymentInfo')">Stap 3: Betaalgegevens</a>
+                </li>
+                <li role="presentation" [class.active]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'" [class.disabled]="enabledTabCount < 4">
+                    <a aria-controls="signupConfirmed" role="tab" (click)="selectTab('signupConfirmed')">Stap 4: Inschrijving voltooid</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="container course-selection">
+    <div class="row">
+        <!-- When hiding the sidebar give col-sm-12 to this container -->
+        <div class="col-xs-12 col-sm-7" id="main-content" [class.col-sm-7]="selectedTab != 'signupConfirmed' && selectedTab != 'signupFailed'" [class.col-sm-12]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'">
+            <div class="tab-content">
+                <div [class.active]="selectedTab == 'courseSelect'" role="tabpanel" class="tab-pane fade in" id="courseSelect">
+                    <fo-courseselection></fo-courseselection>
+                </div>
+                <div [class.active]="selectedTab == 'contactInfo'" role="tabpanel" class="tab-pane fade in" id="contactInfo">
+                    <fo-contactinfo></fo-contactinfo>
+                </div>
+                <div [class.active]="selectedTab == 'paymentInfo'" role="tabpanel" class="tab-pane fade in" id="paymentInfo">
+                    <fo-paymentinfo></fo-paymentinfo>
+                </div>
+                <div [class.active]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'" role="tabpanel" class="tab-pane fade in" id="signupConfirmed">
+                    <fo-confirmation *ngIf="!errors"></fo-confirmation>
+                    <div *ngIf="errors">
+                        <h2>Uw inschrijving is niet voltooid</h2>
+                        <div class="form-group ">
+                            <label class="col-xs-12 col-sm-2 ">Er is iets misgegaan</label>
+                            <div class="col-xs-12 col-sm-10 ">
+                                <p>Ga terug naar stap 1 of neem <a href="mailto:{{providerContactMail}}">contact</a> op met de cursus aanbieder.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-xs col-sm-1">
+            <!-- Spacing -->
+        </div>
+
+        <!-- Hide sidebar on tab 4 & 5 -->
+        <!-- When hiding the sidebar give col-sm-12 to the main content container (line 49)s -->
+        <div *ngIf="selectedTab != 'signupConfirmed' && selectedTab != 'signupFailed'" class="col-xs-12 col-sm-3">
+            <fo-basket></fo-basket>
+        </div>
+
+    </div>
+</div>

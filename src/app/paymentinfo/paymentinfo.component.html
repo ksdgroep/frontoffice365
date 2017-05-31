@@ -1,0 +1,200 @@
+<h2>Factuuradres</h2>
+<form class="form-horizontal" (ngSubmit)="saveInfo(contactForm.valid)" #contactForm="ngForm">
+    <div class="form-group">
+        <label class="col-xs-12 col-sm-3 control-label">Adres</label>
+        <div class="col-xs-12 col-sm-5 col-md-7">
+            <ul class="address-list">
+                <li>
+                    T.a.v. {{order?.ContactPerson.Initials}} {{order?.ContactPerson.Surname}}
+                </li>
+                <li *ngIf="order?.Company">
+                    {{order.Company.Name}}
+                </li>
+                <li>
+                    {{order?.ContactPerson.Address}} {{order?.ContactPerson.AddressNumber}}
+                </li>
+                <li>
+                    {{order?.ContactPerson.PostalCode}}
+                </li>
+                <li>
+                    {{order?.ContactPerson.City}}
+                </li>
+            </ul>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="diffBillingAddress" value="billingAddress" (change)="alternativeBillingAddress = !alternativeBillingAddress"> Gebruik een ander factuuradres
+            </label>
+        </div>
+    </div>
+    <div *ngIf="alternativeBillingAddress">
+        <div class="form-group">
+            <label class="col-xs-12 col-sm-3 control-label optional-label">Aanhef<br/><span>Optioneel</span></label>
+            <div class="col-xs-12 col-sm-4 col-md-7">
+                <label class="radio-inline">
+                    <input type="radio" name="optionGender" value="V" [(ngModel)]="order.InvoicePerson.Gender"> Mevrouw
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optionGender" value="M" [(ngModel)]="order.InvoicePerson.Gender"> De heer
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="initialsBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Voorletters<br/><span>Optioneel</span></label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="initialsBillAddress" [(ngModel)]="order.InvoicePerson.Initials" name="initials">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstNameBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Voornaam<br/><span>Optioneel</span></label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="firstNameBillAddress" [(ngModel)]="order.InvoicePerson.FirstName" name="firstName">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="middleNameBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Tussenvoegsel<br/><span>Optioneel</span></label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="middleNameBillAddress" [(ngModel)]="order.InvoicePerson.MiddleName" name="middleName">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastNameBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Achternaam<br/><span>Optioneel</span></label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="lastNameBillAddress" [(ngModel)]="order.InvoicePerson.Surname" name="surname">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="companyBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Bedrijf<br/><span>Optioneel</span></label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="companyBillAddress" [(ngModel)]="order.InvoiceCompany.Name" name="company">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="postalcodeBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Postcode<br/><span>Optioneel</span></label>
+            <div class="col-sm-6">
+                <div class="form-group row">
+                    <div class="col-sm-5 col-xs-12 margin-bottom-15">
+                        <input id="postalcodeBillAddress" type="text" class="form-control" [(ngModel)]="order.InvoicePerson.PostalCode" name="postalcode">
+                    </div>
+                    <label for="numberBillAddress" class="col-xs-12 col-sm-3 control-label optional-label margin-bottom-15">Nummer<br/><span>Optioneel</span></label>
+                    <div class="col-sm-4 col-xs-12">
+                        <input id="numberBillAddress" type="text" class="form-control" [(ngModel)]="order.InvoicePerson.AddressNumber" name="addressNumber">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="addressBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Straat<br/><span>Optioneel</span></label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="addressBillAddress" [(ngModel)]="order.InvoicePerson.Address" name="address">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="cityBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Plaats<br/><span>Optioneel</span></label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="cityBillAddress" [(ngModel)]="order.InvoicePerson.City" name="city">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="countryBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Land<br/><span>Optioneel</span></label>
+            <div class="col-xs-12 col-sm-6">
+                <select class="form-control" id="countryBillAddress" [(ngModel)]="order.InvoicePerson.CountryId" name="country">
+                    <option *ngFor="let c of countries" [ngValue]="c.Id">{{c.Name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group" [class.has-error]="emailBusiness.errors && (emailBusiness.dirty || emailBusiness.touched || contactForm.submitted)" [class.has-feedback]="emailBusiness.errors && (emailBusiness.dirty || emailBusiness.touched || contactForm.submitted)">
+            <label for="emailBillAddress" class="col-xs-12 col-sm-3 control-label">E-mail</label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="emailBillAddress" [(ngModel)]="order.InvoicePerson.Email" name="emailBusiness" #emailBusiness="ngModel" required pattern="[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?">
+                <span *ngIf="emailBusiness.errors && (emailBusiness.dirty || emailBusiness.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <label *ngIf="emailBusiness.hasError('required') && (emailBusiness.dirty || emailBusiness.touched || contactForm.submitted)" class="control-label">E-mail is verpllicht.</label>
+                <label *ngIf="emailBusiness.hasError('pattern') && (emailBusiness.dirty || emailBusiness.touched || contactForm.submitted)" class="control-label">Geef een geldig e-mailadres op.</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phoneBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Telefoon<br/><span>Optioneel</span></label>
+            <div class="col-xs-12 col-sm-6">
+                <input type="text" class="form-control" id="phoneBillAddress" [(ngModel)]="order.InvoicePerson.Phone" name="phone">
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider" />
+    <h2>Kies een betaalmethode</h2>
+
+    <div class="table-responsive">
+        <table class="table table-hover" id="payment-table">
+            <tbody>
+                <tr *ngIf="false">
+                    <td><input type="radio" name="payment-option" value="ideal" class="payment-radio" /></td>
+                    <td class="hidden-xs"><img class="img-responsive payment-img" src="img/ideal.png" /></td>
+                    <td id="iDeal"><span class="payment-option">iDeal</span> - Online betalen via uw Nederlandse bank
+                    </td>
+                </tr>
+                <tr *ngIf="false">
+                    <td><input type="radio" name="payment-option" value="paypal" class="payment-radio" />
+                    </td>
+                    <td class="hidden-xs"><img class="img-responsive payment-img" src="img/paypal.png" />
+                    </td>
+                    <td id="PayPal"><span class="payment-option">PayPal</span> - Veilig betalen via uw PayPal account
+                    </td>
+                </tr>
+                <tr *ngIf="false">
+                    <td><input type="radio" name="payment-option" value="bancontact" class="payment-radio" />
+                    </td>
+                    <td class="hidden-xs"><img class="img-responsive payment-img" src="img/bancontact.png" />
+                    </td>
+                    <td id="BanContact"><span class="payment-option">BanContact</span> - Betaal veilig met uw eigen bank
+                    </td>
+                </tr>
+                <tr *ngIf="false">
+                    <td><input type="radio" name="payment-option" value="afterpay" class="payment-radio" />
+                    </td>
+                    <td class="hidden-xs"><img class="img-responsive payment-img" src="img/afterpay.jpg" />
+                    </td>
+                    <td id="AfterPay"><span class="payment-option">AfterPay</span> - Betaal achteraf via internet bankieren of bankoverschrijving
+                    </td>
+                </tr>
+                <tr *ngIf="false">
+                    <td><input type="radio" name="payment-option" value="creditcard" class="payment-radio" />
+                    </td>
+                    <td class="hidden-xs"><img class="img-responsive payment-img" src="img/creditcard.jpg" />
+                    </td>
+                    <td id="creditcard"><span class="payment-option">Creditcard</span> - Snel en eenvoudig betalen met uw eigen creditcard
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="payment-option" value="factuur" class="payment-radio" checked />
+                    </td>
+                    <td class="hidden-xs" id="invoice"><span class="payment-option">Factuur</span></td>
+                    <td class="hidden-xs">Ontvang een factuur per e-mail</td>
+                    <td class="visible-xs-block" id="invoice-2"><span class="payment-option">Factuur</span> - Ontvang een factuur per e-mail
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <span class="btn-spacer"></span>
+
+    <div class="form-group" [class.has-error]="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)" [class.has-feedback]="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)">
+        <label for="conditions" class="col-xs-12 col-sm-3 control-label">Voorwaarden</label>
+        <div class="col-xs-12 col-sm-6">
+            <label class="checkbox-inline">
+                <input type="checkbox" id="conditions" [(ngModel)]="conditionsAgreed" name="conditions" required #conditions="ngModel"> Ik ga akkoord met de <a href="#" target="_blank">algemene voorwaarden</a>
+            </label>
+            <label *ngIf="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)" class="control-label">U dient akkoord te gaan met de algemene voorwaarden.</label>
+        </div>
+    </div>
+
+    <button (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect" role="tab">Vorige</button>
+    <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab">Volgende</button>
+</form>

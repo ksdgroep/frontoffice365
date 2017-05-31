@@ -1,0 +1,55 @@
+<h2>Inschrijven cursus</h2>
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="courseSelector" class="col-xs-12 col-sm-3 control-label filter-label">Selecteer cursus</label>
+        <div class="col-xs-12 col-sm-5">
+            <select id="courseSelector" class="form-control" [(ngModel)]="selectedCourseTemplate" (ngModelChange)="selectedCourseTemplateChanged($event)" name="CourseSelector">
+                    <option value="null" selected></option>
+                    <option *ngFor="let ct of courseTemplates" [ngValue]="ct">{{ct.Name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="regionSelector" class="col-xs-12 col-sm-3 control-label filter-label">Selecteer regio</label>
+        <div class="col-xs-12 col-sm-5">
+            <select id="regionSelector" class="form-control" [(ngModel)]="selectedRegion" (ngModelChange)="selectedRegionChanged($event)" name="RegionSelector">
+                    <option value="null" selected></option>
+                    <option *ngFor="let r of regions" [ngValue]="r">{{r.Name}}</option>
+            </select>
+        </div>
+    </div>
+</form>
+<hr class="divider" />
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <!--selection-->
+                </th>
+                <th>Startdatum</th>
+                <th>Cursus</th>
+                <th>Regio</th>
+                <th>Duur</th>
+                <th>Prijs</th>
+                <th>
+                    <!--status-->
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of courses" [class.disabled]="course.IsFull" [class.active]="course.Id == selectedCourseId">
+                <td>
+                    <input type="radio" name="courseSelector" [value]="course.Id" [(ngModel)]="selectedCourseId" [disabled]="course.IsFull" (change)="selectedCourseChanged(course)"></td>
+                <td>{{course.Date | date: 'dd-MM-yyyy'}}</td>
+                <td>{{course.Name}}</td>
+                <td>{{course.Region}}</td>
+                <td>{{course.DurationInfo}}</td>
+                <td>{{course.Price | currencyFormat}}</td>
+                <td><span *ngIf="course.IsFull">Vol</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<span class="btn-spacer"></span>
+<button class="btn btn-default pull-right " aria-controls="contactInfo" role="tab" [disabled]="!selectedCourseId" (click)="nextTab()">Volgende</button>

@@ -1,0 +1,48 @@
+//phone
+$screen-xs: 480px
+//tablet
+$screen-sm: 768px
+//desktop
+$screen-md: 992px
+//large desktop
+$screen-lg: 1200px
+
+@media(min-width: 0px)
+  body
+    .form-group label
+      margin-bottom: 10px
+
+  #main-content
+    margin-bottom: 25px
+
+  .form-horizontal .form-group
+    margin-bottom: 25px
+
+#signupConfirmed .form-group
+  margin-left: -15px
+
+#signupConfirmed > div
+  margin-bottom: 25px
+
+.margin-bottom-15
+  margin-bottom: 15px
+
+.participants-list
+  .margin-bottom-15
+    margin-bottom: 15px
+
+@media (min-width: $screen-sm)
+
+  .form-horizontal .form-group
+    margin-bottom: 15px
+
+  .margin-bottom-15
+    margin-bottom: 0
+
+  .participants-list
+    .margin-bottom-15
+      margin-bottom: 0px
+
+@media (min-width: $screen-md)
+  body
+    //background: purple !important
