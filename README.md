@@ -1,2 +1,2 @@
-# frontoffice365
+# FrontOffice365
 FrontOffice for Viper365
