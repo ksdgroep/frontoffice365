@@ -31,7 +31,6 @@
                 <th>Cursus</th>
                 <th>Regio</th>
                 <th>Duur</th>
-                <th>Prijs</th>
                 <th>
                     <!--status-->
                 </th>
@@ -45,7 +44,6 @@
                 <td>{{course.Name}}</td>
                 <td>{{course.Region}}</td>
                 <td>{{course.DurationInfo}}</td>
-                <td>{{course.Price | currencyFormat}}</td>
                 <td><span *ngIf="course.IsFull">Vol</span></td>
             </tr>
         </tbody>

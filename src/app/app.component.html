@@ -22,7 +22,7 @@
                     <a aria-controls="contactInfo" role="tab" (click)="selectTab('contactInfo')">Stap 2: Contactgegevens</a>
                 </li>
                 <li role="presentation" [class.active]="selectedTab == 'paymentInfo'" [class.disabled]="enabledTabCount < 3 || enabledTabCount == 4">
-                    <a aria-controls="paymentInfo" role="tab" (click)="selectTab('paymentInfo')">Stap 3: Betaalgegevens</a>
+                    <a aria-controls="paymentInfo" role="tab" (click)="selectTab('paymentInfo')">Stap 3: Algemene voorwaarden</a>
                 </li>
                 <li role="presentation" [class.active]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'" [class.disabled]="enabledTabCount < 4">
                     <a aria-controls="signupConfirmed" role="tab" (click)="selectTab('signupConfirmed')">Stap 4: Inschrijving voltooid</a>
