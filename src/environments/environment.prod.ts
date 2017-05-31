@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   apiUrl: 'https://basic-api.viper365.nl',
-  apiKey: 'A20EC0A0-F5F2-4499-96B0-10370A8E7854',
-  contactEmail: 'info@ksdgroep.nl'
+  apiKey: '376F0B53-0F93-4D15-98F6-2B437A2ADC79',
+  contactEmail: 'info@spencer.nl'
 };
