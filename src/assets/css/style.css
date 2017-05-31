@@ -102,11 +102,15 @@ tr.disabled {
 /* Bootstrap overrides */
 /* Navbar / Tabs overrides */
 .navbar-default {
-  background-color: #D75473;
+  /*background-color: #D75473;*/
+  background-color: #aeb0af;
   border: none; }
 
 .navbar {
-  border-radius: 0; }
+  border-radius: 0;
+  background: #aeb0af url("../img/logo_spencer.png") no-repeat right center;
+  background-size: 153px 49px;
+}
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
   border: none; }
@@ -116,10 +120,16 @@ tr.disabled {
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
   color: #fff;
-  background: #C4002E;
+  /*background: #C4002E;*/
+  background: #686A69;
   border: none;
   border-radius: 0;
-  cursor: pointer; }
+  cursor: pointer;
+}
+
+.navbar-default .navbar-nav>.disabled>a, .navbar-default .navbar-nav>.disabled>a:focus, .navbar-default .navbar-nav>.disabled>a:hover {
+  color: #fff;
+}
 
 .navbar-default .navbar-nav > li > a {
   color: #FFE4E4;
@@ -225,10 +235,10 @@ ul li {
   border: none;
   border-color: transparent;
   background: #D75473; }
-  .navbar-default .navbar-toggle:focus {
-    background-color: #C4002E; }
-  .navbar-default .navbar-toggle:hover {
-    background-color: #C4002E; }
+.navbar-default .navbar-toggle:focus {
+  background-color: #C4002E; }
+.navbar-default .navbar-toggle:hover {
+  background-color: #C4002E; }
 
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #fff; }
