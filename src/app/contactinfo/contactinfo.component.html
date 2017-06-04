@@ -1,7 +1,7 @@
 <h2 class="no-margin-bottom">Contactgegevens</h2>
 <h4 class="subtitle">Met wie mogen wij contact opnemen?</h4>
 <form class="form-horizontal" data-toggle="validator" (ngSubmit)="saveInfo(contactForm.valid)" #contactForm="ngForm">
-    <div class="form-group" [class.has-error]="optionGender.errors && (optionGender.dirty || optionGender.touched || contactForm.submitted)" [class.has-feedback]="optionGender.errors && (optionGender.dirty || optionGender.touched || contactForm.submitted)">
+    <div class="form-group" [appValidationError]="optionGender.errors && (optionGender.dirty || optionGender.touched || contactForm.submitted)" >
         <label class="col-xs-12 col-sm-3 col-md-3 control-label">Aanhef</label>
         <div class="col-xs-12 col-sm-4 col-md-7">
             <label class="radio-inline">
@@ -13,7 +13,7 @@
             <label *ngIf="optionGender.errors && (optionGender.dirty || optionGender.touched || contactForm.submitted)" class="control-label">Gelieve een aanhef te selecteren.</label>
         </div>
     </div>
-    <div class="form-group" [class.has-error]="initials.errors && (initials.dirty || initials.touched || contactForm.submitted)" [class.has-feedback]="initials.errors && (initials.dirty || initials.touched || contactForm.submitted)">
+    <div class="form-group" [appValidationError]="initials.errors && (initials.dirty || initials.touched || contactForm.submitted)" >
         <label for="initials" class="col-xs-12 col-sm-3 control-label">Voorletters</label>
         <div class="col-xs-12 col-sm-6">
             <input type="text" class="form-control " id="initials" name="initials" [(ngModel)]="order.ContactPerson.Initials" required #initials="ngModel">
@@ -30,13 +30,13 @@
     </div>
 
     <div class="form-group">
-        <label for="middleName " class="col-xs-12 col-sm-3 control-label optional-label">Tussenvoegsel<br/><span>Optioneel</span></label>
+        <label for="middleName" class="col-xs-12 col-sm-3 control-label optional-label">Tussenvoegsel<br/><span>Optioneel</span></label>
         <div class="col-xs-12 col-sm-6">
             <input type="text" class="form-control" id="middleName" name="middleName" [(ngModel)]="order.ContactPerson.MiddleName">
         </div>
     </div>
 
-    <div class="form-group" [class.has-error]="lastName.errors && (lastName.dirty || lastName.touched || contactForm.submitted)" [class.has-feedback]="lastName.errors && (lastName.dirty || lastName.touched || contactForm.submitted)">
+    <div class="form-group" [appValidationError]="lastName.errors && (lastName.dirty || lastName.touched || contactForm.submitted)" >
         <label for="lastName" class="col-xs-12 col-sm-3 control-label optional-label">Achternaam</label>
         <div class="col-xs-12 col-sm-6">
             <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="order.ContactPerson.Surname" required #lastName="ngModel">
@@ -44,7 +44,6 @@
             <label *ngIf="lastName.errors && (lastName.dirty || lastName.touched || contactForm.submitted)" class="control-label">Achternaam is verpllicht.</label>
         </div>
     </div>
-
     <div class="form-group">
         <label class="col-xs-12 col-sm-3 control-label">Type inschrijving</label>
         <div class="col-xs-12 col-sm-4 col-md-7">
@@ -59,7 +58,7 @@
 
     <!-- Zakelijke inschrijving -->
 
-    <div *ngIf="order.OrderType == 'Company'" class="form-group" [class.has-error]="companyName.errors && (companyName.dirty || companyName.touched || contactForm.submitted)" [class.has-feedback]="companyName.errors && (companyName.dirty || companyName.touched || contactForm.submitted)">
+    <div *ngIf="order.OrderType == 'Company'" class="form-group" [appValidationError]="companyName.errors && (companyName.dirty || companyName.touched || contactForm.submitted)" >
         <label for="business" class="col-xs-12 col-sm-3 control-label optional-label">Bedrijf</label>
         <div class="col-xs-12 col-sm-6">
             <input type="text" class="form-control" id="business" name="companyName" [(ngModel)]="order.Company.Name" required #companyName="ngModel">
@@ -108,7 +107,7 @@
         </div>
     </div>
 
-    <div class="form-group" [class.has-error]="emailBusiness.errors && (emailBusiness.dirty || emailBusiness.touched || contactForm.submitted)" [class.has-feedback]="emailBusiness.errors && (emailBusiness.dirty || emailBusiness.touched || contactForm.submitted)">
+    <div class="form-group" [appValidationError]="emailBusiness.errors && (emailBusiness.dirty || emailBusiness.touched || contactForm.submitted)" >
         <label for="emailBusiness" class="col-xs-12 col-sm-3 control-label optional-label">E-mail</label>
         <div class="col-xs-12 col-sm-6">
             <input type="text" class="form-control" id="emailBusiness" name="email" [(ngModel)]="order.ContactPerson.Email" #emailBusiness="ngModel" required pattern="[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?"
@@ -155,7 +154,7 @@
             <label class="col-xs-12 col-sm-3 control-label participant-title">Deelnemer {{index +1}}</label>
         </div>
 
-        <div class="form-group" [class.has-error]="studentGender.errors && (studentGender.dirty || studentGender.touched || contactForm.submitted)" [class.has-feedback]="studentGender.errors && (studentGender.dirty || studentGender.touched || contactForm.submitted)">
+        <div class="form-group" [appValidationError]="studentGender.errors && (studentGender.dirty || studentGender.touched || contactForm.submitted)" >
             <label class="col-xs-12 col-sm-3 control-label">Aanhef</label>
             <div class="col-xs-12 col-sm-4 col-md-7">
                 <label class="radio-inline">
@@ -167,7 +166,7 @@
                 <label *ngIf="studentGender.errors && (studentGender.dirty || studentGender.touched || contactForm.submitted)" class="control-label">Gelieve een aanhef te selecteren.</label>
             </div>
         </div>
-        <div class="form-group" [class.has-error]="studentInitials.errors && (studentInitials.dirty || studentInitials.touched || contactForm.submitted)" [class.has-feedback]="studentInitials.errors && (studentInitials.dirty || studentInitials.touched || contactForm.submitted)">
+        <div class="form-group" [appValidationError]="studentInitials.errors && (studentInitials.dirty || studentInitials.touched || contactForm.submitted)" >
             <label for="initialsParticipant" class="col-xs-12 col-sm-3 control-label">Voorletters</label>
             <div class="col-xs-12 col-sm-6">
                 <input type="text" class="form-control" id="initialsParticipant" name="initials_{{index}}" [(ngModel)]="s.Initials" required #studentInitials="ngModel">
@@ -190,7 +189,7 @@
             </div>
         </div>
 
-        <div class="form-group" [class.has-error]="studentLastName.errors && (studentLastName.dirty || studentLastName.touched || contactForm.submitted)" [class.has-feedback]="studentLastName.errors && (studentLastName.dirty || studentLastName.touched || contactForm.submitted)">
+        <div class="form-group" [appValidationError]="studentLastName.errors && (studentLastName.dirty || studentLastName.touched || contactForm.submitted)" >
             <label for="lastNameParticipant" class="col-xs-12 col-sm-3 control-label">Achternaam</label>
             <div class="col-xs-12 col-sm-6">
                 <input type="text" class="form-control" id="lastNameParticipant" name="lastName_{{index}}" [(ngModel)]="s.Surname" required #studentLastName="ngModel">
@@ -243,7 +242,7 @@
                 <input type="text" class="form-control" id="phoneNumberParticipant" name="phone_{{index}}" [(ngModel)]="s.Phone">
             </div>
         </div>
-        <div class="form-group" [class.has-error]="studentEmail.errors && (studentEmail.dirty || studentEmail.touched || contactForm.submitted)" [class.has-feedback]="studentEmail.errors && (studentEmail.dirty || studentEmail.touched || contactForm.submitted)">
+        <div class="form-group" [appValidationError]="studentEmail.errors && (studentEmail.dirty || studentEmail.touched || contactForm.submitted)" >
             <label for="emailParticipant" class="col-xs-12 col-sm-3 control-label optional-label">E-mail adres</label>
             <div class="col-xs-12 col-sm-6 ">
                 <input type="email" class="form-control" id="emailParticipant" name="email_{{index}}" [(ngModel)]="s.Email" required pattern="[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?"

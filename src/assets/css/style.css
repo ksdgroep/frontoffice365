@@ -266,4 +266,11 @@ ul li {
   -ms-transform: rotate(45deg) translateY(-4px) translateX(-3px);
   transform: rotate(45deg) translateY(-4px) translateX(-3px); }
 
+.dob-width {
+  width: 31.55%;
+  margin-right: 5px;
+  display: inline; }
+  .dob-width:last-child {
+    margin-right: 0; }
+
 /*# sourceMappingURL=style.css.map */

@@ -11,19 +11,26 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ContactinfoComponent } from './contactinfo/contactinfo.component';
 import { CourseselectionComponent } from './courseselection/courseselection.component';
 import { PaymentinfoComponent } from './paymentinfo/paymentinfo.component';
+import { ValidationErrorDirective } from './directives/validation-error.directive';
 
 @NgModule({
-  declarations: [
-    CurrencyFormat,
-    DutchDateFormat, 
-    AppComponent, BasketComponent, ConfirmationComponent, ContactinfoComponent, CourseselectionComponent, PaymentinfoComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        CurrencyFormat,
+        DutchDateFormat,
+        AppComponent,
+        BasketComponent,
+        ConfirmationComponent,
+        ContactinfoComponent,
+        CourseselectionComponent,
+        PaymentinfoComponent,
+        ValidationErrorDirective
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,17 +13,18 @@ import { Course } from '../bll/course';
 })
 
 export class ConfirmationComponent implements OnDestroy {
+
+    subscription: Subscription;
+    subscriptionCourse: Subscription;
+    order: Order;
+    course: Course;
+
     constructor(
         private globalFunctionsService: GlobalFunctionsService
     ) {
         this.subscription = this.globalFunctionsService.orderUpdated().subscribe(order => this.order = order);
         this.subscriptionCourse = this.globalFunctionsService.selectedCourseUpdated().subscribe(course => this.course = course);
     }
-
-    subscription: Subscription;
-    subscriptionCourse: Subscription;
-    order: Order;
-    course: Course;
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();

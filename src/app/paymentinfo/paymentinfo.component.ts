@@ -3,8 +3,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Order } from '../bll/order';
-import { ContactPerson } from '../bll/contactperson';
-import { Company } from '../bll/company';
 import { Country } from '../bll/country';
 import { Student } from '../bll/student';
 import { Course } from '../bll/course';
@@ -20,15 +18,7 @@ import { EnrolService } from '../services/enrol.service';
 })
 
 export class PaymentinfoComponent implements OnInit, OnDestroy {
-    constructor(
-        private countryService: CountryService,
-        private globalFunctionsService: GlobalFunctionsService,
-        private enrolService: EnrolService
-    ) {
-        this.subscription = this.globalFunctionsService.orderUpdated().subscribe(order => this.order = order);
-        this.subscriptionCourse = this.globalFunctionsService.selectedCourseUpdated().subscribe(course => this.course = course);
-    }
-    
+
     subscription: Subscription;
     subscriptionCourse: Subscription;
     order: Order;
@@ -37,14 +27,21 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
     conditionsAgreed: boolean;
     course: Course;
 
+    constructor(
+        private countryService: CountryService,
+        private globalFunctionsService: GlobalFunctionsService,
+        private enrolService: EnrolService
+    ) {
+        this.subscription = this.globalFunctionsService.orderUpdated().subscribe(order => this.order = order);
+        this.subscriptionCourse = this.globalFunctionsService.selectedCourseUpdated().subscribe(course => this.course = course);
+    }
+
     getCountries(): void {
         this.countryService.getCountries().then(countries => this.countries = countries);
     }
 
     saveInfo(isValid: boolean): void {
         if (isValid) {
-            console.debug("Info Saved.");
-
             try {
 
                 // Create Correct Order-Message
@@ -55,8 +52,7 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
                 if (!this.order.InvoiceCompany.Name) {
                     // Clear Invoice Company
                     this.order.InvoiceCompany = null;
-                }
-                else {
+                } else {
                     // Copy Address to Invoice Company
                     this.order.InvoiceCompany.Address = this.order.InvoicePerson.Address;
                     this.order.InvoiceCompany.AddressNumber = this.order.InvoicePerson.AddressNumber;
@@ -70,7 +66,7 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
                 }
                 if (this.order.FirstStudentIsContact) {
                     // Create Student from Contact
-                    let student = new Student();
+                    const student = new Student();
                     student.FirstName = this.order.ContactPerson.FirstName;
                     student.Initials = this.order.ContactPerson.Initials;
                     student.Surname = this.order.ContactPerson.Surname;
@@ -85,8 +81,9 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
                     student.CountryId = this.order.ContactPerson.CountryId;
 
                     // Add Contact to Students Array
-                    if (!this.order.Students)
+                    if (!this.order.Students) {
                         this.order.Students = [];
+                    }
                     this.order.Students.splice(0, 0, student);
                 }
 
@@ -96,8 +93,6 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
                 });
 
                 // Save Order
-                console.debug(JSON.stringify(this.order));
-
                 this.enrolService.create(this.order)
                     .then(response => {
                         this.globalFunctionsService.updateOrder(this.order);
@@ -107,17 +102,14 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
                         this.globalFunctionsService.activateTab('signupConfirmed');
                     })
                     .catch(response => {
-                        console.debug('Save Failed');
                         this.globalFunctionsService.enableTabs(4);
                         this.globalFunctionsService.activateTab('signupFailed');
                     });
             } catch (error) {
                 this.globalFunctionsService.enableTabs(4);
                 this.globalFunctionsService.activateTab('signupFailed');
-            }    
+            }
         }
-        else
-            console.debug("Not Valid!");
     }
     
     previousTab(): void {

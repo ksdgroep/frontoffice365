@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Country } from '../bll/country';
 import { CountryService } from '../services/country.service';
@@ -15,19 +15,17 @@ import { GlobalFunctionsService } from '../services/global-functions.service';
     providers: [CountryService]
 })
 
-export class ContactinfoComponent implements OnInit, OnDestroy {
+export class ContactinfoComponent implements OnInit {
+
+    countries: Country[];
+    addMultipleStudents: boolean;
+
+    order: Order = new Order();
 
     constructor(
         private countryService: CountryService,
         private globalFunctionsService: GlobalFunctionsService
     ) { }
-    
-    countries: Country[];
-    selectedCountry: Country;
-    addMultipleStudents: boolean;
-
-    order: Order = new Order();
-    contactAddressNumber: string;
 
     getCountries(): void {
         this.countryService.getCountries().then(countries => this.countries = countries);
@@ -38,21 +36,20 @@ export class ContactinfoComponent implements OnInit, OnDestroy {
     }
 
     toggleStudents(): void {
-        this.addMultipleStudents != this.addMultipleStudents;
+        this.addMultipleStudents = !this.addMultipleStudents;
         if (this.addMultipleStudents) {
-            let student = new Student();
+            const student = new Student();
             student.CountryId = 'NL';
             this.order.Students = [student];
             this.globalFunctionsService.updateStudentCount(this.order.Students.length + (this.order.FirstStudentIsContact ? 1 : 0));
-        }
-        else {
+        } else {
             this.order.Students = [];
             this.globalFunctionsService.updateStudentCount(this.order.Students.length + (this.order.FirstStudentIsContact ? 1 : 0));
         }
     }
 
     addStudent(): void {
-        let student = new Student();
+        const student = new Student();
         student.CountryId = 'NL';
         this.order.Students.push(student);
 
@@ -68,13 +65,10 @@ export class ContactinfoComponent implements OnInit, OnDestroy {
 
     saveInfo(isValid: boolean): void {
         if (isValid) {
-            console.debug("Info Saved.");
             this.globalFunctionsService.updateOrder(this.order);
             this.globalFunctionsService.enableTabs(3);
             this.globalFunctionsService.activateTab('paymentInfo');
         }
-        else
-            console.debug("Not Valid!");
     }
 
     previousTab(): void {
@@ -93,11 +87,7 @@ export class ContactinfoComponent implements OnInit, OnDestroy {
         this.order.InvoicePerson.CountryId = 'NL';
         this.order.InvoiceCompany = new Company();
         this.order.InvoiceCompany.CountryId = 'NL';
-        
+
         this.getCountries();
     }
-
-    ngOnDestroy(): void {
-
-    }    
 }
