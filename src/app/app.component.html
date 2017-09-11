@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-content" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -11,7 +11,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="main-content">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav nav-tabs" role="tablist">
                 <li role="presentation" [class.active]="selectedTab == 'courseSelect'" [class.disabled]="enabledTabCount == 4">
                     <a aria-controls="courseSelect" role="tab" (click)="selectTab('courseSelect')">Stap 1: Inschrijven cursus
@@ -37,7 +37,7 @@
 <div class="container course-selection">
     <div class="row">
         <!-- When hiding the sidebar give col-sm-12 to this container -->
-        <div class="col-xs-12 col-sm-7" id="main-content" [class.col-sm-7]="selectedTab != 'signupConfirmed' && selectedTab != 'signupFailed'" [class.col-sm-12]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'">
+        <div class="col-xs-12" id="main-content" [class.col-sm-8]="selectedTab != 'signupConfirmed' && selectedTab != 'signupFailed'" [class.col-sm-12]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'">
             <div class="tab-content">
                 <div [class.active]="selectedTab == 'courseSelect'" role="tabpanel" class="tab-pane fade in" id="courseSelect">
                     <fo-courseselection></fo-courseselection>

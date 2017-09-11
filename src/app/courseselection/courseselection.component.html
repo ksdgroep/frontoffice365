@@ -22,31 +22,74 @@
 <hr class="divider" />
 
 <div class="courseselection-container">
-    <div class="courseselection courseselection-header">
-        <span class="header-item">Startdatum</span>
-        <span class="header-item">Cursus</span>
-        <span class="header-item">Regio</span>
-        <span class="header-item">Duur</span>
-        <span class="header-item">Prijs</span>
+    <!-- show from 768px and up -->
+    <div class="hide-sm-down">
+        <div class="courseselection courseselection-header clearfix">
+            <span class="header-item">Startdatum</span>
+            <span class="header-item">Cursus</span>
+            <span class="header-item">Regio</span>
+            <span class="header-item">Duur</span>
+            <span class="header-item">Prijs</span>
+        </div>
+        <a class="course-selector" href="#">
+            <div class="courseselection courseselection-item clearfix">
+                <span class="course-item">31-31-20117</span>
+                <span class="course-item">Dit is een lange cursusnaam</span>
+                <span class="course-item">Zuid/Oost Brabant</span>
+                <span class="course-item">99 maanden</span>
+                <span class="course-item">€2000.00,-</span>
+            </div>
+        </a>
+        <a class="course-selector" href="#">
+            <div class="courseselection courseselection-item clearfix active">
+                <span class="course-item">31-31-20117</span>
+                <span class="course-item">Dit is een lange cursusnaam</span>
+                <span class="course-item">Zuid/Oost Brabant</span>
+                <span class="course-item">99 maanden</span>
+                <span class="course-item">€2000.00,-</span>
+            </div>
+        </a>
     </div>
-    <a class="course-selector" href="#">
-        <div class="courseselection courseselection-item clearfix">
-            <span class="course-item">31-31-20117</span>
-            <span class="course-item">Dit is een lange cursusnaam</span>
-            <span class="course-item">Zuid/Oost Brabant</span>
-            <span class="course-item">99 maanden</span>
-            <span class="course-item">€2000.00,-</span>
+    <div class="show-xs">
+
+        <div class="courseselection-container-mobile">
+            <div class="courseselection-header">
+                <a class="course-selector-mobile" href="#" data-toggle="collapse" data-target="#course-collapse" aria-expanded="false" aria-controls="course-collapse">
+                    <div class="course-item-mobile-header">
+                        <span>Dit is een lange cursusnaam</span>
+                    </div>
+                </a>
+            </div>
+            <div id="course-collapse" class="courseselection-content-mobile clearfix collapse">
+                <div class="course-content-mobile">
+                    <span class="course-item-mobile">31-31-20117</span>
+                    <span class="course-item-mobile">Zuid/Oost Brabant</span>
+                    <span class="course-item-mobile">99 maanden</span>
+                    <span class="course-item-mobile">€2000.00,-</span>
+                </div>
+                <a href="#" class="btn btn-block">Inschrijven</a>
+            </div>
         </div>
-    </a>
-    <a class="course-selector" href="#">
-        <div class="courseselection courseselection-item clearfix">
-            <span class="course-item">31-31-20117</span>
-            <span class="course-item">Dit is een lange cursusnaam</span>
-            <span class="course-item">Zuid/Oost Brabant</span>
-            <span class="course-item">99 maanden</span>
-            <span class="course-item">€2000.00,-</span>
+
+        <div class="courseselection-container-mobile">
+            <div class="courseselection-header">
+                <a class="course-selector-mobile" href="#" data-toggle="collapse" data-target="#course-collapse" aria-expanded="false" aria-controls="course-collapse">
+                    <div class="course-item-mobile-header">
+                        <span>Dit is een lange cursusnaam</span>
+                    </div>
+                </a>
+
+            </div>
+            <div id="course-collapse" class="courseselection-item clearfix collapse">
+                <span class="course-item-mobile">31-31-20117</span>
+                <span class="course-item-mobile">Zuid/Oost Brabant</span>
+                <span class="course-item-mobile">99 maanden</span>
+                <span class="course-item-mobile">€2000.00,-</span>
+                <a href="#" class="btn btn-primary btn-sm">Inschrijven</a>
+            </div>
         </div>
-    </a>
+
+    </div>
 </div>
 <span class="btn-spacer clearfix"></span>
 <button class="btn btn-default pull-right " aria-controls="contactInfo" role="tab" [disabled]="!selectedCourseId" (click)="nextTab()">Volgende</button>

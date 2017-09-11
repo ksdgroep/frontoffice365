@@ -1,4 +1,4 @@
-@media (min-width: 0px) {
+@media screen and (min-width: 0px) {
   body .form-group label {
     margin-bottom: 10px; }
   #main-content {
@@ -25,6 +25,39 @@
     margin-bottom: 0; }
   .participants-list .margin-bottom-15 {
     margin-bottom: 0px; } }
+
+@media (max-width: 480px) {
+  .course-selector .courseselection-item > .course-item {
+    float: left;
+    display: block;
+    color: red !important; } }
+
+@media (min-width: 768px) {
+  .hide-sm-down {
+    display: block; }
+  .show-xs {
+    display: none; } }
+
+@media (min-width: 0) and (max-width: 768px) {
+  .hide-xs-down {
+    display: none; }
+  .course-item-mobile {
+    display: block;
+    margin-bottom: 10px; }
+  .courseselection-container-mobile {
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    border-radius: 5px; }
+    .courseselection-container-mobile:hover {
+      border-color: #ddd; }
+  .courseselection-header {
+    padding: 5px; }
+  .course-content-mobile {
+    padding: 5px;
+    border-top: 1px solid #eee; }
+  .courseselection-content-mobile > .btn {
+    border-top: 1px solid #eee;
+    border-radius: 0; } }
 
 /* Custom font */
 body {
@@ -276,12 +309,39 @@ ul li {
 .header-item, .course-item {
   width: 19.2%;
   padding: 5px;
-  float: left; }
+  float: left;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto; }
   .header-item:nth-child(n), .course-item:nth-child(n) {
     margin-bottom: 1%;
     margin-right: 1%; }
   .header-item:nth-child(5n), .course-item:nth-child(5n) {
     margin-right: 0;
     margin-bottom: 0; }
+
+.course-selector {
+  margin-bottom: 15px; }
+
+.courseselection {
+  padding: 5px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  border-radius: 5px; }
+  .courseselection:hover {
+    border-color: #ddd; }
+
+.courseselection-header:hover {
+  border-color: #eee; }
+
+.courseselection-item.active {
+  border-color: #8484ff;
+  background: #efefff; }
+  .courseselection-item.active:hover {
+    border-color: #6666ff; }
 
 /*# sourceMappingURL=style.css.map */
