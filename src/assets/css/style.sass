@@ -6,6 +6,16 @@ $tertiaryColor: #FFE4E4
 $textColorMenu: #fff
 $textColorBody: #000
 
+@mixin rowMachine($numPerRow, $margin) 
+  width: ((100% - (($numPerRow - 1) * $margin)) / $numPerRow);
+  &:nth-child(n) 
+    margin-bottom: $margin;
+    margin-right: $margin;
+  &:nth-child(#{$numPerRow}n) 
+    margin-right: 0;
+    margin-bottom: 0;
+
+
 /* Custom font */
 body
   font-family: 'Lato', Segoe UI, Helvetica, sans-serif
@@ -243,3 +253,10 @@ ul li
   display: inline
   &:last-child
     margin-right: 0
+
+//course selection items
+
+.header-item, .course-item
+  @include rowMachine(5,1%)
+  padding: 5px
+  float: left

@@ -20,36 +20,33 @@
     </div>
 </form>
 <hr class="divider" />
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>
-                    <!--selection-->
-                </th>
-                <th>Startdatum</th>
-                <th>Cursus</th>
-                <th>Regio</th>
-                <th>Duur</th>
-                <th>Prijs</th>
-                <th>
-                    <!--status-->
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let course of courses" [class.disabled]="course.IsFull" [class.active]="course.Id == selectedCourseId">
-                <td>
-                    <input type="radio" name="courseSelector" [value]="course.Id" [(ngModel)]="selectedCourseId" [disabled]="course.IsFull" (change)="selectedCourseChanged(course)"></td>
-                <td>{{course.Date | date: 'dd-MM-yyyy'}}</td>
-                <td>{{course.Name}}</td>
-                <td>{{course.Region}}</td>
-                <td>{{course.DurationInfo}}</td>
-                <td>{{course.Price | currencyFormat}}</td>
-                <td><span *ngIf="course.IsFull">Vol</span></td>
-            </tr>
-        </tbody>
-    </table>
+
+<div class="courseselection-container">
+    <div class="courseselection courseselection-header">
+        <span class="header-item">Startdatum</span>
+        <span class="header-item">Cursus</span>
+        <span class="header-item">Regio</span>
+        <span class="header-item">Duur</span>
+        <span class="header-item">Prijs</span>
+    </div>
+    <a class="course-selector" href="#">
+        <div class="courseselection courseselection-item clearfix">
+            <span class="course-item">31-31-20117</span>
+            <span class="course-item">Dit is een lange cursusnaam</span>
+            <span class="course-item">Zuid/Oost Brabant</span>
+            <span class="course-item">99 maanden</span>
+            <span class="course-item">€2000.00,-</span>
+        </div>
+    </a>
+    <a class="course-selector" href="#">
+        <div class="courseselection courseselection-item clearfix">
+            <span class="course-item">31-31-20117</span>
+            <span class="course-item">Dit is een lange cursusnaam</span>
+            <span class="course-item">Zuid/Oost Brabant</span>
+            <span class="course-item">99 maanden</span>
+            <span class="course-item">€2000.00,-</span>
+        </div>
+    </a>
 </div>
-<span class="btn-spacer"></span>
+<span class="btn-spacer clearfix"></span>
 <button class="btn btn-default pull-right " aria-controls="contactInfo" role="tab" [disabled]="!selectedCourseId" (click)="nextTab()">Volgende</button>
