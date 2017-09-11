@@ -12,25 +12,29 @@ import { ContactinfoComponent } from './contactinfo/contactinfo.component';
 import { CourseselectionComponent } from './courseselection/courseselection.component';
 import { PaymentinfoComponent } from './paymentinfo/paymentinfo.component';
 import { ValidationErrorDirective } from './directives/validation-error.directive';
+import {SharedModule} from './shared/shared.module';
+import {PluralizeText} from './helpers/pluralizetext-pipe';
 
 @NgModule({
-    declarations: [
-        CurrencyFormat,
-        DutchDateFormat,
-        AppComponent,
-        BasketComponent,
-        ConfirmationComponent,
-        ContactinfoComponent,
-        CourseselectionComponent,
-        PaymentinfoComponent,
-        ValidationErrorDirective
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [
+    CurrencyFormat,
+    DutchDateFormat,
+    PluralizeText,
+    AppComponent,
+    BasketComponent,
+    ConfirmationComponent,
+    ContactinfoComponent,
+    CourseselectionComponent,
+    PaymentinfoComponent,
+    ValidationErrorDirective
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    SharedModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
