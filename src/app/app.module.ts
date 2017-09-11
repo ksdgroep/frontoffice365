@@ -14,6 +14,7 @@ import { PaymentinfoComponent } from './paymentinfo/paymentinfo.component';
 import { ValidationErrorDirective } from './directives/validation-error.directive';
 import {SharedModule} from './shared/shared.module';
 import {PluralizeText} from './helpers/pluralizetext-pipe';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {PluralizeText} from './helpers/pluralizetext-pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
-    SharedModule
+    SharedModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

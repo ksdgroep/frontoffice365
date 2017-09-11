@@ -60,7 +60,7 @@ export class CourseselectionComponent implements OnInit {
         this.courseService.getCoursesByCourseTemplateAndRegion(courseTemplateId, regionId).then(courses => this.courses = courses);
     }
   }
-  
+
   selectedCourseTemplateChanged(courseTemplate: CourseTemplate): void {
     if (courseTemplate.Id !== undefined) {
       this.regionService.getRegionsByCourseTemplate(courseTemplate.Id).then(regions => this.regions = regions);
@@ -80,6 +80,8 @@ export class CourseselectionComponent implements OnInit {
   }
 
   selectedCourseChanged(course: Course): void {
+      this.selectedCourseId = course.Id;
+
       this.globalFunctionsService.updateSelectedCourse(course);
       this.globalFunctionsService.enableTabs(2);
   }
