@@ -7,7 +7,7 @@ import { RegionService } from '../services/region.service';
 import { Course } from '../bll/course';
 import { CourseService } from '../services/course.service';
 import { GlobalFunctionsService } from '../services/global-functions.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -29,7 +29,8 @@ export class CourseselectionComponent implements OnInit {
               private regionService: RegionService,
               private courseService: CourseService,
               private globalFunctionsService: GlobalFunctionsService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   getCourseTemplates(): void {
@@ -68,13 +69,33 @@ export class CourseselectionComponent implements OnInit {
 
   getCourses(courseTemplateId: number, regionId: string): void {
     if (courseTemplateId == null && regionId == null) {
-      this.courseService.getCourses().then(courses => this.courses = courses);
+      this.courseService.getCourses().then(courses => {
+        this.courses = courses;
+        this.resetCourseSelection();
+      });
     } else if (regionId == null) {
-      this.courseService.getCoursesByCourseTemplate(courseTemplateId).then(courses => this.courses = courses);
+      this.courseService.getCoursesByCourseTemplate(courseTemplateId).then(courses => {
+        this.courses = courses;
+        this.resetCourseSelection();
+      });
     } else if (courseTemplateId == null) {
-      this.courseService.getCoursesByRegion(regionId).then(courses => this.courses = courses);
+      this.courseService.getCoursesByRegion(regionId).then(courses => {
+        this.courses = courses;
+        this.resetCourseSelection();
+      });
     } else {
-      this.courseService.getCoursesByCourseTemplateAndRegion(courseTemplateId, regionId).then(courses => this.courses = courses);
+      this.courseService.getCoursesByCourseTemplateAndRegion(courseTemplateId, regionId).then(courses => {
+        this.courses = courses;
+        this.resetCourseSelection();
+      });
+    }
+  }
+
+  resetCourseSelection(): void {
+    // Reset Selection if course not in filter
+    if (!this.courses || this.courses.findIndex(course => course.Id === this.selectedCourseId) === -1) {
+      this.selectedCourseId = null;
+      this.globalFunctionsService.updateSelectedCourse(null);
     }
   }
 
@@ -105,6 +126,11 @@ export class CourseselectionComponent implements OnInit {
 
   nextTab(): void {
     this.globalFunctionsService.activateTab('contactInfo');
+
+    // Redirect
+    // TODO: Animate
+    window.scrollTo(0, 0);
+    this.router.navigate(['students']);
   }
 
   ngOnInit(): void {

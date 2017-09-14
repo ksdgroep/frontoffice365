@@ -37,9 +37,9 @@
 <div class="container course-selection">
     <div class="row">
         <!-- When hiding the sidebar give col-sm-12 to this container -->
-        <div class="col-xs-12" id="main-content" [class.col-sm-8]="selectedTab != 'signupConfirmed' && selectedTab != 'signupFailed'" [class.col-sm-12]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'">
+        <div class="col-xs-12 " id="main-content" [class.col-sm-8]="selectedTab != 'signupConfirmed' && selectedTab != 'signupFailed'" [class.col-sm-12]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'">
             <div class="tab-content">
-                <div [class.active]="selectedTab == 'courseSelect'" role="tabpanel" class="tab-pane fade in" id="courseSelect">
+                <div role="tabpanel" class="tab-pane fade in active" id="courseSelect">
                     <router-outlet></router-outlet>
                 </div>
                 <!--<div [class.active]="selectedTab == 'contactInfo'" role="tabpanel" class="tab-pane fade in" id="contactInfo">-->
