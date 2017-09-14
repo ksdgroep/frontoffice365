@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -15,6 +15,11 @@ import { ValidationErrorDirective } from './directives/validation-error.directiv
 import {SharedModule} from './shared/shared.module';
 import {PluralizeText} from './helpers/pluralizetext-pipe';
 import {AppRoutingModule} from './app-routing.module';
+import {AppConfig} from './app.config';
+
+// export function initConfig(config: AppConfig) {
+//   return () => config.load();
+// }
 
 @NgModule({
   declarations: [
@@ -36,7 +41,12 @@ import {AppRoutingModule} from './app-routing.module';
     SharedModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AppConfig,
+    {
+      provide: APP_INITIALIZER, useFactory: (config: AppConfig) => () => config.load(), deps: [AppConfig], multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
