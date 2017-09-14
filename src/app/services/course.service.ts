@@ -23,6 +23,13 @@ export class CourseService {
               private config: AppConfig) {
   }
 
+  public getCourse(id: string): Promise<Course>{
+    return this.http.get(this.courseApiUrl + '/' + id, {headers: this.headers})
+      .toPromise()
+      .then(response => response.json() as Course)
+      .catch(this.handleError);
+  }
+
   public getCourses(): Promise<Course[]> {
     return this.http.get(this.courseApiUrl, {headers: this.headers})
       .toPromise()

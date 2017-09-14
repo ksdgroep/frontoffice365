@@ -9,15 +9,15 @@ import {ConfirmationComponent} from './confirmation/confirmation.component';
 // import {ThanksComponent} from './thanks/thanks.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'course', pathMatch: 'full' },
+  { path: '', redirectTo: 'courses', pathMatch: 'full' },
   { path: 'students', component: ContactinfoComponent },
   { path: 'payment', component: PaymentinfoComponent },
   { path: 'confirm', component: ConfirmationComponent },
   // { path: 'finished', component: ThanksComponent },
   // { path: 'error', component: ErrorComponent },
-  { path: 'course', component: CourseselectionComponent },
-  { path: 'course/:id', component: CourseselectionComponent },
-  { path: 'course/:id/:returnName', component: CourseselectionComponent }
+  { path: 'courses', component: CourseselectionComponent },
+  { path: 'courses/:id', component: CourseselectionComponent },
+  { path: 'courses/:id/:courseId', component: CourseselectionComponent }
 ];
 
 @NgModule({

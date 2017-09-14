@@ -17,9 +17,9 @@ import {PluralizeText} from './helpers/pluralizetext-pipe';
 import {AppRoutingModule} from './app-routing.module';
 import {AppConfig} from './app.config';
 
-// export function initConfig(config: AppConfig) {
-//   return () => config.load();
-// }
+export function initConfig(config: AppConfig){
+  return () => config.load();
+}
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import {AppConfig} from './app.config';
   providers: [
     AppConfig,
     {
-      provide: APP_INITIALIZER, useFactory: (config: AppConfig) => () => config.load(), deps: [AppConfig], multi: true
+      provide: APP_INITIALIZER, useFactory: initConfig, deps: [AppConfig], multi: true
     }
   ],
   bootstrap: [AppComponent]

@@ -7,6 +7,7 @@ import { RegionService } from '../services/region.service';
 import { Course } from '../bll/course';
 import { CourseService } from '../services/course.service';
 import { GlobalFunctionsService } from '../services/global-functions.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -17,22 +18,32 @@ import { GlobalFunctionsService } from '../services/global-functions.service';
 
 export class CourseselectionComponent implements OnInit {
 
-    selectedCourseTemplate: CourseTemplate;
-    courseTemplates: CourseTemplate[];
-    selectedRegion: Region;
-    regions: Region[];
-    courses: Course[];
-    selectedCourseId: number;
+  selectedCourseTemplate: CourseTemplate;
+  courseTemplates: CourseTemplate[];
+  selectedRegion: Region;
+  regions: Region[];
+  courses: Course[];
+  selectedCourseId: number;
 
-    constructor(
-    private courseTemplateService: CourseTemplateService,
-    private regionService: RegionService,
-    private courseService: CourseService,
-    private globalFunctionsService: GlobalFunctionsService
- ) { }
+  constructor(private courseTemplateService: CourseTemplateService,
+              private regionService: RegionService,
+              private courseService: CourseService,
+              private globalFunctionsService: GlobalFunctionsService,
+              private route: ActivatedRoute) {
+  }
 
   getCourseTemplates(): void {
-    this.courseTemplateService.getCourseTemplates().then(courseTemplates => this.courseTemplates = courseTemplates);
+    this.courseTemplateService.getCourseTemplates().then(courseTemplates => this.setCourseTemplate(courseTemplates));
+  }
+
+  setCourseTemplate(courseTemplates: CourseTemplate[]): void {
+    this.courseTemplates = courseTemplates;
+
+    const courseTemplateId = this.route.snapshot.params['id'];
+    if (this.courseTemplates) {
+      const templateIndex = this.courseTemplates.findIndex(template => template.Id.toString() === courseTemplateId).toString();
+      this.selectedCourseTemplate = this.courseTemplates[templateIndex];
+    }
   }
 
   getRegions(): void {
@@ -40,24 +51,30 @@ export class CourseselectionComponent implements OnInit {
   }
 
   setRegion(regions: Region[]): void {
+    this.regions = regions;
 
-      this.regions = regions;
+    if (this.regions && this.selectedRegion) {
+      const regionIndex = this.regions.findIndex(region => region.Id === this.selectedRegion.Id).toString();
+      this.selectedRegion = regions[regionIndex];
+    }
+  }
 
-      if (this.regions && this.selectedRegion) {
-        const regionIndex = this.regions.findIndex(region => region.Id === this.selectedRegion.Id).toString();
-        this.selectedRegion = regions[regionIndex];
+  setRegionByName(regionName: string): void {
+    if (this.regions) {
+      const regionIndex = this.regions.findIndex(region => region.Name === regionName).toString();
+      this.selectedRegion = this.regions[regionIndex];
     }
   }
 
   getCourses(courseTemplateId: number, regionId: string): void {
     if (courseTemplateId == null && regionId == null) {
-        this.courseService.getCourses().then(courses => this.courses = courses);
+      this.courseService.getCourses().then(courses => this.courses = courses);
     } else if (regionId == null) {
-        this.courseService.getCoursesByCourseTemplate(courseTemplateId).then(courses => this.courses = courses);
+      this.courseService.getCoursesByCourseTemplate(courseTemplateId).then(courses => this.courses = courses);
     } else if (courseTemplateId == null) {
-        this.courseService.getCoursesByRegion(regionId).then(courses => this.courses = courses);
+      this.courseService.getCoursesByRegion(regionId).then(courses => this.courses = courses);
     } else {
-        this.courseService.getCoursesByCourseTemplateAndRegion(courseTemplateId, regionId).then(courses => this.courses = courses);
+      this.courseService.getCoursesByCourseTemplateAndRegion(courseTemplateId, regionId).then(courses => this.courses = courses);
     }
   }
 
@@ -80,14 +97,14 @@ export class CourseselectionComponent implements OnInit {
   }
 
   selectedCourseChanged(course: Course): void {
-      this.selectedCourseId = course.Id;
+    this.selectedCourseId = course.Id;
 
-      this.globalFunctionsService.updateSelectedCourse(course);
-      this.globalFunctionsService.enableTabs(2);
+    this.globalFunctionsService.updateSelectedCourse(course);
+    this.globalFunctionsService.enableTabs(2);
   }
 
   nextTab(): void {
-      this.globalFunctionsService.activateTab('contactInfo');
+    this.globalFunctionsService.activateTab('contactInfo');
   }
 
   ngOnInit(): void {
@@ -96,6 +113,22 @@ export class CourseselectionComponent implements OnInit {
 
     this.getCourseTemplates();
     this.getRegions();
-    this.getCourses(null, null);
+
+    const courseTemplateId = this.route.snapshot.params['id'];
+    const courseId = this.route.snapshot.params['courseId'];
+
+    if (courseId) {
+      // Get Course
+      this.courseService.getCourse(courseId).then(course => {
+        // Get Region
+        this.setRegionByName(course.Region);
+
+        // this.selectedCourseId = courseId;
+
+        this.selectedCourseChanged(course);
+      });
+    }
+
+    this.getCourses(courseTemplateId, this.selectedRegion ? this.selectedRegion.Id : null);
   }
 }
