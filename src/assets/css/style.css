@@ -29,8 +29,7 @@
 @media (max-width: 480px) {
   .course-selector .courseselection-item > .course-item {
     float: left;
-    display: block;
-    color: red !important; } }
+    display: block; } }
 
 @media (min-width: 768px) {
   .hide-sm-down {
@@ -41,6 +40,8 @@
 @media (min-width: 0) and (max-width: 768px) {
   .hide-xs-down {
     display: none; }
+  .hide-sm-down {
+    display: none; }
   .course-item-mobile {
     display: block;
     margin-bottom: 10px; }
@@ -50,14 +51,44 @@
     border-radius: 5px; }
     .courseselection-container-mobile:hover {
       border-color: #ddd; }
-  .courseselection-header {
-    padding: 5px; }
+  .courseselection-container-mobile.active {
+    border-color: #D75473;
+    background: #FFE4E4; }
+    .courseselection-container-mobile.active:hover {
+      border-color: #C4002E; }
+    .courseselection-container-mobile.active .course-content-mobile {
+      border-top-color: #D75473; }
+    .courseselection-container-mobile.active .courseselection-content-mobile > .btn {
+      border-top-color: #D75473; }
+  .courseselection-container-mobile.active > .courseselection-content-mobile > .btn {
+    color: #D75473; }
+  .courseselection-container-mobile .courseselection-header {
+    padding: 15px; }
   .course-content-mobile {
-    padding: 5px;
+    padding: 15px;
     border-top: 1px solid #eee; }
+  a:hover {
+    text-decoration: none; }
+  .course-item-mobile-header {
+    color: #000;
+    display: block;
+    position: relative; }
+    .course-item-mobile-header:hover {
+      text-decoration: none; }
+  .course-item-mobile-header:hover {
+    text-decoration: none; }
   .courseselection-content-mobile > .btn {
     border-top: 1px solid #eee;
-    border-radius: 0; } }
+    border-radius: 0; }
+  .course-item-mobile-header.isFull:after {
+    content: "Vol";
+    position: absolute;
+    color: #C4002E;
+    right: 15px; } }
+
+@media (min-width: 768px) and (max-width: 992px) {
+  body .course-selector.isFull:after {
+    right: 5px; } }
 
 /* Custom font */
 body {
@@ -327,6 +358,9 @@ ul li {
 .course-selector {
   margin-bottom: 15px; }
 
+a.course-selector {
+  color: #000; }
+
 .courseselection {
   padding: 5px;
   border: 1px solid #eee;
@@ -339,9 +373,22 @@ ul li {
   border-color: #eee; }
 
 .courseselection-item.active {
-  border-color: #8484ff;
-  background: #efefff; }
+  border-color: #D75473;
+  background: #FFE4E4; }
   .courseselection-item.active:hover {
-    border-color: #6666ff; }
+    border-color: #C4002E; }
+
+.course-selector {
+  display: block;
+  position: relative; }
+
+.course-selector.isFull:after {
+  content: "Vol";
+  position: absolute;
+  right: 24px;
+  top: 9px;
+  color: #C4002E;
+  white-space: pre;
+  word-wrap: break-word; }
 
 /*# sourceMappingURL=style.css.map */

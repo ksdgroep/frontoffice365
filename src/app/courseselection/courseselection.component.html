@@ -31,7 +31,8 @@
             <span class="header-item">Duur</span>
             <span class="header-item">Prijs</span>
         </div>
-        <a *ngFor="let course of courses" class="course-selector" (click)="selectedCourseChanged(course)">
+        <!-- class isFull -->
+        <a *ngFor="let course of courses" class="course-selector isFull" (click)="selectedCourseChanged(course)">
             <div class="courseselection courseselection-item clearfix active" [class.active]="course.Id == selectedCourseId">
                 <span class="course-item">{{course.Date | date: 'dd-MM-yyyy'}}</span>
                 <span class="course-item">{{course.Name}}</span>
@@ -43,10 +44,11 @@
     </div>
     <div class="show-xs">
 
-        <div *ngFor="let course of courses" class="courseselection-container-mobile">
+        <div *ngFor="let course of courses" class="courseselection-container-mobile active">
             <div class="courseselection-header">
                 <a class="course-selector-mobile" data-toggle="collapse" data-target="#course-collapse" aria-expanded="false" aria-controls="course-collapse">
-                    <div class="course-item-mobile-header">
+                    <!-- class isFull -->
+                    <div class="course-item-mobile-header isFull">
                         <span>{{course.Name}}</span>
                     </div>
                 </a>

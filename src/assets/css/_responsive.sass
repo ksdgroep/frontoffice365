@@ -7,6 +7,12 @@ $screen-md: 992px
 //large desktop
 $screen-lg: 1200px
 
+$primaryColor: #C4002E
+$secondaryColor: #D75473
+$tertiaryColor: #FFE4E4
+$textColorMenu: #fff
+$textColorBody: #000
+
 @media screen and (min-width: 0px)
   body
     .form-group label
@@ -52,7 +58,6 @@ $screen-lg: 1200px
   .course-selector .courseselection-item > .course-item
     float: left
     display: block
-    color: red !important
 
 @media (min-width: $screen-sm)
   .hide-sm-down
@@ -63,6 +68,9 @@ $screen-lg: 1200px
 
 @media (min-width: 0) and (max-width: $screen-sm)
   .hide-xs-down
+    display: none
+
+  .hide-sm-down
     display: none
 
   .course-item-mobile
@@ -77,12 +85,49 @@ $screen-lg: 1200px
     &:hover
       border-color: #ddd
 
-  .courseselection-header
-    padding: 5px
+  .courseselection-container-mobile.active
+    border-color: $secondaryColor
+    background: $tertiaryColor
+    &:hover
+      border-color: $primaryColor
+    .course-content-mobile
+      border-top-color: $secondaryColor
+    .courseselection-content-mobile > .btn
+      border-top-color: $secondaryColor
+
+  .courseselection-container-mobile.active > .courseselection-content-mobile > .btn
+    color: $secondaryColor
+
+  .courseselection-container-mobile .courseselection-header
+    padding: 15px
 
   .course-content-mobile
-    padding: 5px
+    padding: 15px
     border-top: 1px solid #eee;
+  
+  a:hover
+    text-decoration: none
+
+  .course-item-mobile-header
+    color: #000
+    display: block
+    position: relative
+    &:hover
+      text-decoration: none
+
+  .course-item-mobile-header:hover
+    text-decoration: none
+
   .courseselection-content-mobile > .btn
     border-top: 1px solid #eee
     border-radius: 0
+
+  .course-item-mobile-header.isFull:after 
+    content: "Vol"
+    position: absolute
+    color: $primaryColor
+    right: 15px
+
+@media (min-width: $screen-sm) and (max-width: $screen-md)
+  body .course-selector.isFull:after
+    right: 5px;

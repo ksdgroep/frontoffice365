@@ -273,6 +273,8 @@ ul li
 .course-selector
   margin-bottom: 15px
 
+a.course-selector
+  color: #000
 
 .courseselection
   padding: 5px
@@ -287,8 +289,20 @@ ul li
     border-color: #eee
 
 .courseselection-item.active
-  border-color: #8484ff
-  background: #efefff
+  border-color: $secondaryColor
+  background: $tertiaryColor
   &:hover
-    border-color: #6666ff
+    border-color: $primaryColor
 
+.course-selector
+  display: block
+  position: relative
+
+.course-selector.isFull:after
+  content: "Vol"
+  position: absolute
+  right: 24px;
+  top: 9px;
+  color: $primaryColor
+  white-space: pre
+  word-wrap: break-word
