@@ -2,7 +2,8 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -13,17 +14,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav nav-tabs" role="tablist">
-                <li role="presentation" routerLinkActive="active" routerLink="courses">
-                    <a aria-controls="courseSelect" role="tab" (click)="selectTab('courseSelect')" [class.disabled]="enabledTabCount == 4">Stap 1: Inschrijven cursus</a>
+                <li role="presentation">
+                    <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab"
+                       [class.disabled]="enabledTabCount == 4" (click)="selectTab('courseSelect')">Stap 1: Inschrijven
+                        cursus</a>
                 </li>
-                <li role="presentation" routerLinkActive="active" routerLink="students">
-                    <a aria-controls="contactInfo" role="tab" (click)="selectTab('contactInfo')" [class.disabled]="enabledTabCount < 2 || enabledTabCount == 4">Stap 2: Contactgegevens</a>
+                <li role="presentation">
+                    <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students"
+                       [class.disabled]="true" role="tab" (click)="selectTab('contactInfo')">Stap 2: Contactgegevens</a>
                 </li>
-                <li role="presentation" routerLinkActive="active" routerLink="payment">
-                    <a aria-controls="paymentInfo" role="tab" (click)="selectTab('paymentInfo')" [class.disabled]="enabledTabCount < 3 || enabledTabCount == 4">Stap 3: Betaalgegevens</a>
+                <li role="presentation">
+                    <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment"
+                       [class.disabled]="enabledTabCount < 3 || enabledTabCount == 4" role="tab"
+                       (click)="selectTab('paymentInfo')">Stap 3: Betaalgegevens</a>
                 </li>
-                <li role="presentation" routerLinkActive="active" routerLink="confirm">
-                    <a aria-controls="signupConfirmed" role="tab" (click)="selectTab('signupConfirmed')" [class.disabled]="enabledTabCount < 4">Stap 4: Inschrijving voltooid</a>
+                <li role="presentation">
+                    <a aria-controls="signupConfirmed" routerLinkActive="active" routerLink="confirm"
+                       [class.disabled]="enabledTabCount < 4" role="tab" (click)="selectTab('signupConfirmed')">Stap 4:
+                        Inschrijving voltooid</a>
                 </li>
             </ul>
         </div>
@@ -35,7 +43,9 @@
 <div class="container course-selection">
     <div class="row">
         <!-- When hiding the sidebar give col-sm-12 to this container -->
-        <div class="col-xs-12 " id="main-content" [class.col-sm-8]="selectedTab != 'signupConfirmed' && selectedTab != 'signupFailed'" [class.col-sm-12]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'">
+        <div class="col-xs-12 " id="main-content"
+             [class.col-sm-8]="selectedTab != 'signupConfirmed' && selectedTab != 'signupFailed'"
+             [class.col-sm-12]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="courseSelect">
                     <router-outlet></router-outlet>

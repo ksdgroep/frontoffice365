@@ -32,7 +32,7 @@
             <span class="header-item">Prijs</span>
         </div>
         <!-- class isFull -->
-        <a *ngFor="let course of courses" class="course-selector isFull" (click)="selectedCourseChanged(course)">
+        <a *ngFor="let course of courses" class="course-selector" [class.isFull]="course.IsFull" (click)="selectedCourseChanged(course)">
             <div class="courseselection courseselection-item clearfix active" [class.active]="course.Id == selectedCourseId">
                 <span class="course-item">{{course.Date | date: 'dd-MM-yyyy'}}</span>
                 <span class="course-item">{{course.Name}}</span>
@@ -48,7 +48,7 @@
             <div class="courseselection-header">
                 <a class="course-selector-mobile" data-toggle="collapse" data-target="#course-collapse" aria-expanded="false" aria-controls="course-collapse">
                     <!-- class isFull -->
-                    <div class="course-item-mobile-header isFull">
+                    <div class="course-item-mobile-header" [class.isFull]="course.IsFull">
                         <span>{{course.Name}}</span>
                     </div>
                 </a>
