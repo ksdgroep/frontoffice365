@@ -51,6 +51,9 @@ body
 ol, ul
   list-style: none
 
+*:focus 
+  outline:none !important
+
 .no-margin-bottom
     margin: 0
 
@@ -112,6 +115,9 @@ tr.disabled
   border-radius: 0
   cursor: pointer
   outline: 0
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+    border: 0px
 
 .navbar-default .navbar-nav > li > a
   color: $tertiaryColor
