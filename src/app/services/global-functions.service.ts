@@ -8,49 +8,57 @@ import { Order } from '../bll/order';
 @Injectable()
 export class GlobalFunctionsService {
 
-    private updateSelectedCourseFunction = new Subject();
-    private enableTabsFunction = new Subject();
-    private activateTabFunction = new Subject();
-    private orderFunction = new Subject();
-    private studentsFunction = new Subject();
-    
-    updateSelectedCourse(selectedCourse: Course) {
-        this.updateSelectedCourseFunction.next(selectedCourse);
-    }
+  returnUrl: string;
 
-    selectedCourseUpdated(): Observable<Course> {
-        return this.updateSelectedCourseFunction.asObservable();
-    }
+  private selectedCourse: Course;
+  private updateSelectedCourseFunction = new Subject();
+  private enableTabsFunction = new Subject();
+  private activateTabFunction = new Subject();
+  private orderFunction = new Subject();
+  private studentsFunction = new Subject();
 
-    enableTabs(tabCount: number) {
-        this.enableTabsFunction.next(tabCount);
-    }
+  updateSelectedCourse(selectedCourse: Course) {
+    this.selectedCourse = selectedCourse;
+    this.updateSelectedCourseFunction.next(selectedCourse);
+  }
 
-    enabledTabsChanged(): Observable<number> {
-        return this.enableTabsFunction.asObservable();
-    }
+  selectedCourseUpdated(): Observable<Course> {
+    return this.updateSelectedCourseFunction.asObservable();
+  }
 
-    activateTab(tabName: string) {
-        this.activateTabFunction.next(tabName);
-    }
+  enableTabs(tabCount: number) {
+    this.enableTabsFunction.next(tabCount);
+  }
 
-    activeTabChanged(): Observable<string> {
-        return this.activateTabFunction.asObservable();
-    }
+  enabledTabsChanged(): Observable<number> {
+    return this.enableTabsFunction.asObservable();
+  }
 
-    updateOrder(order: Order) {
-        this.orderFunction.next(order);
-    }
+  activateTab(tabName: string) {
+    this.activateTabFunction.next(tabName);
+  }
 
-    orderUpdated(): Observable<Order> {
-        return this.orderFunction.asObservable();
-    }
+  activeTabChanged(): Observable<string> {
+    return this.activateTabFunction.asObservable();
+  }
 
-    updateStudentCount(count: number) {
-        this.studentsFunction.next(count);
-    }
+  updateOrder(order: Order) {
+    this.orderFunction.next(order);
+  }
 
-    studentCountUpdated(): Observable<number> {
-        return this.studentsFunction.asObservable();
-    }
+  orderUpdated(): Observable<Order> {
+    return this.orderFunction.asObservable();
+  }
+
+  updateStudentCount(count: number) {
+    this.studentsFunction.next(count);
+  }
+
+  studentCountUpdated(): Observable<number> {
+    return this.studentsFunction.asObservable();
+  }
+
+  getSelectedCourse(): Course {
+    return this.selectedCourse;
+  }
 }

@@ -16,6 +16,7 @@ import {SharedModule} from './shared/shared.module';
 import {PluralizeText} from './helpers/pluralizetext-pipe';
 import {AppRoutingModule} from './app-routing.module';
 import {AppConfig} from './app.config';
+import { ErrorComponent } from './error/error.component';
 
 export function initConfig(config: AppConfig){
   return () => config.load();
@@ -32,7 +33,8 @@ export function initConfig(config: AppConfig){
     ContactinfoComponent,
     CourseselectionComponent,
     PaymentinfoComponent,
-    ValidationErrorDirective
+    ValidationErrorDirective,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

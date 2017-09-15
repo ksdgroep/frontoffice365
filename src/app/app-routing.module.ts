@@ -5,7 +5,7 @@ import {CourseselectionComponent} from './courseselection/courseselection.compon
 import {ContactinfoComponent} from './contactinfo/contactinfo.component';
 import {PaymentinfoComponent} from './paymentinfo/paymentinfo.component';
 import {ConfirmationComponent} from './confirmation/confirmation.component';
-// import {ErrorComponent} from './error/error.component';
+import {ErrorComponent} from './error/error.component';
 // import {ThanksComponent} from './thanks/thanks.component';
 
 const appRoutes: Routes = [
@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   { path: 'payment', component: PaymentinfoComponent },
   { path: 'confirm', component: ConfirmationComponent },
   // { path: 'finished', component: ThanksComponent },
-  // { path: 'error', component: ErrorComponent },
+  { path: 'error', component: ErrorComponent },
   { path: 'courses', component: CourseselectionComponent },
   { path: 'courses/:id', component: CourseselectionComponent },
   { path: 'courses/:id/:courseId', component: CourseselectionComponent }
