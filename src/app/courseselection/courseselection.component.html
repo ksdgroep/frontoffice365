@@ -33,7 +33,7 @@
         </div>
         <!-- class isFull -->
         <a *ngFor="let course of courses" class="course-selector" [class.isFull]="course.IsFull" (click)="selectedCourseChanged(course)">
-            <div class="courseselection courseselection-item clearfix active" [class.active]="course.Id == selectedCourseId">
+            <div class="courseselection courseselection-item clearfix active" [class.active]="course.Id === selectedCourse?.Id">
                 <span class="course-item">{{course.Date | date: 'dd-MM-yyyy'}}</span>
                 <span class="course-item">{{course.Name}}</span>
                 <span class="course-item">{{course.Region}}</span>
@@ -67,4 +67,4 @@
     </div>
 </div>
 <span class="btn-spacer clearfix"></span>
-<button class="btn btn-default pull-right " aria-controls="contactInfo" role="tab" [disabled]="!selectedCourseId" (click)="nextTab()">Volgende</button>
+<button class="btn btn-default pull-right " aria-controls="contactInfo" role="tab" [disabled]="!selectedCourse" (click)="nextTab()">Volgende</button>

@@ -4,13 +4,17 @@ import { Subject } from 'rxjs/Subject';
 
 import { Course } from '../bll/course';
 import { Order } from '../bll/order';
+import {CourseTemplate} from '../bll/coursetemplate';
 
 @Injectable()
 export class GlobalFunctionsService {
 
   returnUrl: string;
+  courseTemplateId: number;
+  regionId: string;
 
   private selectedCourse: Course;
+
   private updateSelectedCourseFunction = new Subject();
   private enableTabsFunction = new Subject();
   private activateTabFunction = new Subject();

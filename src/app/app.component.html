@@ -21,7 +21,7 @@
                 </li>
                 <li role="presentation">
                     <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students"
-                       [class.disabled]="true" role="tab" (click)="selectTab('contactInfo')">Stap 2: Contactgegevens</a>
+                       [class.disabled]="enabledTabCount < 2 || enabledTabCount == 4" role="tab" (click)="selectTab('contactInfo')">Stap 2: Contactgegevens</a>
                 </li>
                 <li role="presentation">
                     <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment"

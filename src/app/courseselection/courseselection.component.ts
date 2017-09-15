@@ -23,7 +23,7 @@ export class CourseselectionComponent implements OnInit {
   selectedRegion: Region;
   regions: Region[];
   courses: Course[];
-  selectedCourseId: number;
+  selectedCourse: Course;
 
   constructor(private courseTemplateService: CourseTemplateService,
               private regionService: RegionService,
@@ -40,9 +40,17 @@ export class CourseselectionComponent implements OnInit {
   setCourseTemplate(courseTemplates: CourseTemplate[]): void {
     this.courseTemplates = courseTemplates;
 
-    const courseTemplateId = this.route.snapshot.params['id'];
+    let courseTemplateId = this.route.snapshot.params['id'];
+    if (courseTemplateId == null) {
+      courseTemplateId = this.globalFunctionsService.courseTemplateId;
+    } else {
+      console.log('coursetemplate not null');
+      this.globalFunctionsService.courseTemplateId = courseTemplateId;
+    }
+
     if (this.courseTemplates) {
-      const templateIndex = this.courseTemplates.findIndex(template => template.Id.toString() === courseTemplateId).toString();
+      const templateIndex = this.courseTemplates.findIndex(template => template.Id === courseTemplateId).toString();
+      console.log(templateIndex);
       this.selectedCourseTemplate = this.courseTemplates[templateIndex];
     }
   }
@@ -93,13 +101,16 @@ export class CourseselectionComponent implements OnInit {
 
   resetCourseSelection(): void {
     // Reset Selection if course not in filter
-    if (!this.courses || this.courses.findIndex(course => course.Id === this.selectedCourseId) === -1) {
-      this.selectedCourseId = null;
+    if (!this.courses || (this.selectedCourse && this.courses.findIndex(course => course.Id === this.selectedCourse.Id) === -1)) {
+      this.selectedCourse = null;
       this.globalFunctionsService.updateSelectedCourse(null);
     }
   }
 
   selectedCourseTemplateChanged(courseTemplate: CourseTemplate): void {
+    // Update Storage
+    this.globalFunctionsService.courseTemplateId = courseTemplate.Id;
+
     if (courseTemplate.Id !== undefined) {
       this.regionService.getRegionsByCourseTemplate(courseTemplate.Id).then(regions => this.regions = regions);
       this.getCourses(courseTemplate.Id, this.selectedRegion ? this.selectedRegion.Id : null);
@@ -110,6 +121,9 @@ export class CourseselectionComponent implements OnInit {
   }
 
   selectedRegionChanged(region: Region): void {
+    // Update Storage
+    this.globalFunctionsService.regionId = region.Id;
+
     if (region.Id !== undefined) {
       this.getCourses(this.selectedCourseTemplate ? this.selectedCourseTemplate.Id : null, region.Id);
     } else {
@@ -118,13 +132,19 @@ export class CourseselectionComponent implements OnInit {
   }
 
   selectedCourseChanged(course: Course): void {
-    this.selectedCourseId = course.Id;
+    this.selectedCourse = course;
 
     this.globalFunctionsService.updateSelectedCourse(course);
     this.globalFunctionsService.enableTabs(2);
   }
 
   nextTab(): void {
+
+    if (this.selectedCourse.IsFull) {
+      // Block Enrolment
+      return;
+    }
+
     this.globalFunctionsService.activateTab('contactInfo');
 
     // Redirect
@@ -140,8 +160,18 @@ export class CourseselectionComponent implements OnInit {
     this.getCourseTemplates();
     this.getRegions();
 
-    const courseTemplateId = this.route.snapshot.params['id'];
-    const courseId = this.route.snapshot.params['courseId'];
+    let courseTemplateId = this.route.snapshot.params['id'];
+    if (courseTemplateId == null) {
+      courseTemplateId = this.globalFunctionsService.courseTemplateId;
+    }
+
+    let courseId = this.route.snapshot.params['courseId'];
+    if (courseId == null) {
+      const selectedCourse = this.globalFunctionsService.getSelectedCourse();
+      if (selectedCourse) {
+        courseId = selectedCourse.Id;
+      }
+    }
 
     if (courseId) {
       // Get Course
@@ -149,7 +179,7 @@ export class CourseselectionComponent implements OnInit {
         // Get Region
         this.setRegionByName(course.Region);
 
-        // this.selectedCourseId = courseId;
+        this.selectedCourse = course;
 
         this.selectedCourseChanged(course);
       });
