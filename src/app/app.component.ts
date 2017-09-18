@@ -29,30 +29,33 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   selectTab(selectedTab: string): void {
-    let tabIndex = 0;
-    switch (selectedTab) {
-      case 'courseSelect':
-        tabIndex = 1;
-        break;
-      case 'contactInfo':
-        tabIndex = 2;
-        break;
-      case 'paymentInfo':
-        tabIndex = 3;
-        break;
-      case 'signupConfirmed':
-        this.errors = false;
-        tabIndex = 4;
-        break;
-      case 'signupFailed':
-        this.errors = true;
-        tabIndex = 4;
-        break;
-    }
+    // let tabIndex = 0;
+    // switch (selectedTab) {
+    //   case 'courseSelect':
+    //     tabIndex = 1;
+    //     break;
+    //   case 'contactInfo':
+    //     tabIndex = 2;
+    //     break;
+    //   case 'paymentInfo':
+    //     tabIndex = 3;
+    //     break;
+    //   case 'signupConfirmed':
+    //     this.errors = false;
+    //     tabIndex = 4;
+    //     break;
+    //   case 'signupFailed':
+    //     this.errors = true;
+    //     tabIndex = 4;
+    //     break;
+    // }
+    //
+    // if ((tabIndex <= this.enabledTabCount && this.enabledTabCount != 4) || (tabIndex == 4 && this.enabledTabCount == 4)) {
+    //   this.selectedTab = selectedTab;
+    // }
 
-    if ((tabIndex <= this.enabledTabCount && this.enabledTabCount != 4) || (tabIndex == 4 && this.enabledTabCount == 4)) {
-      this.selectedTab = selectedTab;
-    }
+    // Jump to top of page on tab-switch.
+    window.scrollTo(0, 0);
   }
 
   ngOnInit(): void {

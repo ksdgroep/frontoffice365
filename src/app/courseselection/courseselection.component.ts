@@ -24,6 +24,7 @@ export class CourseselectionComponent implements OnInit {
   regions: Region[];
   courses: Course[];
   selectedCourse: Course;
+  showMobileInfo: number;
 
   constructor(private courseTemplateService: CourseTemplateService,
               private regionService: RegionService,
@@ -186,5 +187,17 @@ export class CourseselectionComponent implements OnInit {
     }
 
     this.getCourses(courseTemplateId, this.selectedRegion ? this.selectedRegion.Id : null);
+  }
+
+  displayMobileInfo(index: number, ignore: boolean) {
+    if (ignore) {
+      return;
+    }
+
+    if (this.showMobileInfo === index) {
+      this.showMobileInfo = null;
+    } else {
+      this.showMobileInfo = index;
+    }
   }
 }
