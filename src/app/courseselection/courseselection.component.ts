@@ -139,14 +139,21 @@ export class CourseselectionComponent implements OnInit {
     this.globalFunctionsService.enableTabs(2);
   }
 
-  nextTab(): void {
+  nextTab(course: Course): void {
+
+    if (course) {
+      this.selectedCourse = course;
+
+      this.globalFunctionsService.updateSelectedCourse(course);
+      this.globalFunctionsService.enableTabs(2);
+    }
 
     if (this.selectedCourse.IsFull) {
       // Block Enrolment
       return;
     }
 
-    this.globalFunctionsService.activateTab('contactInfo');
+    // this.globalFunctionsService.activateTab('contactInfo');
 
     // Redirect
     // TODO: Animate

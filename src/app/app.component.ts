@@ -19,13 +19,13 @@ export class AppComponent implements OnInit, OnDestroy {
   enabledTabCount: number = 1;
   selectedTab: string = 'courseSelect'; // TODO: Reset to 'courseSelect'; (contactInfo, paymentInfo, signupConfirmed)
   providerContactMail: string;
-  errors: boolean = false;
+  // errors: boolean = false;
 
   constructor(
     private globalFunctionsService: GlobalFunctionsService
   ) {
     this.subscription = this.globalFunctionsService.enabledTabsChanged().subscribe(enabledTabCount => this.enabledTabCount = enabledTabCount);
-    this.subscriptionActiveTab = this.globalFunctionsService.activeTabChanged().subscribe(activeTab => this.selectTab(activeTab));
+    // this.subscriptionActiveTab = this.globalFunctionsService.activeTabChanged().subscribe(activeTab => this.selectTab(activeTab));
   }
 
   selectTab(selectedTab: string): void {

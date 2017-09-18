@@ -63,7 +63,7 @@
                     <span class="course-item-mobile">{{course.DurationInfo}}</span>
                     <span class="course-item-mobile">{{course.Price | currencyFormat}}</span>
                 </div>
-                <a href="#" class="btn btn-block">Inschrijven</a>
+                <a (click)="nextTab(course)" class="btn btn-block">Inschrijven</a>
             </div>
         </div>
 
