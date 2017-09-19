@@ -41,25 +41,27 @@
                 <span class="course-item">{{course.Price | currencyFormat}}</span>
             </div>
         </a>
-        <div *ngIf="loadingCourses">
-            Loading courses...
+        <div *ngIf="loadingCourses" class="course-msg">
+            <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
+            <span class="sr-only">Cursussen worden geladen...</span>
+        </div>
+        <div class="course-msg">
+            <!-- No courses found -->
+            Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
         </div>
     </div>
     <div class="show-xs">
 
         <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile active">
             <div class="courseselection-header">
-                <a class="course-selector-mobile" aria-expanded="false" aria-controls="course-collapse"
-                   (click)="displayMobileInfo(i, course.IsFull)">
+                <a class="course-selector-mobile" aria-expanded="false" aria-controls="course-collapse" (click)="displayMobileInfo(i, course.IsFull)">
                     <!-- class isFull -->
                     <div class="course-item-mobile-header" [class.isFull]="course.IsFull">
                         <span>{{course.Name}}</span>
                     </div>
                 </a>
             </div>
-            <div id="course-collapse"
-                 class="courseselection-content-mobile clearfix"
-                [class.collapse]="showMobileInfo != i">
+            <div id="course-collapse" class="courseselection-content-mobile clearfix" [class.collapse]="showMobileInfo != i">
                 <div class="course-content-mobile">
                     <span class="course-item-mobile">{{course.Date | date: 'dd-MM-yyyy'}}</span>
                     <span class="course-item-mobile">{{course.Region}}</span>
@@ -70,10 +72,17 @@
             </div>
         </div>
 
-        <div *ngIf="loadingCourses">
-            Loading courses...
+        <div *ngIf="loadingCourses" class="course-msg">
+            <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
+            <span class="sr-only">Cursussen worden geladen...</span>
+        </div>
+        <div class="course-msg">
+            <!-- No courses found -->
+            Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
         </div>
     </div>
 </div>
 <span class="btn-spacer clearfix"></span>
-<button class="btn btn-default pull-right " aria-controls="contactInfo" role="tab" [disabled]="!selectedCourse" (click)="nextTab()">Volgende</button>
+<div class="hide-sm-down">
+    <button class="btn btn-default pull-right " aria-controls="contactInfo" role="tab" [disabled]="!selectedCourse" (click)="nextTab()">Volgende</button>
+</div>

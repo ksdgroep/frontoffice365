@@ -122,7 +122,8 @@ tr.disabled
 .navbar-default .navbar-nav>li>a.disabled, .navbar-default .navbar-nav> li>a.disabled:focus, .navbar-default .navbar-nav>li>a.disabled:hover
     color: #ccc
     background-color: transparent
-    cursor: not-allowed;
+    cursor: not-allowed
+    pointer-events: none
 
 .navbar-default .navbar-nav > li > a
   color: $tertiaryColor
@@ -288,11 +289,18 @@ ul li
 a.course-selector
   color: #000
 
+.course-msg
+  padding: 15px 10px
+  border: 1px solid #eee
+  margin-bottom: 5px
+  border-radius: 5px
+
 .courseselection
   padding: 5px
   border: 1px solid #eee
   margin-bottom: 10px
   border-radius: 5px
+  cursor: pointer
   &:hover
     border-color: #ddd
 
@@ -301,10 +309,9 @@ a.course-selector
     border-color: #eee
 
 .courseselection-item.active
-  border-color: $secondaryColor
-  background: $tertiaryColor
+  border-color: #3943B7
   &:hover
-    border-color: $primaryColor
+    border-color: #294aa8
 
 .course-selector
   display: block
@@ -313,8 +320,8 @@ a.course-selector
 .course-selector.isFull:after
   content: "Vol"
   position: absolute
-  right: 24px;
-  top: 9px;
+  right: 24px
+  top: 9px
   color: $primaryColor
   white-space: pre
   word-wrap: break-word
