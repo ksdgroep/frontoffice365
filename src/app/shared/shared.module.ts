@@ -1,12 +1,13 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {DropdownDirective} from './dropdown.directive';
-import {EqualValidator} from './equal-validator.directive';
-import {DateDirective} from './date.directive';
-import {UpperCaseText} from './uppercase.directive';
-import {PostalCodeDirective} from './postalcode.directive';
-import {OnlyNumbersDirective} from './only-numbers.directive';
+import { DropdownDirective } from './dropdown.directive';
+import { EqualValidator } from './equal-validator.directive';
+import { DateDirective } from './date.directive';
+import { UpperCaseText } from './uppercase.directive';
+import { PostalCodeFormatDirective } from './postalcode-format.directive';
+import { OnlyNumbersDirective } from './only-numbers.directive';
+import { PostalcodeAutofillDirective } from './postalcode-autofill.directive';
 
 @NgModule({
   declarations: [
@@ -14,8 +15,9 @@ import {OnlyNumbersDirective} from './only-numbers.directive';
     EqualValidator,
     DateDirective,
     UpperCaseText,
-    PostalCodeDirective,
-    OnlyNumbersDirective
+    PostalCodeFormatDirective,
+    OnlyNumbersDirective,
+    PostalcodeAutofillDirective
   ],
   exports: [
     CommonModule,
@@ -23,8 +25,10 @@ import {OnlyNumbersDirective} from './only-numbers.directive';
     EqualValidator,
     DateDirective,
     UpperCaseText,
-    PostalCodeDirective,
+    PostalCodeFormatDirective,
+    PostalcodeAutofillDirective,
     OnlyNumbersDirective
   ]
 })
-export class SharedModule {}
+export class SharedModule {
+}

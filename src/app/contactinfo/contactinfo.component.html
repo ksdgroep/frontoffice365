@@ -74,7 +74,9 @@
         <div class="col-sm-6">
             <div class="form-group row">
                 <div class="col-sm-5 col-xs-12 margin-bottom-15">
-                    <input id="postalcodeBusiness" type="text" class="form-control" name="postalCode" [(ngModel)]="order.ContactPerson.PostalCode">
+                    <input id="postalcodeBusiness" type="text" class="form-control" name="postalCode"
+                           [(ngModel)]="order.ContactPerson.PostalCode"
+                           appPostalcodeAutofill>
                 </div>
                 <label for="numberBusiness" class="col-xs-12 col-sm-3 control-label optional-label margin-bottom-15">Nummer<br/><span>Optioneel</span></label>
                 <div class="col-sm-4 col-xs-12">
@@ -146,10 +148,10 @@
         </div>
     </div>
 
-    <div *ngIf="addMultipleStudents" class="form-group" name="studentLabel">
+    <div *ngIf="addMultipleStudents" class="form-group">
         <label class="col-xs-12 col-sm-3 control-label">Andere deelnemers</label>
     </div>
-    <div *ngFor="let s of order.Students; let index = index" class="participant-block" name="studentList">
+    <div *ngFor="let s of order.Students; let index = index" class="participant-block">
         <div class="form-group">
             <label class="col-xs-12 col-sm-3 control-label participant-title">Deelnemer {{index +1}}</label>
         </div>

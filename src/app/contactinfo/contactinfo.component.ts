@@ -98,4 +98,8 @@ export class ContactinfoComponent implements OnInit {
 
     this.getCountries();
   }
+
+  getPostalCode(code: string, number: number): void {
+
+  }
 }

@@ -5,12 +5,12 @@ import {DatePipe} from "@angular/common";
 @Directive({
   selector: '[PostalCodeFormat]',
   providers: [
-    { provide: NG_VALIDATORS, useExisting: forwardRef(() => PostalCodeDirective), multi: true },
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => PostalCodeDirective), multi: true },
+    { provide: NG_VALIDATORS, useExisting: forwardRef(() => PostalCodeFormatDirective), multi: true },
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => PostalCodeFormatDirective), multi: true },
     DatePipe
   ]
 })
-export class PostalCodeDirective implements Validator, ControlValueAccessor {
+export class PostalCodeFormatDirective implements Validator, ControlValueAccessor {
 
   constructor(private elRef: ElementRef){
   }

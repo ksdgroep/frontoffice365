@@ -25,6 +25,7 @@ export class CourseselectionComponent implements OnInit {
   courses: Course[];
   selectedCourse: Course;
   showMobileInfo: number;
+  loadingCourses = true;
 
   constructor(private courseTemplateService: CourseTemplateService,
               private regionService: RegionService,
@@ -40,6 +41,7 @@ export class CourseselectionComponent implements OnInit {
 
   setCourseTemplate(courseTemplates: CourseTemplate[]): void {
     this.courseTemplates = courseTemplates;
+    this.loadingCourses = false;
 
     let courseTemplateId = this.route.snapshot.params['id'];
     if (courseTemplateId == null) {

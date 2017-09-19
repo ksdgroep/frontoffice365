@@ -41,6 +41,9 @@
                 <span class="course-item">{{course.Price | currencyFormat}}</span>
             </div>
         </a>
+        <div *ngIf="loadingCourses">
+            Loading courses...
+        </div>
     </div>
     <div class="show-xs">
 
@@ -67,6 +70,9 @@
             </div>
         </div>
 
+        <div *ngIf="loadingCourses">
+            Loading courses...
+        </div>
     </div>
 </div>
 <span class="btn-spacer clearfix"></span>
