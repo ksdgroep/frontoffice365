@@ -51,6 +51,9 @@
     border-radius: 5px; }
     .courseselection-container-mobile:hover {
       border-color: #ddd; }
+  .clickDisabled {
+    cursor: not-allowed;
+    pointer-events: none; }
   .courseselection-container-mobile.active {
     border-color: #3943B7; }
     .courseselection-container-mobile.active:hover {
@@ -408,5 +411,9 @@ a.course-selector {
   color: #C4002E;
   white-space: pre;
   word-wrap: break-word; }
+
+.course-selector.isFull {
+  cursor: not-allowed;
+  pointer-events: none; }
 
 /*# sourceMappingURL=style.css.map */

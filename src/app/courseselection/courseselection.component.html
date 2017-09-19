@@ -32,7 +32,7 @@
             <span class="header-item">Prijs</span>
         </div>
         <!-- class isFull -->
-        <a *ngFor="let course of courses" class="course-selector" [class.isFull]="course.IsFull" (click)="selectedCourseChanged(course)">
+        <a *ngFor="let course of courses" class="course-selector isFull" [class.isFull]="course.IsFull" (click)="selectedCourseChanged(course)">
             <div class="courseselection courseselection-item clearfix active" [class.active]="course.Id === selectedCourse?.Id">
                 <span class="course-item">{{course.Date | date: 'dd-MM-yyyy'}}</span>
                 <span class="course-item">{{course.Name}}</span>
@@ -51,12 +51,12 @@
         </div>
     </div>
     <div class="show-xs">
-
+        <!-- clickDisabled class on: courseselection-container-mobile -->
         <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile active">
             <div class="courseselection-header">
                 <a class="course-selector-mobile" aria-expanded="false" aria-controls="course-collapse" (click)="displayMobileInfo(i, course.IsFull)">
                     <!-- class isFull -->
-                    <div class="course-item-mobile-header" [class.isFull]="course.IsFull">
+                    <div class="course-item-mobile-header isFull" [class.isFull]="course.IsFull">
                         <span>{{course.Name}}</span>
                     </div>
                 </a>
