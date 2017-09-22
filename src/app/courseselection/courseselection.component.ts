@@ -43,17 +43,15 @@ export class CourseselectionComponent implements OnInit {
     this.courseTemplates = courseTemplates;
     this.loadingCourses = false;
 
-    let courseTemplateId = this.route.snapshot.params['id'];
+    let courseTemplateId = this.route.snapshot.queryParams['tid'];
     if (courseTemplateId == null) {
       courseTemplateId = this.globalFunctionsService.courseTemplateId;
     } else {
-      console.log('coursetemplate not null');
       this.globalFunctionsService.courseTemplateId = courseTemplateId;
     }
 
     if (this.courseTemplates) {
-      const templateIndex = this.courseTemplates.findIndex(template => template.Id === courseTemplateId).toString();
-      console.log(templateIndex);
+      const templateIndex = this.courseTemplates.findIndex(template => template.Id.toString() === courseTemplateId).toString();
       this.selectedCourseTemplate = this.courseTemplates[templateIndex];
     }
   }
@@ -160,7 +158,7 @@ export class CourseselectionComponent implements OnInit {
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);
-    this.router.navigate(['students']);
+    this.router.navigate(['students'], { queryParamsHandling: 'merge' });
   }
 
   ngOnInit(): void {
@@ -170,12 +168,12 @@ export class CourseselectionComponent implements OnInit {
     this.getCourseTemplates();
     this.getRegions();
 
-    let courseTemplateId = this.route.snapshot.params['id'];
+    let courseTemplateId = this.route.snapshot.queryParams['tid'];
     if (courseTemplateId == null) {
       courseTemplateId = this.globalFunctionsService.courseTemplateId;
     }
 
-    let courseId = this.route.snapshot.params['courseId'];
+    let courseId = this.route.snapshot.queryParams['cid'];
     if (courseId == null) {
       const selectedCourse = this.globalFunctionsService.getSelectedCourse();
       if (selectedCourse) {
@@ -196,6 +194,9 @@ export class CourseselectionComponent implements OnInit {
     }
 
     this.getCourses(courseTemplateId, this.selectedRegion ? this.selectedRegion.Id : null);
+
+    // Set AppInitialized
+    this.globalFunctionsService.appInitialized = true;;
   }
 
   displayMobileInfo(index: number, ignore: boolean) {

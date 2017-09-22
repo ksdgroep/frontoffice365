@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -12,13 +12,15 @@ import { ContactinfoComponent } from './contactinfo/contactinfo.component';
 import { CourseselectionComponent } from './courseselection/courseselection.component';
 import { PaymentinfoComponent } from './paymentinfo/paymentinfo.component';
 import { ValidationErrorDirective } from './directives/validation-error.directive';
-import {SharedModule} from './shared/shared.module';
-import {PluralizeText} from './helpers/pluralizetext-pipe';
-import {AppRoutingModule} from './app-routing.module';
-import {AppConfig} from './app.config';
+import { SharedModule } from './shared/shared.module';
+import { PluralizeText } from './helpers/pluralizetext-pipe';
+import { AppRoutingModule } from './app-routing.module';
+import { AppConfig } from './app.config';
 import { ErrorComponent } from './error/error.component';
+import { RouteGuard } from './route.guard';
+import { GlobalFunctionsService } from './services/global-functions.service';
 
-export function initConfig(config: AppConfig){
+export function initConfig(config: AppConfig) {
   return () => config.load();
 }
 
@@ -44,6 +46,8 @@ export function initConfig(config: AppConfig){
     AppRoutingModule
   ],
   providers: [
+    GlobalFunctionsService,
+    RouteGuard,
     AppConfig,
     {
       provide: APP_INITIALIZER, useFactory: initConfig, deps: [AppConfig], multi: true
@@ -51,4 +55,5 @@ export function initConfig(config: AppConfig){
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

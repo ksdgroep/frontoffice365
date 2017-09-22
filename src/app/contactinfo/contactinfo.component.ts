@@ -72,7 +72,7 @@ export class ContactinfoComponent implements OnInit {
       // Redirect
       // TODO: Animate
       window.scrollTo(0, 0);
-      this.router.navigate(['payment']);
+      this.router.navigate(['payment'], { queryParamsHandling: 'merge' });
     }
   }
 
@@ -81,7 +81,7 @@ export class ContactinfoComponent implements OnInit {
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);
-    this.router.navigate(['courses']);
+    this.router.navigate(['courses'], { queryParamsHandling: 'merge' });
   }
 
   ngOnInit(): void {

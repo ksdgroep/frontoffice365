@@ -8,8 +8,7 @@ import { GlobalFunctionsService } from './services/global-functions.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [GlobalFunctionsService]
+  styleUrls: ['./app.component.css']
 })
 
 export class AppComponent implements OnInit, OnDestroy {

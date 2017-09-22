@@ -9,6 +9,7 @@ import { Order } from '../bll/order';
 @Injectable()
 export class GlobalFunctionsService {
 
+  appInitialized = false;
   returnUrl: string;
   courseTemplateId: number;
   regionId: string;

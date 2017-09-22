@@ -31,6 +31,7 @@ export class PostalcodeAutofillDirective implements ControlValueAccessor{
   private propagateChange = (_: any) => {
   }
 
+  // @ViewChild(this.addressField, {read: ElementRef}) scaleControl: ElementRef;
 
   @HostListener('input', ['$event.target.value']) onChange = (value: any) => {
     // console.log('Yeps');
@@ -56,9 +57,13 @@ export class PostalcodeAutofillDirective implements ControlValueAccessor{
 
     console.log('Loaded');
     console.log(this.ref);
+    console.log(this.addressField);
+
+    // @ViewChild(this.addressField)
+
 
     // this.field = this.ref.nativeElement.root.findElement(this.addressField);
-    console.log(this.field);
+    // console.log(this.scaleControl);
     // field.value = 'Bup';
   }
 

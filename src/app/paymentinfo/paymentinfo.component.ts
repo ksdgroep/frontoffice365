@@ -103,7 +103,7 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
             // Redirect
             // TODO: Animate
             window.scrollTo(0, 0);
-            this.router.navigate(['confirm']);
+            this.router.navigate(['confirm'], { queryParamsHandling: 'merge' });
           })
           .catch(response => {
             this.globalFunctionsService.enableTabs(4);
@@ -111,7 +111,7 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
             // Redirect
             // TODO: Animate
             window.scrollTo(0, 0);
-            this.router.navigate(['error']);
+            this.router.navigate(['error'], { queryParamsHandling: 'merge' });
           });
       } catch (error) {
         this.globalFunctionsService.enableTabs(4);
@@ -119,7 +119,7 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
         // Redirect
         // TODO: Animate
         window.scrollTo(0, 0);
-        this.router.navigate(['error']);
+        this.router.navigate(['error'], { queryParamsHandling: 'merge' });
       }
     }
   }
@@ -129,7 +129,7 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);
-    this.router.navigate(['payment']);
+    this.router.navigate(['payment'], { queryParamsHandling: 'merge' });
   }
 
   ngOnInit(): void {
