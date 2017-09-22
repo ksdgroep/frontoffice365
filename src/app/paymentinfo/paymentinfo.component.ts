@@ -8,6 +8,7 @@ import { CountryService } from '../services/country.service';
 import { GlobalFunctionsService } from '../services/global-functions.service';
 import { EnrolService } from '../services/enrol.service';
 import { Router } from '@angular/router';
+import { AppConfig } from '../app.config';
 
 @Component({
   moduleId: module.id,
@@ -21,12 +22,15 @@ export class PaymentinfoComponent implements OnInit {
   order: Order;
   countries: Country[];
   conditionsAgreed: boolean;
+  conditionsUrl: string;
   course: Course;
 
   constructor(private countryService: CountryService,
               private globalFunctionsService: GlobalFunctionsService,
               private enrolService: EnrolService,
+              private config: AppConfig,
               private router: Router) {
+    this.conditionsUrl = config.getConfig('termsUrl');
   }
 
   getCountries(): void {
@@ -122,7 +126,7 @@ export class PaymentinfoComponent implements OnInit {
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);
-    this.router.navigate(['payment'], {queryParamsHandling: 'merge'});
+    this.router.navigate(['students'], {queryParamsHandling: 'merge'});
   }
 
   ngOnInit(): void {

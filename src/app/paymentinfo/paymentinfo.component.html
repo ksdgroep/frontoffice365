@@ -191,7 +191,7 @@
         <label for="conditions" class="col-xs-12 col-sm-3 control-label">Voorwaarden</label>
         <div class="col-xs-12 col-sm-6">
             <label class="checkbox-inline">
-                <input type="checkbox" id="conditions" [(ngModel)]="conditionsAgreed" name="conditions" required #conditions="ngModel"> Ik ga akkoord met de <a href="#" target="_blank">algemene voorwaarden</a>
+                <input type="checkbox" id="conditions" [(ngModel)]="conditionsAgreed" name="conditions" required #conditions="ngModel"> Ik ga akkoord met de <a href="{{conditionsUrl}}" target="_blank">algemene voorwaarden</a>
             </label>
             <label *ngIf="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)" class="control-label">U dient akkoord te gaan met de algemene voorwaarden.</label>
         </div>
