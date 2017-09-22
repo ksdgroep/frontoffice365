@@ -21,11 +21,11 @@
                 </li>
             </ul>
             <label class="checkbox-inline">
-                <input type="checkbox" name="diffBillingAddress" value="billingAddress" (change)="alternativeBillingAddress = !alternativeBillingAddress"> Gebruik een ander factuuradres
+                <input type="checkbox" name="diffBillingAddress" id="diffBillingAddress" [(ngModel)]="order.AlternateInvoiceAddress"> Gebruik een ander factuuradres
             </label>
         </div>
     </div>
-    <div *ngIf="alternativeBillingAddress">
+    <div *ngIf="order.AlternateInvoiceAddress">
         <div class="form-group">
             <label class="col-xs-12 col-sm-3 control-label optional-label">Aanhef<br/><span>Optioneel</span></label>
             <div class="col-xs-12 col-sm-4 col-md-7">

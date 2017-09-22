@@ -19,6 +19,7 @@ import { AppConfig } from './app.config';
 import { ErrorComponent } from './error/error.component';
 import { RouteGuard } from './route.guard';
 import { GlobalFunctionsService } from './services/global-functions.service';
+import { ValidationGuard } from './validation.guard';
 
 export function initConfig(config: AppConfig) {
   return () => config.load();
@@ -48,6 +49,7 @@ export function initConfig(config: AppConfig) {
   providers: [
     GlobalFunctionsService,
     RouteGuard,
+    ValidationGuard,
     AppConfig,
     {
       provide: APP_INITIALIZER, useFactory: initConfig, deps: [AppConfig], multi: true

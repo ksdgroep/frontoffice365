@@ -7,19 +7,18 @@ import { Course } from '../bll/course';
 import { CountryService } from '../services/country.service';
 import { GlobalFunctionsService } from '../services/global-functions.service';
 import { EnrolService } from '../services/enrol.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
-    moduleId: module.id,
-    selector: 'fo-paymentinfo',
-    templateUrl: './paymentinfo.component.html',
-    providers: [CountryService, EnrolService]
+  moduleId: module.id,
+  selector: 'fo-paymentinfo',
+  templateUrl: './paymentinfo.component.html',
+  providers: [CountryService, EnrolService]
 })
 
 export class PaymentinfoComponent implements OnInit {
 
   order: Order;
-  alternativeBillingAddress: boolean;
   countries: Country[];
   conditionsAgreed: boolean;
   course: Course;
@@ -27,7 +26,8 @@ export class PaymentinfoComponent implements OnInit {
   constructor(private countryService: CountryService,
               private globalFunctionsService: GlobalFunctionsService,
               private enrolService: EnrolService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   getCountries(): void {
     this.countryService.getCountries().then(countries => this.countries = countries);
@@ -37,25 +37,6 @@ export class PaymentinfoComponent implements OnInit {
     if (isValid) {
       try {
         // Create Correct Order-Message
-        if (!this.order.Company.Name) {
-          // Clear Company
-          this.order.Company = null;
-        }
-        if (!this.order.InvoiceCompany.Name) {
-          // Clear Invoice Company
-          this.order.InvoiceCompany = null;
-        } else {
-          // Copy Address to Invoice Company
-          this.order.InvoiceCompany.Address = this.order.InvoicePerson.Address;
-          this.order.InvoiceCompany.AddressNumber = this.order.InvoicePerson.AddressNumber;
-          this.order.InvoiceCompany.PostalCode = this.order.InvoicePerson.PostalCode;
-          this.order.InvoiceCompany.City = this.order.InvoicePerson.City;
-          this.order.InvoiceCompany.CountryId = this.order.InvoicePerson.CountryId;
-        }
-        if (!this.order.InvoicePerson.Surname) {
-          // Clear Invoice Person
-          this.order.InvoicePerson = null;
-        }
         if (this.order.FirstStudentIsContact) {
           // Create Student from Contact
           const student = new Student();
@@ -84,31 +65,55 @@ export class PaymentinfoComponent implements OnInit {
           student.CourseId = this.course.Id;
         });
 
+        // Create Copy for clean-up purpose
+        const copiedOrder = Object.assign({}, this.order);
+
+        // Create Correct Order-Message
+        if (!copiedOrder.Company.Name) {
+          // Clear Company
+          copiedOrder.Company = null;
+        }
+        if (!copiedOrder.InvoiceCompany.Name) {
+          // Clear Invoice Company
+          copiedOrder.InvoiceCompany = null;
+        } else {
+          // Copy Address to Invoice Company
+          copiedOrder.InvoiceCompany.Address = this.order.InvoicePerson.Address;
+          copiedOrder.InvoiceCompany.AddressNumber = this.order.InvoicePerson.AddressNumber;
+          copiedOrder.InvoiceCompany.PostalCode = this.order.InvoicePerson.PostalCode;
+          copiedOrder.InvoiceCompany.City = this.order.InvoicePerson.City;
+          copiedOrder.InvoiceCompany.CountryId = this.order.InvoicePerson.CountryId;
+        }
+        if (!copiedOrder.InvoicePerson.Surname) {
+          // Clear Invoice Person
+          copiedOrder.InvoicePerson = null;
+        }
+
         // Save Order
-        this.enrolService.create(this.order)
+        this.enrolService.create(copiedOrder)
           .then(() => {
-            this.globalFunctionsService.updateOrder(this.order);
+            this.globalFunctionsService.updateOrder(copiedOrder);
 
             // Show Summary
             this.globalFunctionsService.enableTabs(4);
             // Redirect
             // TODO: Animate
             window.scrollTo(0, 0);
-            this.router.navigate(['confirm'], { queryParamsHandling: 'merge' });
+            this.router.navigate(['confirm'], {queryParamsHandling: 'merge'});
           })
           .catch(() => {
             this.globalFunctionsService.enableTabs(4);
             // Redirect
             // TODO: Animate
             window.scrollTo(0, 0);
-            this.router.navigate(['error'], { queryParamsHandling: 'merge' });
+            this.router.navigate(['error'], {queryParamsHandling: 'merge'});
           });
       } catch (error) {
         this.globalFunctionsService.enableTabs(4);
         // Redirect
         // TODO: Animate
         window.scrollTo(0, 0);
-        this.router.navigate(['error'], { queryParamsHandling: 'merge' });
+        this.router.navigate(['error'], {queryParamsHandling: 'merge'});
       }
     }
   }
@@ -117,7 +122,7 @@ export class PaymentinfoComponent implements OnInit {
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);
-    this.router.navigate(['payment'], { queryParamsHandling: 'merge' });
+    this.router.navigate(['payment'], {queryParamsHandling: 'merge'});
   }
 
   ngOnInit(): void {

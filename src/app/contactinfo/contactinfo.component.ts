@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Country } from '../bll/country';
 import { CountryService } from '../services/country.service';
@@ -8,6 +8,7 @@ import { Company } from '../bll/company';
 import { Student } from '../bll/student';
 import { GlobalFunctionsService } from '../services/global-functions.service';
 import { Router } from '@angular/router';
+import { CanComponentDeactivate } from '../validation.guard';
 
 @Component({
     moduleId: module.id,
@@ -16,12 +17,14 @@ import { Router } from '@angular/router';
     providers: [CountryService]
 })
 
-export class ContactinfoComponent implements OnInit {
+export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
 
   countries: Country[];
   addMultipleStudents = false;
 
   order: Order = new Order();
+
+  @ViewChild('contactForm') form;
 
   constructor(private countryService: CountryService,
               private globalFunctionsService: GlobalFunctionsService,
@@ -83,17 +86,29 @@ export class ContactinfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Initial Values
-    this.order.OrderType = 'Private';
-    this.order.ContactPerson = new ContactPerson();
-    this.order.ContactPerson.CountryId = 'NL';
-    this.order.Company = new Company();
-    this.order.Company.CountryId = 'NL';
-    this.order.InvoicePerson = new ContactPerson();
-    this.order.InvoicePerson.CountryId = 'NL';
-    this.order.InvoiceCompany = new Company();
-    this.order.InvoiceCompany.CountryId = 'NL';
+    this.order = this.globalFunctionsService.getOrder();
+    if (!this.order) {
+      // Initial Values
+      this.order = new Order();
+      this.order.OrderType = 'Private';
+      this.order.ContactPerson = new ContactPerson();
+      this.order.ContactPerson.CountryId = 'NL';
+      this.order.Company = new Company();
+      this.order.Company.CountryId = 'NL';
+      this.order.InvoicePerson = new ContactPerson();
+      this.order.InvoicePerson.CountryId = 'NL';
+      this.order.InvoiceCompany = new Company();
+      this.order.InvoiceCompany.CountryId = 'NL';
+      this.order.Students = [];
+
+      // Update Storage
+      this.globalFunctionsService.updateOrder(this.order);
+    }
 
     this.getCountries();
+  }
+
+  canDeactivate(): boolean {
+    return this.form.valid;
   }
 }
