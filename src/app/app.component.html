@@ -44,8 +44,8 @@
     <div class="row">
         <!-- When hiding the sidebar give col-sm-12 to this container -->
         <div class="col-xs-12 " id="main-content"
-             [class.col-sm-8]="selectedTab != 'signupConfirmed' && selectedTab != 'signupFailed'"
-             [class.col-sm-12]="selectedTab == 'signupConfirmed' || selectedTab == 'signupFailed'">
+             [class.col-sm-8]="enabledTabCount < 4"
+             [class.col-sm-12]="enabledTabCount === 4">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="courseSelect">
                     <router-outlet></router-outlet>
@@ -58,7 +58,7 @@
 
         <!-- Hide sidebar on tab 4 & 5 -->
         <!-- When hiding the sidebar give col-sm-12 to the main content container (line 49)s -->
-        <div *ngIf="selectedTab != 'signupConfirmed' && selectedTab != 'signupFailed'" class="col-xs-12 col-sm-3">
+        <div *ngIf="enabledTabCount < 4" class="col-xs-12 col-sm-3">
             <fo-basket></fo-basket>
         </div>
 

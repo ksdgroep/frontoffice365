@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit } from '@angular/core';
 
 import { Order } from '../bll/order';
 import { Country } from '../bll/country';
@@ -18,10 +16,8 @@ import {Router} from '@angular/router';
     providers: [CountryService, EnrolService]
 })
 
-export class PaymentinfoComponent implements OnInit, OnDestroy {
+export class PaymentinfoComponent implements OnInit {
 
-  subscription: Subscription;
-  subscriptionCourse: Subscription;
   order: Order;
   alternativeBillingAddress: boolean;
   countries: Country[];
@@ -31,10 +27,7 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
   constructor(private countryService: CountryService,
               private globalFunctionsService: GlobalFunctionsService,
               private enrolService: EnrolService,
-              private router: Router) {
-    this.subscription = this.globalFunctionsService.orderUpdated().subscribe(order => this.order = order);
-    this.subscriptionCourse = this.globalFunctionsService.selectedCourseUpdated().subscribe(course => this.course = course);
-  }
+              private router: Router) {}
 
   getCountries(): void {
     this.countryService.getCountries().then(countries => this.countries = countries);
@@ -43,6 +36,8 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
   saveInfo(isValid: boolean): void {
     if (isValid) {
       try {
+
+        console.log('Save Order: ', this.order);
 
         // Create Correct Order-Message
         if (!this.order.Company.Name) {
@@ -106,6 +101,9 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
             this.router.navigate(['confirm'], { queryParamsHandling: 'merge' });
           })
           .catch(response => {
+
+            console.log('Fout bij opslaan', response);
+
             this.globalFunctionsService.enableTabs(4);
             // this.globalFunctionsService.activateTab('signupFailed');
             // Redirect
@@ -114,6 +112,9 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
             this.router.navigate(['error'], { queryParamsHandling: 'merge' });
           });
       } catch (error) {
+
+        console.log('Fout bij samenstellen', error);
+
         this.globalFunctionsService.enableTabs(4);
         // this.globalFunctionsService.activateTab('signupFailed');
         // Redirect
@@ -134,10 +135,7 @@ export class PaymentinfoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getCountries();
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    this.subscriptionCourse.unsubscribe();
+    this.order = this.globalFunctionsService.getOrder();
+    this.course = this.globalFunctionsService.getSelectedCourse();
   }
 }

@@ -15,6 +15,7 @@ export class GlobalFunctionsService {
   regionId: string;
 
   private selectedCourse: Course;
+  private order: Order;
 
   private updateSelectedCourseFunction = new Subject();
   private enableTabsFunction = new Subject();
@@ -48,6 +49,7 @@ export class GlobalFunctionsService {
   // }
 
   updateOrder(order: Order) {
+    this.order = order;
     this.orderFunction.next(order);
   }
 
@@ -65,5 +67,9 @@ export class GlobalFunctionsService {
 
   getSelectedCourse(): Course {
     return this.selectedCourse;
+  }
+
+  getOrder(): Order {
+    return this.order;
   }
 }

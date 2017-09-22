@@ -69,6 +69,8 @@ export class ContactinfoComponent implements OnInit {
       this.globalFunctionsService.enableTabs(3);
       // this.globalFunctionsService.activateTab('paymentInfo');
 
+      console.log('Order:', this.order);
+
       // Redirect
       // TODO: Animate
       window.scrollTo(0, 0);
