@@ -15,7 +15,7 @@ export class AppConfig {
   }
 
   public load() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         this.http.get('assets/configuration.json').map(res => res.json()).catch((error: any): any => {
           console.log('Configuration file "configuration.json" could not be read.');
           resolve(true);

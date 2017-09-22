@@ -67,9 +67,6 @@ export class ContactinfoComponent implements OnInit {
     if (isValid) {
       this.globalFunctionsService.updateOrder(this.order);
       this.globalFunctionsService.enableTabs(3);
-      // this.globalFunctionsService.activateTab('paymentInfo');
-
-      console.log('Order:', this.order);
 
       // Redirect
       // TODO: Animate
@@ -79,7 +76,6 @@ export class ContactinfoComponent implements OnInit {
   }
 
   previousTab(): void {
-    // this.globalFunctionsService.activateTab('courseSelect');
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);
@@ -99,9 +95,5 @@ export class ContactinfoComponent implements OnInit {
     this.order.InvoiceCompany.CountryId = 'NL';
 
     this.getCountries();
-  }
-
-  getPostalCode(code: string, number: number): void {
-
   }
 }

@@ -18,6 +18,10 @@ export class EnrolService {
       'Authorization-ApiKey': this.config.getConfig('apiKey')
     });
 
+  private static handleError(error: any): Promise<any> {
+    return Promise.reject(error.message || error);
+  }
+
   constructor(private http: Http,
               private config: AppConfig) {
   }
@@ -26,10 +30,6 @@ export class EnrolService {
     return this.http.post(this.enrolApiUrl, JSON.stringify(order), {headers: this.headers})
       .toPromise()
       .then(res => res.status)
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    return Promise.reject(error.message || error);
+      .catch(EnrolService.handleError);
   }
 }

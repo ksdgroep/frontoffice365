@@ -1,16 +1,15 @@
-import {Pipe} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'dutchDateFormat'
 })
-export class DutchDateFormat {
+export class DutchDateFormat implements PipeTransform {
   transform(value: Date,
-            weekdayOnly: boolean = false
-  ): string {
-    var date = value instanceof Date ? value : new Date(value);
+            weekdayOnly: boolean = false): string {
+    const date = value instanceof Date ? value : new Date(value);
 
     if (weekdayOnly) {
-      let day = date.getDay();
+      const day = date.getDay();
       let weekdayName = '';
 
       // Translate Day
@@ -39,11 +38,10 @@ export class DutchDateFormat {
       }
 
       return weekdayName;
-    }
-    else {
-      let dayPart = date.getDate();
-      let monthPart = date.getMonth();
-      let yearPart = date.getFullYear();
+    } else {
+      const dayPart = date.getDate();
+      const monthPart = date.getMonth();
+      const yearPart = date.getFullYear();
 
       // Translate Month
       let monthName = '';

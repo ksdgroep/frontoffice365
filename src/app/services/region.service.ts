@@ -4,7 +4,7 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Region } from '../bll/region';
-import {AppConfig} from '../app.config';
+import { AppConfig } from '../app.config';
 
 @Injectable()
 export class RegionService {
@@ -18,6 +18,10 @@ export class RegionService {
       'Authorization-ApiKey': this.config.getConfig('apiKey')
     });
 
+  private static handleError(error: any): Promise<any> {
+    return Promise.reject(error.message || error);
+  }
+
   constructor(private http: Http,
               private config: AppConfig) {
   }
@@ -27,17 +31,13 @@ export class RegionService {
     return this.http.get(this.regionApiUrl, {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Region[])
-      .catch(this.handleError);
+      .catch(RegionService.handleError);
   }
 
   public getRegionsByCourseTemplate(courseTemplateId: number): Promise<Region[]> {
     return this.http.get(this.courseTemplateApiUrl + '/' + courseTemplateId + '/Regions', {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Region[])
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    return Promise.reject(error.message || error);
+      .catch(RegionService.handleError);
   }
 }

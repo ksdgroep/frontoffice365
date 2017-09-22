@@ -16,6 +16,10 @@ export class CourseTemplateService {
       'Authorization-ApiKey': this.config.getConfig('apiKey')
     });
 
+  private static handleError(error: any): Promise<any> {
+    return Promise.reject(error.message || error);
+  }
+
   constructor(private http: Http,
               private config: AppConfig) {
   }
@@ -24,10 +28,6 @@ export class CourseTemplateService {
     return this.http.get(this.courseTemplateApiUrl, {headers: this.headers})
       .toPromise()
       .then(response => response.json() as CourseTemplate[])
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    return Promise.reject(error.message || error);
+      .catch(CourseTemplateService.handleError);
   }
 }

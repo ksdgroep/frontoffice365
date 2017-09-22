@@ -7,7 +7,6 @@ import { DateDirective } from './date.directive';
 import { UpperCaseText } from './uppercase.directive';
 import { PostalCodeFormatDirective } from './postalcode-format.directive';
 import { OnlyNumbersDirective } from './only-numbers.directive';
-import { PostalcodeAutofillDirective } from './postalcode-autofill.directive';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,7 @@ import { PostalcodeAutofillDirective } from './postalcode-autofill.directive';
     DateDirective,
     UpperCaseText,
     PostalCodeFormatDirective,
-    OnlyNumbersDirective,
-    PostalcodeAutofillDirective
+    OnlyNumbersDirective
   ],
   exports: [
     CommonModule,
@@ -26,7 +24,6 @@ import { PostalcodeAutofillDirective } from './postalcode-autofill.directive';
     DateDirective,
     UpperCaseText,
     PostalCodeFormatDirective,
-    PostalcodeAutofillDirective,
     OnlyNumbersDirective
   ]
 })

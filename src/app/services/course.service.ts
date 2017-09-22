@@ -4,7 +4,7 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Course } from '../bll/course';
-import {AppConfig} from '../app.config';
+import { AppConfig } from '../app.config';
 
 @Injectable()
 export class CourseService {
@@ -19,46 +19,47 @@ export class CourseService {
       'Authorization-ApiKey': this.config.getConfig('apiKey')
     });
 
+
+  private static handleError(error: any): Promise<any> {
+    return Promise.reject(error.message || error);
+  }
+
   constructor(private http: Http,
               private config: AppConfig) {
   }
 
-  public getCourse(id: string): Promise<Course>{
+  public getCourse(id: string): Promise<Course> {
     return this.http.get(this.courseApiUrl + '/' + id, {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Course)
-      .catch(this.handleError);
+      .catch(CourseService.handleError);
   }
 
   public getCourses(): Promise<Course[]> {
     return this.http.get(this.courseApiUrl, {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Course[])
-      .catch(this.handleError);
+      .catch(CourseService.handleError);
   }
 
   public getCoursesByCourseTemplate(courseTemplateId: number): Promise<Course[]> {
     return this.http.get(this.courseTemplateApiUrl + '/' + courseTemplateId + '/Courses', {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Course[])
-      .catch(this.handleError);
+      .catch(CourseService.handleError);
   }
 
   public getCoursesByCourseTemplateAndRegion(courseTemplateId: number, regionId: string): Promise<Course[]> {
     return this.http.get(this.courseTemplateApiUrl + '/' + courseTemplateId + '/Regions/' + regionId + '/Courses', {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Course[])
-      .catch(this.handleError);
+      .catch(CourseService.handleError);
   }
 
   public getCoursesByRegion(regionId: string): Promise<Course[]> {
     return this.http.get(this.regionsApiUrl + '/' + regionId + '/Courses', {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Course[])
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    return Promise.reject(error.message || error);
+      .catch(CourseService.handleError);
   }
 }

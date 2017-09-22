@@ -41,7 +41,6 @@ export class CourseselectionComponent implements OnInit {
 
   setCourseTemplate(courseTemplates: CourseTemplate[]): void {
     this.courseTemplates = courseTemplates;
-    // this.loadingCourses = false;
 
     let courseTemplateId = this.route.snapshot.queryParams['tid'];
     if (courseTemplateId == null) {
@@ -156,8 +155,6 @@ export class CourseselectionComponent implements OnInit {
       // Block Enrolment
       return;
     }
-
-    // this.globalFunctionsService.activateTab('contactInfo');
 
     // Redirect
     // TODO: Animate

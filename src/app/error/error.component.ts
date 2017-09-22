@@ -15,7 +15,7 @@ export class ErrorComponent {
   constructor(
     private globalFunctionsService: GlobalFunctionsService,
     private config: AppConfig) {
-    // TODO: this.globalFunctionsService.hideTabs(true);
+
     this.returnUrl = this.globalFunctionsService.returnUrl;
     this.contactEmail = this.config.getConfig('contactEmail');
   }

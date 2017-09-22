@@ -4,7 +4,6 @@ import { Subject } from 'rxjs/Subject';
 
 import { Course } from '../bll/course';
 import { Order } from '../bll/order';
-// import {CourseTemplate} from '../bll/coursetemplate';
 
 @Injectable()
 export class GlobalFunctionsService {
@@ -19,8 +18,6 @@ export class GlobalFunctionsService {
 
   private updateSelectedCourseFunction = new Subject();
   private enableTabsFunction = new Subject();
-  // private activateTabFunction = new Subject();
-  private orderFunction = new Subject();
   private studentsFunction = new Subject();
 
   updateSelectedCourse(selectedCourse: Course) {
@@ -39,22 +36,9 @@ export class GlobalFunctionsService {
   enabledTabsChanged(): Observable<number> {
     return this.enableTabsFunction.asObservable();
   }
-  //
-  // activateTab(tabName: string) {
-  //   this.activateTabFunction.next(tabName);
-  // }
-  //
-  // activeTabChanged(): Observable<string> {
-  //   return this.activateTabFunction.asObservable();
-  // }
 
   updateOrder(order: Order) {
     this.order = order;
-    this.orderFunction.next(order);
-  }
-
-  orderUpdated(): Observable<Order> {
-    return this.orderFunction.asObservable();
   }
 
   updateStudentCount(count: number) {

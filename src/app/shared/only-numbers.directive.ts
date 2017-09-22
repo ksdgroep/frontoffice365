@@ -5,23 +5,23 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 export class OnlyNumbersDirective {
 
-  constructor(private el: ElementRef) { }
-
   @Input() OnlyNumbers: boolean;
 
+  constructor(private el: ElementRef) { }
+
   @HostListener('keydown', ['$event']) onKeyDown(event) {
-    let e = <KeyboardEvent> event;
+    const e = <KeyboardEvent> event;
     if (this.OnlyNumbers) {
 
       if ([46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
         // Allow: Ctrl+A
-        (e.keyCode == 65 && e.ctrlKey === true) ||
+        (e.keyCode === 65 && e.ctrlKey === true) ||
         // Allow: Ctrl+C
-        (e.keyCode == 67 && e.ctrlKey === true) ||
+        (e.keyCode === 67 && e.ctrlKey === true) ||
         // Allow: Ctrl+V
-        (e.keyCode == 86 && e.ctrlKey === true) ||
+        (e.keyCode === 86 && e.ctrlKey === true) ||
         // Allow: Ctrl+X
-        (e.keyCode == 88 && e.ctrlKey === true) ||
+        (e.keyCode === 88 && e.ctrlKey === true) ||
         // Allow: home, end, left, right
         (e.keyCode >= 35 && e.keyCode <= 39)) {
         // let it happen, don't do anything

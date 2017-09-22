@@ -36,9 +36,6 @@ export class PaymentinfoComponent implements OnInit {
   saveInfo(isValid: boolean): void {
     if (isValid) {
       try {
-
-        console.log('Save Order: ', this.order);
-
         // Create Correct Order-Message
         if (!this.order.Company.Name) {
           // Clear Company
@@ -89,34 +86,25 @@ export class PaymentinfoComponent implements OnInit {
 
         // Save Order
         this.enrolService.create(this.order)
-          .then(response => {
+          .then(() => {
             this.globalFunctionsService.updateOrder(this.order);
 
             // Show Summary
             this.globalFunctionsService.enableTabs(4);
-            // this.globalFunctionsService.activateTab('signupConfirmed');
             // Redirect
             // TODO: Animate
             window.scrollTo(0, 0);
             this.router.navigate(['confirm'], { queryParamsHandling: 'merge' });
           })
-          .catch(response => {
-
-            console.log('Fout bij opslaan', response);
-
+          .catch(() => {
             this.globalFunctionsService.enableTabs(4);
-            // this.globalFunctionsService.activateTab('signupFailed');
             // Redirect
             // TODO: Animate
             window.scrollTo(0, 0);
             this.router.navigate(['error'], { queryParamsHandling: 'merge' });
           });
       } catch (error) {
-
-        console.log('Fout bij samenstellen', error);
-
         this.globalFunctionsService.enableTabs(4);
-        // this.globalFunctionsService.activateTab('signupFailed');
         // Redirect
         // TODO: Animate
         window.scrollTo(0, 0);
@@ -126,7 +114,6 @@ export class PaymentinfoComponent implements OnInit {
   }
 
   previousTab(): void {
-    // this.globalFunctionsService.activateTab('contactInfo');
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);

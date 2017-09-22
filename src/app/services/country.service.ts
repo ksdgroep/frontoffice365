@@ -4,7 +4,7 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Country } from '../bll/country';
-import {AppConfig} from '../app.config';
+import { AppConfig } from '../app.config';
 
 @Injectable()
 export class CountryService {
@@ -16,6 +16,10 @@ export class CountryService {
       'Authorization-ApiKey': this.config.getConfig('apiKey')
     });
 
+  private static handleError(error: any): Promise<any> {
+    return Promise.reject(error.message || error);
+  }
+
   constructor(private http: Http,
               private config: AppConfig) {
   }
@@ -25,10 +29,6 @@ export class CountryService {
     return this.http.get(this.countryApiUrl, {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Country[])
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    return Promise.reject(error.message || error);
+      .catch(CountryService.handleError);
   }
 }

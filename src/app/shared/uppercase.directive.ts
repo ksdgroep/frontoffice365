@@ -1,10 +1,10 @@
-import {Directive, ElementRef, forwardRef, HostListener} from "@angular/core";
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import { Directive, ElementRef, forwardRef, HostListener } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Directive({
   selector: '[UpperCaseText]',
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => UpperCaseText), multi: true }
+    {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => UpperCaseText), multi: true}
   ]
 })
 export class UpperCaseText implements ControlValueAccessor {
@@ -16,7 +16,7 @@ export class UpperCaseText implements ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    if(obj){
+    if (obj) {
       this.elementRef.value = obj;
     }
   }
@@ -41,5 +41,4 @@ export class UpperCaseText implements ControlValueAccessor {
     this.elementRef.value = value.toUpperCase();
     this.propagateChange(value.toUpperCase());
   };
-
 }
