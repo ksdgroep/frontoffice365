@@ -1,33 +1,24 @@
-import { Component, OnDestroy } from '@angular/core';
-
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit } from '@angular/core';
 
 import { GlobalFunctionsService } from '../services/global-functions.service';
 import { Order } from '../bll/order';
 import { Course } from '../bll/course';
 
 @Component({
-    moduleId: module.id,
-    selector: 'fo-confirmation',
-    templateUrl: './confirmation.component.html'
+  moduleId: module.id,
+  selector: 'fo-confirmation',
+  templateUrl: './confirmation.component.html'
 })
 
-export class ConfirmationComponent implements OnDestroy {
+export class ConfirmationComponent implements OnInit {
 
-    subscription: Subscription;
-    subscriptionCourse: Subscription;
-    order: Order;
-    course: Course;
+  order: Order;
+  course: Course;
 
-    constructor(
-        private globalFunctionsService: GlobalFunctionsService
-    ) {
-        this.subscription = this.globalFunctionsService.orderUpdated().subscribe(order => this.order = order);
-        this.subscriptionCourse = this.globalFunctionsService.selectedCourseUpdated().subscribe(course => this.course = course);
-    }
+  constructor(private globalFunctionsService: GlobalFunctionsService) {}
 
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
-        this.subscriptionCourse.unsubscribe();
-    }
+  ngOnInit(): void {
+    this.order = this.globalFunctionsService.getOrder();
+    this.course = this.globalFunctionsService.getSelectedCourse();
+  }
 }
