@@ -41,7 +41,7 @@ export class CourseselectionComponent implements OnInit {
 
   setCourseTemplate(courseTemplates: CourseTemplate[]): void {
     this.courseTemplates = courseTemplates;
-    this.loadingCourses = false;
+    // this.loadingCourses = false;
 
     let courseTemplateId = this.route.snapshot.queryParams['tid'];
     if (courseTemplateId == null) {
@@ -77,6 +77,8 @@ export class CourseselectionComponent implements OnInit {
   }
 
   getCourses(courseTemplateId: number, regionId: string): void {
+    this.loadingCourses = true;
+
     if (courseTemplateId == null && regionId == null) {
       this.courseService.getCourses().then(courses => {
         this.courses = courses;
@@ -101,6 +103,8 @@ export class CourseselectionComponent implements OnInit {
   }
 
   resetCourseSelection(): void {
+    this.loadingCourses = false;
+
     // Reset Selection if course not in filter
     if (!this.courses || (this.selectedCourse && this.courses.findIndex(course => course.Id === this.selectedCourse.Id) === -1)) {
       this.selectedCourse = null;
@@ -196,7 +200,7 @@ export class CourseselectionComponent implements OnInit {
     this.getCourses(courseTemplateId, this.selectedRegion ? this.selectedRegion.Id : null);
 
     // Set AppInitialized
-    this.globalFunctionsService.appInitialized = true;;
+    this.globalFunctionsService.appInitialized = true;
   }
 
   displayMobileInfo(index: number, ignore: boolean) {

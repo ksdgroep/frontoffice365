@@ -43,9 +43,9 @@
         </a>
         <div *ngIf="loadingCourses" class="course-msg">
             <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
-            <span class="sr-only">Cursussen worden geladen...</span>
+            <span>Cursussen worden geladen...</span>
         </div>
-        <div class="course-msg">
+        <div *ngIf="!loadingCourses && courses?.length === 0" class="course-msg">
             <!-- No courses found -->
             Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
         </div>
@@ -74,9 +74,9 @@
 
         <div *ngIf="loadingCourses" class="course-msg">
             <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
-            <span class="sr-only">Cursussen worden geladen...</span>
+            <span>Cursussen worden geladen...</span>
         </div>
-        <div class="course-msg">
+        <div *ngIf="!loadingCourses && courses?.length === 0" class="course-msg">
             <!-- No courses found -->
             Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
         </div>
