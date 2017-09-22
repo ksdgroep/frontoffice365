@@ -16,7 +16,7 @@
     <div class="form-group" [appValidationError]="initials.errors && (initials.dirty || initials.touched || contactForm.submitted)" >
         <label for="initials" class="col-xs-12 col-sm-3 control-label">Voorletters</label>
         <div class="col-xs-12 col-sm-6">
-            <input type="text" class="form-control " id="initials" name="initials" [(ngModel)]="order.ContactPerson.Initials" required #initials="ngModel">
+            <input type="text" class="form-control" id="initials" name="initials" [(ngModel)]="order.ContactPerson.Initials" required #initials="ngModel" UpperCaseText>
             <span *ngIf="initials.errors && (initials.dirty || initials.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
             <label *ngIf="initials.errors && (initials.dirty || initials.touched || contactForm.submitted)" class="control-label">Voorletters zijn verpllicht.</label>
         </div>
@@ -75,11 +75,11 @@
             <div class="form-group row">
                 <div class="col-sm-5 col-xs-12 margin-bottom-15">
                     <input id="postalcodeBusiness" type="text" class="form-control" name="postalCode"
-                           [(ngModel)]="order.ContactPerson.PostalCode">
+                           [(ngModel)]="order.ContactPerson.PostalCode" PostalCodeFormat>
                 </div>
                 <label for="numberBusiness" class="col-xs-12 col-sm-3 control-label optional-label margin-bottom-15">Nummer<br/><span>Optioneel</span></label>
                 <div class="col-sm-4 col-xs-12">
-                    <input id="numberBusiness" type="text" class="form-control" name="number" [(ngModel)]="order.ContactPerson.AddressNumber" OnlyNumbers="true">
+                    <input id="numberBusiness" type="text" class="form-control" name="number" [(ngModel)]="order.ContactPerson.AddressNumber">
                 </div>
             </div>
         </div>
@@ -119,10 +119,12 @@
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [appValidationError]="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)">
         <label for="phoneBusiness" class="col-xs-12 col-sm-3 control-label optional-label">Telefoon<br/><span>Optioneel</span></label>
         <div class="col-xs-12 col-sm-6">
-            <input type="text" class="form-control" id="phoneBusiness" name="phone" [(ngModel)]="order.ContactPerson.Phone">
+            <input type="text" class="form-control" id="phoneBusiness" name="phone" [(ngModel)]="order.ContactPerson.Phone" #phoneBusiness="ngModel" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}">
+            <span *ngIf="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <label *ngIf="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
         </div>
     </div>
 
@@ -170,7 +172,7 @@
         <div class="form-group" [appValidationError]="studentInitials.errors && (studentInitials.dirty || studentInitials.touched || contactForm.submitted)" >
             <label for="initialsParticipant" class="col-xs-12 col-sm-3 control-label">Voorletters</label>
             <div class="col-xs-12 col-sm-6">
-                <input type="text" class="form-control" id="initialsParticipant" name="initials_{{index}}" [(ngModel)]="s.Initials" required #studentInitials="ngModel">
+                <input type="text" class="form-control" id="initialsParticipant" name="initials_{{index}}" [(ngModel)]="s.Initials" required #studentInitials="ngModel" UpperCaseText>
                 <span *ngIf="studentInitials.errors && (studentInitials.dirty || studentInitials.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
                 <label *ngIf="studentInitials.errors && (studentInitials.dirty || studentInitials.touched || contactForm.submitted)" class="control-label">Voorletters zijn verpllicht.</label>
             </div>
@@ -204,7 +206,7 @@
             <div class="col-sm-6">
                 <div class="form-group row">
                     <div class="col-sm-5 col-xs-12 margin-bottom-15">
-                        <input id="privatePostalcodeParticipant" type="text" class="form-control" name="postalCode_{{index}}" [(ngModel)]="s.PostalCode">
+                        <input id="privatePostalcodeParticipant" type="text" class="form-control" name="postalCode_{{index}}" [(ngModel)]="s.PostalCode" PostalCodeFormat>
                     </div>
                     <label for="privateNumberParticipant" class="col-xs-12 col-sm-3 control-label optional-label margin-bottom-15">Nummer<br/><span>Optioneel</span></label>
                     <div class="col-sm-4 col-xs-12">
@@ -237,10 +239,12 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" [appValidationError]="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)">
             <label for="phoneNumberParticipant" class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer<br/><span>Optioneel</span></label>
             <div class="col-xs-12 col-sm-6">
-                <input type="text" class="form-control" id="phoneNumberParticipant" name="phone_{{index}}" [(ngModel)]="s.Phone">
+                <input type="text" class="form-control" id="phoneNumberParticipant" name="phone_{{index}}" [(ngModel)]="s.Phone" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}" #phoneNumberParticipant="ngModel">
+                <span *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <label *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
             </div>
         </div>
         <div class="form-group" [appValidationError]="studentEmail.errors && (studentEmail.dirty || studentEmail.touched || contactForm.submitted)" >

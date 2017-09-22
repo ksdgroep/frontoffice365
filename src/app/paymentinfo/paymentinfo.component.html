@@ -40,7 +40,7 @@
         <div class="form-group">
             <label for="initialsBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Voorletters<br/><span>Optioneel</span></label>
             <div class="col-xs-12 col-sm-6">
-                <input type="text" class="form-control" id="initialsBillAddress" [(ngModel)]="order.InvoicePerson.Initials" name="initials">
+                <input type="text" class="form-control" id="initialsBillAddress" [(ngModel)]="order.InvoicePerson.Initials" name="initials" UpperCaseText>
             </div>
         </div>
 
@@ -77,7 +77,7 @@
             <div class="col-sm-6">
                 <div class="form-group row">
                     <div class="col-sm-5 col-xs-12 margin-bottom-15">
-                        <input id="postalcodeBillAddress" type="text" class="form-control" [(ngModel)]="order.InvoicePerson.PostalCode" name="postalcode">
+                        <input id="postalcodeBillAddress" type="text" class="form-control" [(ngModel)]="order.InvoicePerson.PostalCode" name="postalcode" PostalCodeFormat>
                     </div>
                     <label for="numberBillAddress" class="col-xs-12 col-sm-3 control-label optional-label margin-bottom-15">Nummer<br/><span>Optioneel</span></label>
                     <div class="col-sm-4 col-xs-12">
@@ -120,10 +120,12 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" [appValidationError]="phoneBillAddress.errors && (phoneBillAddress.dirty || phoneBillAddress.touched || contactForm.submitted)">
             <label for="phoneBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Telefoon<br/><span>Optioneel</span></label>
             <div class="col-xs-12 col-sm-6">
-                <input type="text" class="form-control" id="phoneBillAddress" [(ngModel)]="order.InvoicePerson.Phone" name="phone">
+                <input type="text" class="form-control" id="phoneBillAddress" [(ngModel)]="order.InvoicePerson.Phone" name="phone" #phoneBillAddress="ngModel" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}">
+                <span *ngIf="phoneBillAddress.errors && (phoneBillAddress.dirty || phoneBillAddress.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <label *ngIf="phoneBillAddress.errors && (phoneBillAddress.dirty || phoneBillAddress.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
             </div>
         </div>
     </div>
