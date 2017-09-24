@@ -9,12 +9,13 @@ import { GlobalFunctionsService } from '../services/global-functions.service';
 import { EnrolService } from '../services/enrol.service';
 import { Router } from '@angular/router';
 import { AppConfig } from '../app.config';
+import { PostalCodeService } from '../services/postalcode.service';
 
 @Component({
   moduleId: module.id,
   selector: 'fo-paymentinfo',
   templateUrl: './paymentinfo.component.html',
-  providers: [CountryService, EnrolService]
+  providers: [CountryService, EnrolService, PostalCodeService]
 })
 
 export class PaymentinfoComponent implements OnInit {
@@ -28,6 +29,7 @@ export class PaymentinfoComponent implements OnInit {
   constructor(private countryService: CountryService,
               private globalFunctionsService: GlobalFunctionsService,
               private enrolService: EnrolService,
+              private postalCodeService: PostalCodeService,
               private config: AppConfig,
               private router: Router) {
     this.conditionsUrl = config.getConfig('termsUrl');
@@ -133,5 +135,16 @@ export class PaymentinfoComponent implements OnInit {
     this.getCountries();
     this.order = this.globalFunctionsService.getOrder();
     this.course = this.globalFunctionsService.getSelectedCourse();
+  }
+
+  getAddress(): void {
+    this.postalCodeService.getAddress(this.order.InvoicePerson.PostalCode, this.order.InvoicePerson.AddressNumber)
+      .then(address => {
+        this.order.InvoicePerson.Address = address.Street;
+        this.order.InvoicePerson.City = address.City;
+      })
+      .catch(() => {
+        // Ignore Errors.
+      });
   }
 }

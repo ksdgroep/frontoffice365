@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { Country } from '../bll/country';
 import { CountryService } from '../services/country.service';
@@ -9,12 +9,13 @@ import { Student } from '../bll/student';
 import { GlobalFunctionsService } from '../services/global-functions.service';
 import { Router } from '@angular/router';
 import { CanComponentDeactivate } from '../validation.guard';
+import { PostalCodeService } from '../services/postalcode.service';
 
 @Component({
     moduleId: module.id,
     selector: 'fo-contactinfo',
     templateUrl: './contactinfo.component.html',
-    providers: [CountryService]
+    providers: [CountryService, PostalCodeService]
 })
 
 export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
@@ -28,6 +29,7 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
 
   constructor(private countryService: CountryService,
               private globalFunctionsService: GlobalFunctionsService,
+              private postalCodeService: PostalCodeService,
               private router: Router) {
   }
 
@@ -110,5 +112,27 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
 
   canDeactivate(): boolean {
     return this.form.valid;
+  }
+
+  getAddress(): void {
+    this.postalCodeService.getAddress(this.order.ContactPerson.PostalCode, this.order.ContactPerson.AddressNumber)
+      .then(address => {
+        this.order.ContactPerson.Address = address.Street;
+        this.order.ContactPerson.City = address.City;
+      })
+      .catch(() => {
+        // Ignore Errors.
+      });
+  }
+
+  getStudentAddress(student: Student): void {
+    this.postalCodeService.getAddress(student.PostalCode, student.AddressNumber)
+      .then(address => {
+        student.Address = address.Street;
+        student.City = address.City;
+      })
+      .catch(() => {
+        // Ignore Errors.
+      });
   }
 }
