@@ -5,6 +5,7 @@
   },
   "apps": [{
     "root": "src",
+    "genDir": "aot",
     "outDir": "dist",
     "assets": [
       "assets",
@@ -24,6 +25,7 @@
     "environmentSource": "environments/environment.ts",
     "environments": {
       "dev": "environments/environment.ts",
+      "acc": "environments/environment.acc.ts",
       "prod": "environments/environment.prod.ts"
     }
   }],
