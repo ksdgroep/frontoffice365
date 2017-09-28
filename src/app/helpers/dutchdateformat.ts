@@ -79,7 +79,7 @@ export class DutchDateFormat implements PipeTransform {
         case 10:
           monthName = 'november';
           break;
-        case 12:
+        case 11:
           monthName = 'december';
           break;
       }
