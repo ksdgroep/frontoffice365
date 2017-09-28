@@ -21,7 +21,8 @@ import { PostalCodeService } from '../services/postalcode.service';
 export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
 
   countries: Country[];
-  addMultipleStudents = false;
+  // addMultipleStudents = false;
+  seatsAvailable = 0;
 
   order: Order = new Order();
 
@@ -42,7 +43,7 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
   }
 
   toggleStudents(): void {
-    if (this.addMultipleStudents) {
+    if (this.order.MultipleStudents) {
       const student = new Student();
       student.CountryId = 'NL';
       this.order.Students = [student];
@@ -54,16 +55,18 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
   }
 
   addStudent(): void {
-    const student = new Student();
-    student.CountryId = 'NL';
-    this.order.Students.push(student);
+    if ((this.seatsAvailable - (this.order.Students.length + (this.order.FirstStudentIsContact ? 1 : 0))) > 0) {
+      const student = new Student();
+      student.CountryId = 'NL';
+      this.order.Students.push(student);
 
-    this.globalFunctionsService.updateStudentCount(this.order.Students.length + (this.order.FirstStudentIsContact ? 1 : 0));
+      this.globalFunctionsService.updateStudentCount(this.order.Students.length + (this.order.FirstStudentIsContact ? 1 : 0));
+    }
   }
 
   removeStudent(student: Student): void {
     this.order.Students = this.order.Students.filter(s => s !== student);
-    this.addMultipleStudents = this.order.Students.length > 0;
+    this.order.MultipleStudents = this.order.Students.length > 0;
 
     this.globalFunctionsService.updateStudentCount(this.order.Students.length + (this.order.FirstStudentIsContact ? 1 : 0));
   }
@@ -108,6 +111,9 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
     }
 
     this.getCountries();
+
+    // Available Seats
+    this.seatsAvailable = this.globalFunctionsService.getSelectedCourse().AvailableSeats;
   }
 
   canDeactivate(): boolean {

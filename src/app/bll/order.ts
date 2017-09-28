@@ -13,4 +13,5 @@ export class Order {
   Remarks: string;
   FirstStudentIsContact: boolean;
   AlternateInvoiceAddress: boolean;
+  MultipleStudents: boolean;
 }
