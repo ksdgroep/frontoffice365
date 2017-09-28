@@ -449,4 +449,7 @@ a.course-selector {
   cursor: not-allowed;
   pointer-events: none; }
 
+.text-right > .btn {
+  padding: 0; }
+
 /*# sourceMappingURL=style.css.map */
