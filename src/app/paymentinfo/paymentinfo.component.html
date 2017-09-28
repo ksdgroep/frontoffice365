@@ -132,9 +132,9 @@
     </div>
 
     <hr class="divider" />
-    <h2>Kies een betaalmethode</h2>
+    <h2 *ngIf="false">Kies een betaalmethode</h2>
 
-    <div class="table-responsive">
+    <div *ngIf="false" class="table-responsive">
         <table class="table table-hover" id="payment-table">
             <tbody>
                 <tr *ngIf="false">
@@ -175,7 +175,7 @@
                     <td id="creditcard"><span class="payment-option">Creditcard</span> - Snel en eenvoudig betalen met uw eigen creditcard
                     </td>
                 </tr>
-                <tr>
+                <tr *ngIf="false">
                     <td><input type="radio" name="payment-option" value="factuur" class="payment-radio" checked/>
                     </td>
                     <td class="hidden-xs" id="invoice"><span class="payment-option">Factuur</span></td>
