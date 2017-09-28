@@ -26,10 +26,16 @@
   .participants-list .margin-bottom-15 {
     margin-bottom: 0px; } }
 
+@media (min-width: 480px) {
+  .hide-basket-xs {
+    display: block; } }
+
 @media (max-width: 480px) {
   .course-selector .courseselection-item > .course-item {
     float: left;
-    display: block; } }
+    display: block; }
+  .hide-basket-xs {
+    display: none; } }
 
 @media (min-width: 768px) {
   .hide-sm-down {

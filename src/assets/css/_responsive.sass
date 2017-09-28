@@ -53,11 +53,17 @@ $textColorBody: #000
   body
     //background: purple !important
 
+@media (min-width: $screen-xs)
+  .hide-basket-xs
+    display: block
+
 
 @media (max-width: $screen-xs)
   .course-selector .courseselection-item > .course-item
     float: left
     display: block
+  .hide-basket-xs
+    display: none
 
 @media (min-width: $screen-sm)
   .hide-sm-down

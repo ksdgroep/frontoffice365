@@ -2,8 +2,7 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -15,22 +14,17 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav nav-tabs" role="tablist">
                 <li role="presentation">
-                    <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" queryParamsHandling="merge"
-                       [class.disabled]="enabledTabCount == 4" (click)="selectTab()">Stap 1: Inschrijven
+                    <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" queryParamsHandling="merge" [class.disabled]="enabledTabCount == 4" (click)="selectTab()">Stap 1: Inschrijven
                         cursus</a>
                 </li>
                 <li role="presentation">
-                    <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students" queryParamsHandling="merge"
-                       [class.disabled]="enabledTabCount < 2 || enabledTabCount == 4" role="tab" (click)="selectTab()" >Stap 2: Contactgegevens</a>
+                    <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2 || enabledTabCount == 4" role="tab" (click)="selectTab()">Stap 2: Contactgegevens</a>
                 </li>
                 <li role="presentation">
-                    <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment" queryParamsHandling="merge"
-                       [class.disabled]="enabledTabCount < 3 || enabledTabCount == 4" role="tab"
-                       (click)="selectTab()">Stap 3: Betaalgegevens</a>
+                    <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3 || enabledTabCount == 4" role="tab" (click)="selectTab()">Stap 3: Betaalgegevens</a>
                 </li>
                 <li role="presentation">
-                    <a aria-controls="signupConfirmed" routerLinkActive="active" routerLink="confirm" queryParamsHandling="merge"
-                       [class.disabled]="enabledTabCount < 4" role="tab" (click)="selectTab()">Stap 4:
+                    <a aria-controls="signupConfirmed" routerLinkActive="active" routerLink="confirm" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 4" role="tab" (click)="selectTab()">Stap 4:
                         Inschrijving voltooid</a>
                 </li>
             </ul>
@@ -43,9 +37,7 @@
 <div class="container course-selection">
     <div class="row">
         <!-- When hiding the sidebar give col-sm-12 to this container -->
-        <div class="col-xs-12 " id="main-content"
-             [class.col-sm-8]="enabledTabCount < 4"
-             [class.col-sm-12]="enabledTabCount === 4">
+        <div class="col-xs-12" id="main-content" [class.col-sm-8]="enabledTabCount < 4" [class.col-sm-12]="enabledTabCount === 4">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="courseSelect">
                     <router-outlet></router-outlet>
@@ -58,7 +50,7 @@
 
         <!-- Hide sidebar on tab 4 & 5 -->
         <!-- When hiding the sidebar give col-sm-12 to the main content container (line 49)s -->
-        <div *ngIf="enabledTabCount < 4" class="col-xs-12 col-sm-3">
+        <div *ngIf="enabledTabCount < 4" class="col-xs-12 col-sm-3 hide-basket-xs">
             <fo-basket></fo-basket>
         </div>
 
