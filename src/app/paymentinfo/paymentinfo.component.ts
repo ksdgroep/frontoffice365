@@ -78,6 +78,7 @@ export class PaymentinfoComponent implements OnInit {
         if (!copiedOrder.Company.Name) {
           // Clear Company
           copiedOrder.Company = null;
+          // TODO: Copy Address Info
         }
         if (!copiedOrder.InvoiceCompany.Name) {
           // Clear Invoice Company

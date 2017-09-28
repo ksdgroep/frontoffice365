@@ -30,6 +30,7 @@
             <span class="header-item">Regio</span>
             <span class="header-item">Duur</span>
             <span class="header-item">Prijs</span>
+            <span class="header-item">Vrije plaatsen</span>
         </div>
         <!-- class isFull -->
         <a *ngFor="let course of courses" class="course-selector isFull" [class.isFull]="course.IsFull" (click)="selectedCourseChanged(course)">
@@ -39,6 +40,10 @@
                 <span class="course-item">{{course.Region}}</span>
                 <span class="course-item">{{course.DurationInfo}}</span>
                 <span class="course-item">{{course.Price | currencyFormat}}</span>
+                <span *ngIf="!course.IsFull;else CourseFull" class="course-item">{{ course.AvailableSeats | pluralizeText: 'plaats':'plaatsen' }} vrij</span>
+                <ng-template #CourseFull>
+                    <span class="course-item">Vol</span>
+                </ng-template>
             </div>
         </a>
         <div *ngIf="loadingCourses" class="course-msg">
@@ -67,6 +72,7 @@
                     <span class="course-item-mobile">{{course.Region}}</span>
                     <span class="course-item-mobile">{{course.DurationInfo}}</span>
                     <span class="course-item-mobile">{{course.Price | currencyFormat}}</span>
+                    <span class="course-item-mobile">{{ course.AvailableSeats | pluralizeText: 'plaats':'plaatsen' }} vrij</span>
                 </div>
                 <a (click)="nextTab(course)" class="btn btn-block">Inschrijven</a>
             </div>
