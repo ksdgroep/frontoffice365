@@ -98,7 +98,9 @@
   .hide-nav-mobile {
     display: block; }
   .navbar-header.show-title-mobile {
-    display: none !important; } }
+    display: none !important; }
+  .sidebar-container > ul > li > span.di-block {
+    display: inline; } }
 
 @media (max-width: 992px) {
   .navbar-header.show-title-mobile {
@@ -109,7 +111,9 @@
     .navbar-header.show-title-mobile h3 {
       color: #FFE4E4; }
   .hide-nav-mobile {
-    display: none; } }
+    display: none; }
+  .sidebar-container > ul > li > span.di-block {
+    display: block; } }
 
 @media (min-width: 768px) and (max-width: 992px) {
   body .course-selector.isFull:after {
