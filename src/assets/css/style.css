@@ -243,7 +243,8 @@ tr.disabled {
 
 /* Form */
 .form-horizontal .control-label {
-  text-align: left; }
+  text-align: left;
+  margin-top: 5px; }
 
 /* Form input */
 input[type=checkbox], input[type=radio] {
