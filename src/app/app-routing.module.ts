@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   {path: 'students', canActivate: [RouteGuard], canDeactivate: [ValidationGuard], component: ContactinfoComponent},
   {path: 'payment', canActivate: [RouteGuard], canDeactivate: [ValidationGuard], component: PaymentinfoComponent},
   {path: 'confirm', canActivate: [RouteGuard], component: ConfirmationComponent},
-  {path: 'error', canActivate: [RouteGuard], component: ErrorComponent},
+  {path: 'error', component: ErrorComponent},
   {path: 'courses', component: CourseselectionComponent}
 ];
 
