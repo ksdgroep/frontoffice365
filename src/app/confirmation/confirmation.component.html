@@ -19,13 +19,17 @@
     </div>
 </div>
 <div class="col-xs-12 col-sm-6">
-    <p>De volgende deelnemers hebben zich ingeschreven:</p>
-    <br/>
-    <ul class="participants-list" *ngFor="let student of order?.Students; let index = index">
-        <li>Deelnemer {{index + 1}}</li>
-        <li>{{student.Initials}} {{student.Surname}}</li>
-        <li>{{student.Address}} {{student.AddressNumber}}</li>
-        <li>{{student.PostalCode}} {{student.City}}</li>
-        <li>{{student.Email}}</li>
-    </ul>
+    <div class='form-group'>
+        <div class="col-xs-12 col-sm-9">
+            <p>De volgende deelnemers hebben zich ingeschreven:</p>
+            <br/>
+            <ul class="participants-list" *ngFor="let student of order?.Students; let index = index">
+                <li>Deelnemer {{index + 1}}</li>
+                <li>{{student.Initials}} {{student.Surname}}</li>
+                <li>{{student.Address}} {{student.AddressNumber}}</li>
+                <li>{{student.PostalCode}} {{student.City}}</li>
+                <li>{{student.Email}}</li>
+            </ul>
+        </div>
+    </div>
 </div>
