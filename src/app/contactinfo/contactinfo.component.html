@@ -133,6 +133,14 @@
 
     <h2>Deelnemers</h2>
 
+    <div class="form-group" [appValidationError]="!order.FirstStudentIsContact && !addMultipleStudents && contactForm.submitted">
+        <label class="col-xs-12 col-sm-3 control-label"></label>
+        <div class="col-xs-12 col-sm-6">
+            <label *ngIf="!order.FirstStudentIsContact && !addMultipleStudents && contactForm.submitted"
+                   class="control-label">U dient tenminste één van onderstaande opties te kiezen.</label>
+        </div>
+    </div>
+
     <div class="form-group">
         <label class="col-xs-12 col-sm-3 control-label">Bent u zelf deelnemer?</label>
         <div class="col-xs-12 col-sm-6">
