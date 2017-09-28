@@ -157,7 +157,7 @@
     </div>
     <div *ngFor="let s of order.Students; let index = index" class="participant-block">
         <div class="form-group">
-            <label class="col-xs-12 col-sm-3 control-label participant-title">Deelnemer {{index +1}}</label>
+            <label class="col-xs-12 col-sm-3 control-label participant-title">Deelnemer {{index +(order.FirstStudentIsContact ? 2 : 1)}}</label>
         </div>
 
         <div class="form-group" [appValidationError]="studentGender.errors && (studentGender.dirty || studentGender.touched || contactForm.submitted)">
