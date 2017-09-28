@@ -59,6 +59,23 @@
                    class="control-label">Achternaam is verpllicht.</label>
         </div>
     </div>
+
+    <div class="form-group"
+         [appValidationError]="dateofbirthContact.errors && (dateofbirthContact.dirty || dateofbirthContact.touched || contactForm.submitted)">
+        <label for="dateofbirthContact" class="col-xs-12 col-sm-3 control-label">Geboortedatum *</label>
+        <div class="col-xs-12 col-sm-6">
+            <input id="dateofbirthContact" DateFormat required placeholder="dd-mm-jjjj"
+                   class="form-control" name="dateofbirthContact"
+                   [(ngModel)]="order.ContactPerson.DateOfBirth" #dateofbirthContact="ngModel" />
+            <span *ngIf="dateofbirthContact?.errors && (dateofbirthContact.dirty || dateofbirthContact.touched || contactForm.submitted)"
+                  class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <label *ngIf="dateofbirthContact.errors?.valueNotAllowed; else otherDateOfBirthErrors"
+                   class="control-label">Geen geldige geboortedatum.</label>
+            <label *ngIf="dateofbirthContact.errors && !dateofbirthContact.errors?.valueNotAllowed && (dateofbirthContact.dirty || dateofbirthContact.touched || contactForm.submitted)"
+                    class="control-label">Geboortedatum is een verplicht veld.</label>
+        </div>
+    </div>
+
     <div class="form-group">
         <label class="col-xs-12 col-sm-3 control-label">Type inschrijving</label>
         <div class="col-xs-12 col-sm-4 col-md-7">
@@ -259,6 +276,22 @@
             </div>
         </div>
 
+        <div class="form-group"
+             [appValidationError]="studentDateOfBirth.errors && (studentDateOfBirth.dirty || studentDateOfBirth.touched || contactForm.submitted)">
+            <label for="dateofbirth" class="col-xs-12 col-sm-3 control-label">Geboortedatum *</label>
+            <div class="col-xs-12 col-sm-6">
+                <input id="dateofbirth" DateFormat required placeholder="dd-mm-jjjj"
+                       class="form-control" name="dateOfBirth_{{index}}"
+                       [(ngModel)]="s.DateOfBirth" #studentDateOfBirth="ngModel" />
+                <span *ngIf="studentDateOfBirth.errors && (studentDateOfBirth.dirty || studentDateOfBirth.touched || contactForm.submitted)"
+                      class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    <label *ngIf="studentDateOfBirth.errors?.valueNotAllowed"
+                          class="control-label">Geen geldige geboortedatum.</label>
+                    <label *ngIf="studentDateOfBirth.errors && !studentDateOfBirth.errors?.valueNotAllowed && (studentDateOfBirth.dirty || studentDateOfBirth.touched || contactForm.submitted)"
+                            class="control-label">Geboortedatum is een verplicht veld.</label>
+            </div>
+        </div>
+
         <div class="form-group">
             <label for="privatePostalcodeParticipant"
                    class="col-xs-12 col-sm-3 control-label optional-label">Postcode<br/><span>Optioneel</span></label>
@@ -310,21 +343,6 @@
                 </select>
             </div>
         </div>
-
-        <div class="form-group"
-             [appValidationError]="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)">
-            <label for="phoneNumberParticipant"
-                   class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer<br/><span>Optioneel</span></label>
-            <div class="col-xs-12 col-sm-6">
-                <input type="text" class="form-control" id="phoneNumberParticipant" name="phone_{{index}}"
-                       [(ngModel)]="s.Phone" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}"
-                       #phoneNumberParticipant="ngModel">
-                <span *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)"
-                      class="glyphicon glyphicon-remove form-control-feedback"></span>
-                <label *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)"
-                       class="control-label">Geen geldig telefoonnummer opgegeven.</label>
-            </div>
-        </div>
         <div class="form-group"
              [appValidationError]="studentEmail.errors && (studentEmail.dirty || studentEmail.touched || contactForm.submitted)">
             <label for="emailParticipant" class="col-xs-12 col-sm-3 control-label optional-label">E-mail adres</label>
@@ -341,6 +359,20 @@
                        class="control-label">Geef een geldig e-mailadres op.</label>
             </div>
         </div>
+        <div class="form-group"
+                           [appValidationError]="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)">
+        <label for="phoneNumberParticipant"
+               class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer<br/><span>Optioneel</span></label>
+        <div class="col-xs-12 col-sm-6">
+            <input type="text" class="form-control" id="phoneNumberParticipant" name="phone_{{index}}"
+                   [(ngModel)]="s.Phone" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}"
+                   #phoneNumberParticipant="ngModel">
+            <span *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)"
+                  class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <label *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)"
+                   class="control-label">Geen geldig telefoonnummer opgegeven.</label>
+        </div>
+    </div>
         <div class="form-group participant-control">
             <div class="col-xs-12 col-sm-9 text-right">
                 <a class="btn btn-link delete-participant" (click)="removeStudent(s)">Verwijder deelnemer</a>
