@@ -94,9 +94,32 @@
     color: #C4002E;
     right: 15px; } }
 
+@media (min-width: 992px) {
+  .hide-nav-mobile {
+    display: block; }
+  .navbar-header.show-title-mobile {
+    display: none !important; } }
+
+@media (max-width: 992px) {
+  .navbar-header.show-title-mobile {
+    display: block !important;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px; }
+    .navbar-header.show-title-mobile h3 {
+      color: #FFE4E4; }
+  .hide-nav-mobile {
+    display: none; } }
+
 @media (min-width: 768px) and (max-width: 992px) {
   body .course-selector.isFull:after {
     right: 5px; } }
+
+@media (max-width: 992px) {
+  .navbar-collapse.collapse {
+    display: none !important; }
+  .show-title-mobile {
+    display: block; } }
 
 /* Custom font */
 body {

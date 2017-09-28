@@ -1,8 +1,8 @@
 <h2>Inschrijven cursus</h2>
 <form class="form-horizontal">
     <div class="form-group">
-        <label for="courseSelector" class="col-xs-12 col-sm-3 control-label filter-label">Selecteer cursus</label>
-        <div class="col-xs-12 col-sm-5">
+        <label for="courseSelector" class="col-xs-12 col-sm-5 col-md-3 control-label filter-label">Selecteer cursus</label>
+        <div class="col-xs-12 col-sm-7 col-md-5">
             <select id="courseSelector" class="form-control" [(ngModel)]="selectedCourseTemplate" (ngModelChange)="selectedCourseTemplateChanged($event)" name="CourseSelector">
                     <option value="null" selected></option>
                     <option *ngFor="let ct of courseTemplates" [ngValue]="ct">{{ct.Name}}</option>
@@ -10,8 +10,8 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="regionSelector" class="col-xs-12 col-sm-3 control-label filter-label">Selecteer regio</label>
-        <div class="col-xs-12 col-sm-5">
+        <label for="regionSelector" class="col-xs-12 col-sm-5 col-md-3 control-label filter-label">Selecteer regio</label>
+        <div class="col-xs-12 col-sm-7 col-md-5">
             <select id="regionSelector" class="form-control" [(ngModel)]="selectedRegion" (ngModelChange)="selectedRegionChanged($event)" name="RegionSelector">
                     <option value="null" selected></option>
                     <option *ngFor="let r of regions" [ngValue]="r">{{r.Name}}</option>

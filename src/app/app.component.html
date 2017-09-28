@@ -1,17 +1,12 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <div class="navbar-header show-title-mobile">
+            <h3>Stap 1: Inschrijven</h3>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse hide-nav-mobile">
             <ul class="nav navbar-nav nav-tabs" role="tablist">
                 <li role="presentation">
                     <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" queryParamsHandling="merge" [class.disabled]="enabledTabCount == 4" (click)="selectTab()">Stap 1: Inschrijven
@@ -50,7 +45,7 @@
 
         <!-- Hide sidebar on tab 4 & 5 -->
         <!-- When hiding the sidebar give col-sm-12 to the main content container (line 49)s -->
-        <div *ngIf="enabledTabCount < 4" class="col-xs-12 col-sm-3 hide-basket-xs">
+        <div *ngIf="enabledTabCount < 4" class="col-xs-12 col-sm-4 col-md-3 hide-basket-xs">
             <fo-basket></fo-basket>
         </div>
 
