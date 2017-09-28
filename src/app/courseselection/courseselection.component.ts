@@ -50,8 +50,10 @@ export class CourseselectionComponent implements OnInit {
     }
 
     if (this.courseTemplates) {
-      const templateIndex = this.courseTemplates.findIndex(template => template.Id.toString() === courseTemplateId).toString();
-      this.selectedCourseTemplate = this.courseTemplates[templateIndex];
+      const templateIndex = this.courseTemplates.findIndex(template => template.Id.toString() === courseTemplateId);
+      if (templateIndex > -1) {
+        this.selectedCourseTemplate = this.courseTemplates[templateIndex];
+      }
     }
   }
 
@@ -63,14 +65,14 @@ export class CourseselectionComponent implements OnInit {
     this.regions = regions;
 
     if (this.regions && this.selectedRegion) {
-      const regionIndex = this.regions.findIndex(region => region.Id === this.selectedRegion.Id).toString();
+      const regionIndex = this.regions.findIndex(region => region.Id === this.selectedRegion.Id);
       this.selectedRegion = regions[regionIndex];
     }
   }
 
   setRegionByName(regionName: string): void {
     if (this.regions) {
-      const regionIndex = this.regions.findIndex(region => region.Name === regionName).toString();
+      const regionIndex = this.regions.findIndex(region => region.Name === regionName);
       this.selectedRegion = this.regions[regionIndex];
     }
   }
