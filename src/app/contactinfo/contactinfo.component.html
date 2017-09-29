@@ -143,19 +143,23 @@
     <div class="form-group">
         <label class="col-xs-12 col-sm-3 control-label">Bent u zelf deelnemer?</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <label class="checkbox-inline">
-                <input type="checkbox" name="participantInfo" [(ngModel)]="order.FirstStudentIsContact"
-                       (change)="toggleSelf()"> Ja, gebruik hiervoor de contactgegevens
+            <label class="checkbox-inline"
+                   *ngIf="(seatsAvailable - (order.Students.length + (order.FirstStudentIsContact ? 1 : 0))) > 0 || order.FirstStudentIsContact; else noSeatsAvailableSelf">
+                <input type="checkbox" name="participantInfo" [(ngModel)]="order.FirstStudentIsContact" (change)="toggleSelf()">
+                Ja, gebruik hiervoor de contactgegevens
             </label>
+            <ng-template #noSeatsAvailableSelf><label class="checkbox-inline">Er zijn geen extra plaatsen meer beschikbaar.</label></ng-template>
         </div>
     </div>
     <div class="form-group">
         <label class="col-xs-12 col-sm-3 control-label">Schrijft u in voor een ander?</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <label class="checkbox-inline">
-                <input type="checkbox" name="extraParticipant" [(ngModel)]="order.MultipleStudents"
-                       (change)="toggleStudents()"> Extra deelnemer(s) toevoegen
+            <label class="checkbox-inline"
+                   *ngIf="(seatsAvailable - (order.Students.length + (order.FirstStudentIsContact ? 1 : 0))) > 0 || order.MultipleStudents; else noSeatsAvailableOthers">
+                <input type="checkbox" name="extraParticipant" [(ngModel)]="order.MultipleStudents" (change)="toggleStudents()">
+                Extra deelnemer(s) toevoegen
             </label>
+            <ng-template #noSeatsAvailableOthers>Er zijn geen extra plaatsen meer beschikbaar.</ng-template>
         </div>
     </div>
 
@@ -274,6 +278,7 @@
                 <a class="btn btn-link delete-participant" (click)="removeStudent(s)">Verwijder deelnemer</a>
                 <br/>
                 <a class="btn btn-link"
+                   [class.disabled]="(seatsAvailable - (order.Students.length + (order.FirstStudentIsContact ? 1 : 0))) <= 0"
                    (click)="addStudent()">Voeg nieuwe deelnemer toe</a>
             </div>
         </div>
