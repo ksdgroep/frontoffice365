@@ -10,13 +10,13 @@ import {AppConfig} from '../app.config';
 export class ErrorComponent {
 
   returnUrl: string;
-  contactEmail: string;
+  errorMessage: string;
 
   constructor(
     private globalFunctionsService: GlobalFunctionsService,
     private config: AppConfig) {
 
     this.returnUrl = this.globalFunctionsService.returnUrl;
-    this.contactEmail = this.config.getConfig('contactEmail');
+    this.errorMessage = this.config.getConfig('errorMessage');
   }
 }

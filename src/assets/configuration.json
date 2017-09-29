@@ -5,5 +5,6 @@
   "postalCodeApiKey": "E9916AEE-15A2-42F3-B4B8-43D5B730068A",
   "websiteUrl": "http://www.vipersoftware.nl",
   "contactEmail": "info@ksdgroep.nl",
-  "termsUrl": "http://www.vipersoftware.nl/info"
+  "termsUrl": "http://www.vipersoftware.nl/info",
+  "errorMessage": "Neem contact op met onze support-afdeling: 06-123456789 of stuur een e-mail naar <a href='mailto:servicedesk@ksdgroep.nl'>servicedesk@ksdgroep.nl</a>"
 }
