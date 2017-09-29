@@ -57,7 +57,7 @@
     </div>
     <div class="show-xs">
         <!-- clickDisabled class on: courseselection-container-mobile -->
-        <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile">
+        <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile" [class.active]="course.Id === selectedCourse?.Id">
             <a class="course-selector-mobile" aria-expanded="false" aria-controls="course-collapse" (click)="displayMobileInfo(i, course.IsFull)">
                 <div class="courseselection-header">
                     <!-- class isFull -->
@@ -76,27 +76,17 @@
                         <li class="sidebar-item-title">Cursusduur</li>
                         <li>{{course.DurationInfo}}</li>
                         <br/>
-
                         <li class="sidebar-item-title">Lesdagen</li>
-                        <li>x <span class="di-block">x</span></li>
+                        <li *ngFor="let courseDay of course.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
                         <br/>
-
                         <li class="sidebar-item-title">Prijs van de cursus</li>
                         <li>{{course.Price | currencyFormat}} <span>excl. BTW</span></li>
-                        <br/>
-                        <li class="sidebar-item-title">Aantal deelnemers</li>
-                        <li>x</li>
                         <br/>
                         <li class="sidebar-item-title">Aantal deelnemers</li>
                         <li>
                             {{ course.AvailableSeats | pluralizeText: 'plaats':'plaatsen' }} vrij
                         </li>
                     </ul>
-                    <!-- <span class="course-item-mobile">{{course.Date | date: 'dd-MM-yyyy'}}</span>
-                    <span class="course-item-mobile">{{course.Region}}</span>
-                    <span class="course-item-mobile">{{course.DurationInfo}}</span>
-                    <span class="course-item-mobile">{{course.Price | currencyFormat}}</span>
-                    <span class="course-item-mobile">{{ course.AvailableSeats | pluralizeText: 'plaats':'plaatsen' }} vrij</span> -->
                 </div>
                 <a (click)="nextTab(course)" class="btn btn-block">Inschrijven</a>
             </div>
