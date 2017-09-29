@@ -306,16 +306,17 @@ a.course-selector
   border-radius: 5px
   cursor: pointer
   &:hover
-    border-color: #ddd
+    border-color: #565656
 
 .courseselection-header
   &:hover
     border-color: #eee
 
 .courseselection-item.active
-  border-color: #3943B7
+  background: $tertiaryColor
+  border: 1px solid #979797
   &:hover
-    border-color: #294aa8
+    border-color: #565656
 
 .course-selector
   display: block
@@ -351,7 +352,35 @@ a.course-selector
   display: none
 
 .form-group label.checkbox-inline, .form-group label.radio-inline  
-    margin-top: 6px
+  margin-top: 6px
 
 .no-seats-margin
   margin-top: 11px
+
+.courseselection
+  border-color: #979797
+
+.courseselection.courseselection-header 
+  pointer: default
+  background: #EBEBEB
+  font-weight: 900
+
+.disabled
+  cursor: not-allowed !important
+
+.btn.btn-default
+  background: $primaryColor
+  padding: 13px 15px
+  color: #fff
+  border-radius: 5px
+
+.btn[disabled]
+  opacity: 1
+  background: #fff
+  color: #ccc
+  border: 1px solid #ccc
+  &:hover
+    opacity: 1
+    background: #fff
+    color: #ccc
+    border: 1px solid #ccc

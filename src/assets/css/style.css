@@ -413,15 +413,16 @@ a.course-selector {
   border-radius: 5px;
   cursor: pointer; }
   .courseselection:hover {
-    border-color: #ddd; }
+    border-color: #565656; }
 
 .courseselection-header:hover {
   border-color: #eee; }
 
 .courseselection-item.active {
-  border-color: #3943B7; }
+  background: #FFE4E4;
+  border: 1px solid #979797; }
   .courseselection-item.active:hover {
-    border-color: #294aa8; }
+    border-color: #565656; }
 
 .course-selector {
   display: block;
@@ -461,5 +462,33 @@ a.course-selector {
 
 .no-seats-margin {
   margin-top: 11px; }
+
+.courseselection {
+  border-color: #979797; }
+
+.courseselection.courseselection-header {
+  pointer: default;
+  background: #EBEBEB;
+  font-weight: 900; }
+
+.disabled {
+  cursor: not-allowed !important; }
+
+.btn.btn-default {
+  background: #C4002E;
+  padding: 13px 15px;
+  color: #fff;
+  border-radius: 5px; }
+
+.btn[disabled] {
+  opacity: 1;
+  background: #fff;
+  color: #ccc;
+  border: 1px solid #ccc; }
+  .btn[disabled]:hover {
+    opacity: 1;
+    background: #fff;
+    color: #ccc;
+    border: 1px solid #ccc; }
 
 /*# sourceMappingURL=style.css.map */
