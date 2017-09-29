@@ -308,7 +308,7 @@
     <hr class="divider" />
 
     <span class="btn-spacer"></span>
-    <div class="il-block">
+    <div class="il-block" *ngIf="(!contactForm.valid || (!order.FirstStudentIsContact && !order.MultipleStudents)) && (contactForm.submitted || formDeactivationCheck)">
         <span class="pull-right clearfix error-msg">Niet alle velden zijn correct ingevuld</span>
     </div>
     <div class="il-block">

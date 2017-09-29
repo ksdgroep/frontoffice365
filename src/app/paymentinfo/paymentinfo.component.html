@@ -210,7 +210,7 @@
             <label *ngIf="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)" class="control-label">U dient akkoord te gaan met de algemene voorwaarden.</label>
         </div>
     </div>
-    <div class="il-block">
+    <div class="il-block" *ngIf="!contactForm.valid && (contactForm.submitted || formDeactivationCheck)">
         <span class="pull-right clearfix error-msg">Niet alle velden zijn correct ingevuld</span>
     </div>
     <div class="il-block">

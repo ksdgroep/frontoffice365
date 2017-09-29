@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Order } from '../bll/order';
 import { Country } from '../bll/country';
@@ -10,6 +10,7 @@ import { EnrolService } from '../services/enrol.service';
 import { Router } from '@angular/router';
 import { AppConfig } from '../app.config';
 import { PostalCodeService } from '../services/postalcode.service';
+import { CanComponentDeactivate } from '../validation.guard';
 
 @Component({
   moduleId: module.id,
@@ -18,13 +19,16 @@ import { PostalCodeService } from '../services/postalcode.service';
   providers: [CountryService, EnrolService, PostalCodeService]
 })
 
-export class PaymentinfoComponent implements OnInit {
+export class PaymentinfoComponent implements OnInit, CanComponentDeactivate {
 
   order: Order;
   countries: Country[];
   conditionsAgreed: boolean;
   conditionsUrl: string;
   course: Course;
+  formDeactivationCheck = false;
+
+  @ViewChild('contactForm') form;
 
   constructor(private countryService: CountryService,
               private globalFunctionsService: GlobalFunctionsService,
@@ -168,5 +172,10 @@ export class PaymentinfoComponent implements OnInit {
       .catch(() => {
         // Ignore Errors.
       });
+  }
+
+  canDeactivate(): boolean {
+    this.formDeactivationCheck = true;
+    return this.form.valid;
   }
 }
