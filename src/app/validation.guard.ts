@@ -16,6 +16,8 @@ export class ValidationGuard implements CanDeactivate<CanComponentDeactivate> {
 
     if (targetState.url === '/courses') {
       return true;
+    } else if (currentState.url === '/payment' && targetState.url === '/students') {
+      return true;
     } else {
       return component.canDeactivate ? component.canDeactivate() : true;
     }
