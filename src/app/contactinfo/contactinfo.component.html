@@ -153,7 +153,7 @@
         <label class="col-xs-12 col-sm-3 control-label">Schrijft u in voor een ander?</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
             <label class="checkbox-inline">
-                <input type="checkbox" name="extraParticipant" [(ngModel)]="addMultipleStudents"
+                <input type="checkbox" name="extraParticipant" [(ngModel)]="order.MultipleStudents"
                        (change)="toggleStudents()"> Extra deelnemer(s) toevoegen
             </label>
         </div>
@@ -273,20 +273,21 @@
             <div class="col-xs-12 col-sm-11 col-md-9 text-right">
                 <a class="btn btn-link delete-participant" (click)="removeStudent(s)">Verwijder deelnemer</a>
                 <br/>
-                <a class="btn btn-link" (click)="addStudent()">Voeg nieuwe deelnemer toe</a>
+                <a class="btn btn-link"
+                   (click)="addStudent()">Voeg nieuwe deelnemer toe</a>
             </div>
         </div>
     </div>
 
     <hr class="divider" />
 
-    <h2>Vragen of opmerkingen</h2>
-    <div class="form-group">
-        <label class="col-xs-12 col-sm-3 control-label optional optional-label" for="questions"></label>
-        <div class="col-xs-12 col-md-6 col-sm-8">
-            <textarea class="form-control" id="questions" rows="10" [(ngModel)]="order.Remarks" name="remarks"></textarea>
-        </div>
-    </div>
+    <!--<h2>Vragen of opmerkingen</h2>-->
+    <!--<div class="form-group">-->
+        <!--<label class="col-xs-12 col-sm-3 control-label optional optional-label" for="questions"></label>-->
+        <!--<div class="col-xs-12 col-md-6 col-sm-8">-->
+            <!--<textarea class="form-control" id="questions" rows="10" [(ngModel)]="order.Remarks" name="remarks"></textarea>-->
+        <!--</div>-->
+    <!--</div>-->
     <span class="btn-spacer"></span>
     <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect" role="tab">Vorige
     </button>

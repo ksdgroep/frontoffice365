@@ -58,6 +58,7 @@ export class PaymentinfoComponent implements OnInit {
           student.PostalCode = this.order.ContactPerson.PostalCode;
           student.City = this.order.ContactPerson.City;
           student.CountryId = this.order.ContactPerson.CountryId;
+          student.DateOfBirth = this.order.ContactPerson.DateOfBirth;
 
           // Add Contact to Students Array
           if (!this.order.Students) {
@@ -78,7 +79,19 @@ export class PaymentinfoComponent implements OnInit {
         if (!copiedOrder.Company.Name) {
           // Clear Company
           copiedOrder.Company = null;
-          // TODO: Copy Address Info
+        } else {
+          // Copy Address to Company
+          copiedOrder.Company.PostalCode = this.order.ContactPerson.PostalCode;
+          copiedOrder.Company.AddressNumber = this.order.ContactPerson.AddressNumber;
+          copiedOrder.Company.Address = this.order.ContactPerson.Address;
+          copiedOrder.Company.City = this.order.ContactPerson.City;
+          copiedOrder.Company.CountryId = this.order.ContactPerson.CountryId;
+          // Clear ContactPerson Address
+          copiedOrder.ContactPerson.PostalCode = null;
+          copiedOrder.ContactPerson.AddressNumber = null;
+          copiedOrder.ContactPerson.Address = null;
+          copiedOrder.ContactPerson.City = null;
+          copiedOrder.ContactPerson.CountryId = null;
         }
         if (!copiedOrder.InvoiceCompany.Name) {
           // Clear Invoice Company
@@ -90,6 +103,12 @@ export class PaymentinfoComponent implements OnInit {
           copiedOrder.InvoiceCompany.PostalCode = this.order.InvoicePerson.PostalCode;
           copiedOrder.InvoiceCompany.City = this.order.InvoicePerson.City;
           copiedOrder.InvoiceCompany.CountryId = this.order.InvoicePerson.CountryId;
+          // Clear InvoicePerson Address
+          copiedOrder.InvoicePerson.Address = null;
+          copiedOrder.InvoicePerson.AddressNumber = null;
+          copiedOrder.InvoicePerson.PostalCode = null;
+          copiedOrder.InvoicePerson.City = null;
+          copiedOrder.InvoicePerson.CountryId = null;
         }
         if (!copiedOrder.InvoicePerson.Surname) {
           // Clear Invoice Person

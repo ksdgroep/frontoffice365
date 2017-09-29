@@ -11,6 +11,8 @@
             <p class="signupConfirmedContent">{{course?.Date | dutchDateFormat }}</p>
             <p class="signupConfirmedTitle">Regio</p>
             <p class="signupConfirmedContent">{{course?.Region}}</p>
+            <p class="signupConfirmedTitle">Cursusduur</p>
+            <p class="signupConfirmedContent">{{course?.DurationInfo}}</p>
             <p class="signupConfirmedTitle">Lesdagen</p>
             <ul class="signupConfirmedDayList">
                 <li *ngFor="let courseDay of course?.CourseDays">{{courseDay.Date | dutchDateFormat }} <span>{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>

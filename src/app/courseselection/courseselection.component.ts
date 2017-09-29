@@ -57,8 +57,12 @@ export class CourseselectionComponent implements OnInit {
     }
   }
 
-  getRegions(): void {
-    this.regionService.getRegions().then(regions => this.setRegion(regions));
+  getRegions(templateId: number): void {
+    if (templateId == null) {
+      this.regionService.getRegions().then(regions => this.setRegion(regions));
+    } else {
+      this.regionService.getRegionsByCourseTemplate(templateId).then(regions => this.regions = regions);
+    }
   }
 
   setRegion(regions: Region[]): void {
@@ -118,10 +122,11 @@ export class CourseselectionComponent implements OnInit {
     this.globalFunctionsService.courseTemplateId = courseTemplate.Id;
 
     if (courseTemplate.Id !== undefined) {
-      this.regionService.getRegionsByCourseTemplate(courseTemplate.Id).then(regions => this.regions = regions);
+      // this.regionService.getRegionsByCourseTemplate(courseTemplate.Id).then(regions => this.regions = regions);
+      this.getRegions(courseTemplate.Id);
       this.getCourses(courseTemplate.Id, this.selectedRegion ? this.selectedRegion.Id : null);
     } else {
-      this.getRegions();
+      this.getRegions(null);
       this.getCourses(null, this.selectedRegion ? this.selectedRegion.Id : null);
     }
   }
@@ -169,11 +174,14 @@ export class CourseselectionComponent implements OnInit {
     this.selectedRegion = null;
 
     this.getCourseTemplates();
-    this.getRegions();
+    // this.getRegions(null);
 
     let courseTemplateId = this.route.snapshot.queryParams['tid'];
     if (courseTemplateId == null) {
       courseTemplateId = this.globalFunctionsService.courseTemplateId;
+      this.getRegions(null);
+    } else {
+      this.getRegions(courseTemplateId);
     }
 
     let courseId = this.route.snapshot.queryParams['cid'];
