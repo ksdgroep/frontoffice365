@@ -456,4 +456,7 @@ a.course-selector {
 .hide-basket-error {
   display: none; }
 
+.form-group label.checkbox-inline, .form-group label.radio-inline {
+  margin-top: 6px; }
+
 /*# sourceMappingURL=style.css.map */
