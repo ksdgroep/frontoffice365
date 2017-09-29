@@ -33,16 +33,18 @@ export class PostalCodeFormatDirective implements Validator, ControlValueAccesso
   };
 
   validate(c: AbstractControl): { [key: string]: any; } {
-    const value = c.value;
-    if (!value) {
-      return null;
-    }
+    // Validation Disabled
 
-    const regex = new RegExp(/^[1-9][0-9]{3}? (?!SA|SD|SS)[A-Z]{2}$/);
-
-    if (!regex.test(value)) {
-      return {invalidPostalCode: true};
-    }
+    // const value = c.value;
+    // if (!value) {
+    //   return null;
+    // }
+    //
+    // const regex = new RegExp(/^[1-9][0-9]{3}? (?!SA|SD|SS)[A-Z]{2}$/);
+    //
+    // if (!regex.test(value)) {
+    //   return {invalidPostalCode: true};
+    // }
 
     return null;
   }
