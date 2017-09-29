@@ -91,7 +91,7 @@ export class PaymentinfoComponent implements OnInit {
           copiedOrder.ContactPerson.AddressNumber = null;
           copiedOrder.ContactPerson.Address = null;
           copiedOrder.ContactPerson.City = null;
-          copiedOrder.ContactPerson.CountryId = null;
+          copiedOrder.ContactPerson.CountryId = 'NL';
         }
         if (!copiedOrder.InvoiceCompany.Name) {
           // Clear Invoice Company
@@ -108,12 +108,14 @@ export class PaymentinfoComponent implements OnInit {
           copiedOrder.InvoicePerson.AddressNumber = null;
           copiedOrder.InvoicePerson.PostalCode = null;
           copiedOrder.InvoicePerson.City = null;
-          copiedOrder.InvoicePerson.CountryId = null;
+          copiedOrder.InvoicePerson.CountryId = 'NL';
         }
         if (!copiedOrder.InvoicePerson.Surname) {
           // Clear Invoice Person
           copiedOrder.InvoicePerson = null;
         }
+
+        console.log(JSON.stringify(copiedOrder));
 
         // Save Order
         this.enrolService.create(copiedOrder)
