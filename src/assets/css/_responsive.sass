@@ -135,7 +135,13 @@ $textColorBody: #000
     border-radius: 0
 
   .course-item-mobile-header.isFull 
-    //todo
+    border-color: #ccc
+    color: #ccc
+    &:hover
+      border-color: #ccc
+      color: #ccc
+  .course-item-mobile-header.isFull:after
+    color: #ccc
 
   .nav>li>a
     padding: 15px 10px 
@@ -170,17 +176,29 @@ $textColorBody: #000
   .courseselection-container-mobile .courseselection-header
     position: relative
 
-  .courseselection-container-mobile .courseselection-header:after
+  .courseselection-container-mobile .courseselection-header .course-item-mobile-header:after
     content: '\f0d7'
     position: absolute
-    top: 14px
+    top: 0px
     right: 20px
     font-family: 'FontAwesome'
     font-size: 18px
     color: #000
 
-  .courseselection-container-mobile.active .courseselection-header:after
+  .courseselection-container-mobile.active .courseselection-header .course-item-mobile-header:after
     content: '\f0da'
+
+  .course-item-mobile-header.isFull 
+    border-color: #ccc
+    color: #ccc
+    &:hover
+      border-color: #ccc
+      color: #ccc
+    &:after
+      color: #ccc !important
+
+  .course-item-mobile-header.isFull:after
+    color: #ccc
 
 @media (min-width: $screen-sm) and (max-width: $screen-md)
   body .course-selector.isFull:after

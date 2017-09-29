@@ -4,14 +4,16 @@
     <div class="form-group" [appValidationError]="optionGender.errors && (optionGender.dirty || optionGender.touched || contactForm.submitted)">
         <label class="col-xs-12 col-sm-3 col-md-3 control-label">Aanhef *</label>
         <div class="col-xs-12 col-md-6 col-sm-8 col-md-7">
-            <label class="radio-inline">
+            <div class="di-block">
+                <label class="radio-inline">
                 <input type="radio" name="optionGender" value="V" [(ngModel)]="order.ContactPerson.Gender" required
                        #optionGender="ngModel"> Mevrouw
             </label>
-            <label class="radio-inline">
+                <label class="radio-inline">
                 <input type="radio" name="optionGender" value="M" [(ngModel)]="order.ContactPerson.Gender" required
                        #optionGender="ngModel"> De heer
             </label>
+            </div>
             <label *ngIf="optionGender.errors && (optionGender.dirty || optionGender.touched || contactForm.submitted)" class="control-label gender-label">Gelieve een aanhef te selecteren.</label>
         </div>
     </div>
@@ -49,7 +51,7 @@
 
     <div class="form-group" [appValidationError]="dateofbirthContact.errors && (dateofbirthContact.dirty || dateofbirthContact.touched || contactForm.submitted)">
         <label for="dateofbirthContact" class="col-xs-12 col-sm-3 control-label">Geboortedatum *</label>
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-md-6 col-sm-8">
             <input id="dateofbirthContact" DateFormat required placeholder="dd-mm-jjjj" class="form-control" name="dateofbirthContact" [(ngModel)]="order.ContactPerson.DateOfBirth" #dateofbirthContact="ngModel" />
             <span *ngIf="dateofbirthContact?.errors && (dateofbirthContact.dirty || dateofbirthContact.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
             <label *ngIf="dateofbirthContact.errors?.valueNotAllowed" class="control-label">Geen geldige geboortedatum.</label>
@@ -183,14 +185,16 @@
         <div class="form-group" [appValidationError]="studentGender.errors && (studentGender.dirty || studentGender.touched || contactForm.submitted)">
             <label class="col-xs-12 col-sm-3 control-label">Aanhef *</label>
             <div class="col-xs-12 col-md-6 col-sm-8 col-md-7">
-                <label class="radio-inline">
-                    <input type="radio" name="optionGender_{{index}}" value="V" [(ngModel)]="s.Gender" required
+                <div class="di-block">
+                    <label class="radio-inline">
+                        <input type="radio" name="optionGender_{{index}}" value="V" [(ngModel)]="s.Gender" required
                            #studentGender="ngModel"> Mevrouw
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="optionGender_{{index}}" value="M" [(ngModel)]="s.Gender" required
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="optionGender_{{index}}" value="M" [(ngModel)]="s.Gender" required
                            #studentGender="ngModel"> De heer
-                </label>
+                    </label>
+                </div>
                 <label *ngIf="studentGender.errors && (studentGender.dirty || studentGender.touched || contactForm.submitted)" class="control-label">Gelieve een aanhef te selecteren.</label>
             </div>
         </div>
@@ -228,7 +232,7 @@
 
         <div class="form-group" [appValidationError]="studentDateOfBirth.errors && (studentDateOfBirth.dirty || studentDateOfBirth.touched || contactForm.submitted)">
             <label for="dateofbirth" class="col-xs-12 col-sm-3 control-label">Geboortedatum *</label>
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-md-6 col-sm-8">
                 <input id="dateofbirth" DateFormat required placeholder="dd-mm-jjjj" class="form-control" name="dateOfBirth_{{index}}" [(ngModel)]="s.DateOfBirth" #studentDateOfBirth="ngModel" />
                 <span *ngIf="studentDateOfBirth.errors && (studentDateOfBirth.dirty || studentDateOfBirth.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
                 <label *ngIf="studentDateOfBirth.errors?.valueNotAllowed" class="control-label">Geen geldige geboortedatum.</label>

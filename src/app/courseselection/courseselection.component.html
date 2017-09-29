@@ -57,7 +57,7 @@
     </div>
     <div class="show-xs">
         <!-- clickDisabled class on: courseselection-container-mobile -->
-        <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile active">
+        <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile">
             <a class="course-selector-mobile" aria-expanded="false" aria-controls="course-collapse" (click)="displayMobileInfo(i, course.IsFull)">
                 <div class="courseselection-header">
                     <!-- class isFull -->

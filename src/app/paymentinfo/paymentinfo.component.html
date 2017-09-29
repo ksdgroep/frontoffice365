@@ -30,12 +30,14 @@
         <div class="form-group">
             <label class="col-xs-12 col-sm-3 control-label optional-label">Aanhef</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <label class="radio-inline">
+                <div class="di-block">
+                    <label class="radio-inline">
                     <input type="radio" name="optionGender" value="M" [(ngModel)]="order.InvoicePerson.Gender"> De heer
                 </label>
-                <label class="radio-inline">
+                    <label class="radio-inline">
                     <input type="radio" name="optionGender" value="V" [(ngModel)]="order.InvoicePerson.Gender"> Mevrouw
                 </label>
+                </div>
             </div>
         </div>
         <div class="form-group">
