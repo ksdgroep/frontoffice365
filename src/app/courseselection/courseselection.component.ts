@@ -173,8 +173,13 @@ export class CourseselectionComponent implements OnInit {
     this.selectedCourseTemplate = null;
     this.selectedRegion = null;
 
+    // Get ReturnUrl
+    const returnUrl = this.route.snapshot.queryParams['ReturnUrl'];
+    if (returnUrl != null) {
+      this.globalFunctionsService.returnUrl = returnUrl;
+    }
+
     this.getCourseTemplates();
-    // this.getRegions(null);
 
     let courseTemplateId = this.route.snapshot.queryParams['tid'];
     if (courseTemplateId == null) {
