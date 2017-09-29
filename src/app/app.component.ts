@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { environment } from '../environments/environment';
 import { GlobalFunctionsService } from './services/global-functions.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit, OnDestroy {
   providerContactMail: string;
 
   constructor(
-    private globalFunctionsService: GlobalFunctionsService
+    private globalFunctionsService: GlobalFunctionsService,
+    private router: Router
   ) {
     this.subscription = this.globalFunctionsService.enabledTabsChanged().subscribe(enabledTabCount => this.enabledTabCount = enabledTabCount);
   }
