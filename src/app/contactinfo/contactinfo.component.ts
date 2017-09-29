@@ -21,8 +21,8 @@ import { PostalCodeService } from '../services/postalcode.service';
 export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
 
   countries: Country[];
-  // addMultipleStudents = false;
   seatsAvailable = 0;
+  formDeactivationCheck = false;
 
   order: Order = new Order();
 
@@ -117,7 +117,8 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
   }
 
   canDeactivate(): boolean {
-    return this.form.valid;
+    this.formDeactivationCheck = true;
+    return this.form.valid && (this.order.FirstStudentIsContact || this.order.MultipleStudents);
   }
 
   getAddress(): void {

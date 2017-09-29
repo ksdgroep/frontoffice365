@@ -1,6 +1,6 @@
 <h2 class="no-margin-bottom">Contactgegevens</h2>
 <h4 class="subtitle">Met wie mogen wij contact opnemen?</h4>
-<form class="form-horizontal" data-toggle="validator" (ngSubmit)="saveInfo(contactForm.valid)" #contactForm="ngForm">
+<form class="form-horizontal" data-toggle="validator" (ngSubmit)="saveInfo(contactForm.valid && (order.FirstStudentIsContact || order.MultipleStudents))" #contactForm="ngForm">
     <div class="form-group" [appValidationError]="optionGender.errors && (optionGender.dirty || optionGender.touched || contactForm.submitted)">
         <label class="col-xs-12 col-sm-3 col-md-3 control-label">Aanhef *</label>
         <div class="col-xs-12 col-md-6 col-sm-8 col-md-7">
@@ -146,10 +146,10 @@
 
     <h2>Deelnemers</h2>
 
-    <div class="form-group" [appValidationError]="!order.FirstStudentIsContact && !order.MultipleStudents && contactForm.submitted">
+    <div class="form-group" [appValidationError]="!order.FirstStudentIsContact && !order.MultipleStudents && (contactForm.submitted || formDeactivationCheck)">
         <label class="col-xs-12 col-sm-3 control-label"></label>
         <div class="col-xs-12 col-sm-6">
-            <label *ngIf="!order.FirstStudentIsContact && !order.MultipleStudents && contactForm.submitted" class="control-label">U dient tenminste één van onderstaande opties te kiezen.</label>
+            <label *ngIf="!order.FirstStudentIsContact && !order.MultipleStudents && (contactForm.submitted || formDeactivationCheck)" class="control-label">U dient tenminste één van onderstaande opties te kiezen.</label>
         </div>
     </div>
 
