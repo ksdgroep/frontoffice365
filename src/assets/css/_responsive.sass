@@ -84,35 +84,38 @@ $textColorBody: #000
     margin-bottom: 10px
 
   .courseselection-container-mobile
-    border: 1px solid #eee
+    border: 1px solid #979797
     padding 5px
     margin-bottom: 10px
     border-radius: 5px
     &:hover
-      border-color: #ddd
+      border-color: #565656
       
   .clickDisabled
     cursor: not-allowed
     pointer-events: none
 
   .courseselection-container-mobile.active
-    border-color: #3943B7
+    background: $tertiaryColor
     &:hover
-      border-color: #294aa8
+      border-color: #979797
     .course-content-mobile
-      border-top-color: #3943B7;
+      border-top-color: #979797;
     .courseselection-content-mobile > .btn
-      border-top-color: #3943B7;
+      border-top-color: $primaryColor
+      background: $primaryColor
+      border-radius: 0 0 3px 3px
 
   .courseselection-container-mobile.active > .courseselection-content-mobile > .btn
-    color: #000;
+    color: #fff
 
   .courseselection-container-mobile .courseselection-header
     padding: 15px
 
   .course-content-mobile
     padding: 15px
-    border-top: 1px solid #eee;
+    border-top: 1px solid #eee
+    background: #fff
   
   a:hover
     text-decoration: none
@@ -131,11 +134,8 @@ $textColorBody: #000
     border-top: 1px solid #eee
     border-radius: 0
 
-  .course-item-mobile-header.isFull:after 
-    content: "Vol"
-    position: absolute
-    color: $primaryColor
-    right: 15px
+  .course-item-mobile-header.isFull 
+    //todo
 
   .nav>li>a
     padding: 15px 10px 
@@ -155,6 +155,32 @@ $textColorBody: #000
 
   .sidebar-container > ul > li > span.di-block 
     display: block
+
+  .mobile-date
+    font-size: 12px
+
+  .course-item-mobile-header
+  .di-block
+    margin-bottom: 5px
+  .di-block > span
+    padding-right: 10px
+  .mobile-region
+    margin-left: 77px
+
+  .courseselection-container-mobile .courseselection-header
+    position: relative
+
+  .courseselection-container-mobile .courseselection-header:after
+    content: '\f0d7'
+    position: absolute
+    top: 14px
+    right: 20px
+    font-family: 'FontAwesome'
+    font-size: 18px
+    color: #000
+
+  .courseselection-container-mobile.active .courseselection-header:after
+    content: '\f0da'
 
 @media (min-width: $screen-sm) and (max-width: $screen-md)
   body .course-selector.isFull:after

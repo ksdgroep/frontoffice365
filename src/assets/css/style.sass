@@ -322,18 +322,15 @@ a.course-selector
   display: block
   position: relative
 
-.course-selector.isFull:after
-  content: "Vol"
-  position: absolute
-  right: 24px
-  top: 9px
-  color: $primaryColor
-  white-space: pre
-  word-wrap: break-word
-
 .course-selector.isFull
   cursor: not-allowed
   pointer-events: none
+  .courseselection.courseselection-item
+    border-color: #ccc
+    color: #ccc
+
+.isFull .course-full
+  color: #D75473;
 
 .text-right > .btn
   padding: 0
@@ -361,9 +358,11 @@ a.course-selector
   border-color: #979797
 
 .courseselection.courseselection-header 
-  pointer: default
+  cursor: default
   background: #EBEBEB
   font-weight: 900
+  &:hover
+    border: 1px solid #979797
 
 .disabled
   cursor: not-allowed !important
@@ -373,6 +372,11 @@ a.course-selector
   padding: 13px 15px
   color: #fff
   border-radius: 5px
+
+.btn-default:active:hover
+  background: $primaryColor
+  color: #fff
+  border: 1px solid $primaryColor
 
 .btn[disabled]
   opacity: 1
