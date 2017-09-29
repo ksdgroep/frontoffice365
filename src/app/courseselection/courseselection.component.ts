@@ -26,6 +26,7 @@ export class CourseselectionComponent implements OnInit {
   selectedCourse: Course;
   showMobileInfo: number;
   loadingCourses = true;
+  coursesFullCount = 0;
 
   constructor(private courseTemplateService: CourseTemplateService,
               private regionService: RegionService,
@@ -108,6 +109,14 @@ export class CourseselectionComponent implements OnInit {
   }
 
   resetCourseSelection(): void {
+    // Recalculate Full Courses
+    this.coursesFullCount = 0;
+    for (const course of this.courses) {
+      if (course.IsFull) {
+        this.coursesFullCount++;
+      }
+    }
+
     this.loadingCourses = false;
 
     // Reset Selection if course not in filter

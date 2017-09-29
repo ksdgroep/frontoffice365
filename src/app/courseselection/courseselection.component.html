@@ -50,7 +50,7 @@
             <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
             <span>Cursussen worden geladen...</span>
         </div>
-        <div *ngIf="!loadingCourses && courses?.length === 0" class="course-msg">
+        <div *ngIf="!loadingCourses && (courses?.length === 0 || courses?.length === coursesFullCount)" class="course-msg">
             <!-- No courses found -->
             Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
         </div>
@@ -96,7 +96,7 @@
             <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
             <span>Cursussen worden geladen...</span>
         </div>
-        <div *ngIf="!loadingCourses && courses?.length === 0" class="course-msg">
+        <div *ngIf="!loadingCourses && (courses?.length === 0 || courses?.length === coursesFullCount)" class="course-msg">
             <!-- No courses found -->
             Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
         </div>
