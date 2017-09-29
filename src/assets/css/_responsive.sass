@@ -137,13 +137,10 @@ $textColorBody: #000
     color: $primaryColor
     right: 15px
 
+  .nav>li>a
+    padding: 15px 10px 
 @media (min-width: $screen-md)
-  .hide-nav-mobile
-    display: block
   
-  .navbar-header.show-title-mobile
-    display: none !important
-
   .sidebar-container > ul > li > span.di-block
     display: inline
 
@@ -156,9 +153,6 @@ $textColorBody: #000
     h3
       color: $tertiaryColor
 
-  .hide-nav-mobile
-    display: none
-
   .sidebar-container > ul > li > span.di-block 
     display: block
 
@@ -168,12 +162,4 @@ $textColorBody: #000
 
   #hide-sm-down
     display:none
-  
-
-@media (max-width: $screen-md) 
-  .navbar-collapse.collapse 
-    display: none !important
-
-  .show-title-mobile
-    display: block;
   
