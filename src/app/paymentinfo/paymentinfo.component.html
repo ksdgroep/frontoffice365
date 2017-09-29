@@ -210,8 +210,12 @@
             <label *ngIf="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)" class="control-label">U dient akkoord te gaan met de algemene voorwaarden.</label>
         </div>
     </div>
-
-    <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect" role="tab">Vorige
+    <div class="il-block">
+        <span class="pull-right clearfix error-msg">Niet alle velden zijn correct ingevuld</span>
+    </div>
+    <div class="il-block">
+        <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect" role="tab">Vorige
     </button>
-    <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab">Volgende</button>
+        <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab">Volgende</button>
+    </div>
 </form>

@@ -308,7 +308,12 @@
     <hr class="divider" />
 
     <span class="btn-spacer"></span>
-    <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect" role="tab">Vorige
+    <div class="il-block">
+        <span class="pull-right clearfix error-msg">Niet alle velden zijn correct ingevuld</span>
+    </div>
+    <div class="il-block">
+        <button type="button" (click)="previousTab()" class="btn btn-link pull-left clearfix" aria-controls="courseSelect" role="tab">Vorige
     </button>
-    <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab">Volgende</button>
+        <button type="submit" class="btn btn-default pull-right clearfix" aria-controls="paymentInfo" role="tab">Volgende</button>
+    </div>
 </form>
