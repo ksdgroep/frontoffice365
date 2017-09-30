@@ -56,7 +56,7 @@
         <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect"
                 role="tab">Vorige
         </button>
-        <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab">Bevestigen
+        <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab" [class.disabled]="isClickedOnce">Bevestigen
         </button>
     </div>
 </form>

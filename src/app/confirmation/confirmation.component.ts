@@ -22,6 +22,7 @@ export class ConfirmationComponent implements OnInit {
   conditionsUrl: string;
   conditionsAgreed: boolean;
   studentsList: Student[];
+  isClickedOnce = false;
 
   constructor(private globalFunctionsService: GlobalFunctionsService,
               private enrolService: EnrolService,
@@ -74,7 +75,9 @@ export class ConfirmationComponent implements OnInit {
   }
 
   saveInfo(isValid: boolean): void {
-    if (isValid) {
+    if (isValid && !this.isClickedOnce) {
+      this.isClickedOnce = true;
+
       try {
         // Create Correct Order-Message
         if (this.order.FirstStudentIsContact) {
