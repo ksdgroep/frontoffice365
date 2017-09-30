@@ -26,18 +26,18 @@ export class RegionService {
               private config: AppConfig) {
   }
 
-  public getRegions(): Promise<Region[]> {
+  public getRegions(courseTemplateId: number): Promise<Region[]> {
 
-    return this.http.get(this.regionApiUrl, {headers: this.headers})
-      .toPromise()
-      .then(response => response.json() as Region[])
-      .catch(RegionService.handleError);
-  }
-
-  public getRegionsByCourseTemplate(courseTemplateId: number): Promise<Region[]> {
-    return this.http.get(this.courseTemplateApiUrl + '/' + courseTemplateId + '/Regions', {headers: this.headers})
-      .toPromise()
-      .then(response => response.json() as Region[])
-      .catch(RegionService.handleError);
+    if (!courseTemplateId) {
+      return this.http.get(this.regionApiUrl, {headers: this.headers})
+        .toPromise()
+        .then(response => response.json() as Region[])
+        .catch(RegionService.handleError);
+    } else {
+      return this.http.get(this.courseTemplateApiUrl + '/' + courseTemplateId + '/Regions', {headers: this.headers})
+        .toPromise()
+        .then(response => response.json() as Region[])
+        .catch(RegionService.handleError);
+    }
   }
 }

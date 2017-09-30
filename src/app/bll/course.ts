@@ -13,4 +13,5 @@ export class Course {
   AvailableSeats: number;
   IsFull: boolean;
   CourseDays: CourseDay[];
+  TemplateId: number;
 }

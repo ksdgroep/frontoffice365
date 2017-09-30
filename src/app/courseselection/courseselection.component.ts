@@ -39,15 +39,18 @@ export class CourseselectionComponent implements OnInit {
   }
 
   getCourseTemplates(): void {
-    this.courseTemplateService.getCourseTemplates().then(courseTemplates => this.setCourseTemplate(courseTemplates));
+    this.courseTemplateService.getCourseTemplates().then(courseTemplates => {
+      this.setCourseTemplate(courseTemplates);
+    });
   }
 
   setCourseTemplate(courseTemplates: CourseTemplate[]): void {
     this.courseTemplates = courseTemplates;
 
     let courseTemplateId = this.route.snapshot.queryParams['tid'];
+
     if (courseTemplateId == null) {
-      courseTemplateId = this.globalFunctionsService.courseTemplateId;
+      courseTemplateId = this.globalFunctionsService.courseTemplateId ? this.globalFunctionsService.courseTemplateId.toString() : null;
     } else {
       this.globalFunctionsService.courseTemplateId = courseTemplateId;
     }
@@ -58,23 +61,28 @@ export class CourseselectionComponent implements OnInit {
         this.selectedCourseTemplate = this.courseTemplates[templateIndex];
       }
     }
+
+    // Get Regions
+    this.getRegions(courseTemplateId);
   }
 
   getRegions(templateId: number): void {
-    if (templateId == null) {
-      this.regionService.getRegions().then(regions => this.setRegion(regions));
-    } else {
-      this.regionService.getRegionsByCourseTemplate(templateId).then(regions => this.regions = regions);
-    }
-  }
+    this.regionService.getRegions(templateId).then(regions => {
+      this.regions = regions;
 
-  setRegion(regions: Region[]): void {
-    this.regions = regions;
+      if (this.regions && this.selectedRegion) {
+        const regionIndex = this.regions.findIndex(region => region.Id === this.selectedRegion.Id);
+        this.selectedRegion = regions[regionIndex];
+      }
 
-    if (this.regions && this.selectedRegion) {
-      const regionIndex = this.regions.findIndex(region => region.Id === this.selectedRegion.Id);
-      this.selectedRegion = regions[regionIndex];
-    }
+      // Get Courses
+      this.getCourses(this.selectedCourseTemplate ? this.selectedCourseTemplate.Id : null, this.selectedRegion ? this.selectedRegion.Id : null);
+
+      // Set Region
+      if (this.selectedCourse) {
+        this.setRegionByName(this.selectedCourse.Region);
+      }
+    });
   }
 
   setRegionByName(regionName: string): void {
@@ -133,7 +141,6 @@ export class CourseselectionComponent implements OnInit {
     this.globalFunctionsService.courseTemplateId = courseTemplate.Id;
 
     if (courseTemplate.Id !== undefined) {
-      // this.regionService.getRegionsByCourseTemplate(courseTemplate.Id).then(regions => this.regions = regions);
       this.getRegions(courseTemplate.Id);
       this.getCourses(courseTemplate.Id, this.selectedRegion ? this.selectedRegion.Id : null);
     } else {
@@ -184,17 +191,8 @@ export class CourseselectionComponent implements OnInit {
     this.selectedCourseTemplate = null;
     this.selectedRegion = null;
 
-    this.getCourseTemplates();
-
-    let courseTemplateId = this.route.snapshot.queryParams['tid'];
-    if (courseTemplateId == null) {
-      courseTemplateId = this.globalFunctionsService.courseTemplateId;
-      this.getRegions(null);
-    } else {
-      this.getRegions(courseTemplateId);
-    }
-
     let courseId = this.route.snapshot.queryParams['cid'];
+
     if (courseId == null) {
       const selectedCourse = this.globalFunctionsService.getSelectedCourse();
       if (selectedCourse) {
@@ -203,18 +201,22 @@ export class CourseselectionComponent implements OnInit {
     }
 
     if (courseId) {
+      // Course Flow
+
       // Get Course
       this.courseService.getCourse(courseId).then(course => {
-        // Get Region
-        this.setRegionByName(course.Region);
+
+        // Set Template
+        this.globalFunctionsService.courseTemplateId = course.TemplateId;
+        this.getCourseTemplates();
 
         this.selectedCourse = course;
-
         this.selectedCourseChanged(course);
       });
+    } else {
+      // Default Flow
+      this.getCourseTemplates();
     }
-
-    this.getCourses(courseTemplateId, this.selectedRegion ? this.selectedRegion.Id : null);
 
     // Set AppInitialized
     this.globalFunctionsService.appInitialized = true;
