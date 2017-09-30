@@ -159,12 +159,12 @@ export class CourseselectionComponent implements OnInit {
     }
   }
 
-  selectedCourseChanged(course: Course): void {
+  selectedCourseChanged(course: Course, toggleMobile = false): void {
     if (course.IsFull) {
       return;
     }
 
-    if (this.selectedCourse === course) {
+    if (this.selectedCourse === course && toggleMobile) {
       this.selectedCourse = null;
     } else {
       this.selectedCourse = course;
