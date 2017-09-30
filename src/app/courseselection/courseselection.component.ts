@@ -24,7 +24,6 @@ export class CourseselectionComponent implements OnInit {
   regions: Region[];
   courses: Course[];
   selectedCourse: Course;
-  showMobileInfo: number;
   loadingCourses = true;
   coursesFullCount = 0;
 
@@ -161,10 +160,18 @@ export class CourseselectionComponent implements OnInit {
   }
 
   selectedCourseChanged(course: Course): void {
-    this.selectedCourse = course;
+    if (course.IsFull) {
+      return;
+    }
 
-    this.globalFunctionsService.updateSelectedCourse(course);
-    this.globalFunctionsService.enableTabs(2);
+    if (this.selectedCourse === course) {
+      this.selectedCourse = null;
+    } else {
+      this.selectedCourse = course;
+
+      this.globalFunctionsService.updateSelectedCourse(course);
+      this.globalFunctionsService.enableTabs(2);
+    }
   }
 
   nextTab(course: Course): void {
@@ -220,17 +227,5 @@ export class CourseselectionComponent implements OnInit {
 
     // Set AppInitialized
     this.globalFunctionsService.appInitialized = true;
-  }
-
-  displayMobileInfo(index: number, ignore: boolean) {
-    if (ignore) {
-      return;
-    }
-
-    if (this.showMobileInfo === index) {
-      this.showMobileInfo = null;
-    } else {
-      this.showMobileInfo = index;
-    }
   }
 }
