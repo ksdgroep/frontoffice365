@@ -58,7 +58,7 @@
     <div class="show-xs">
         <!-- clickDisabled class on: courseselection-container-mobile -->
         <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile" [class.active]="course.Id === selectedCourse?.Id">
-            <a class="course-selector-mobile" aria-expanded="false" aria-controls="course-collapse" (click)="selectedCourseChanged(course)">
+            <a class="course-selector-mobile" aria-expanded="false" aria-controls="course-collapse" (click)="selectedCourseChanged(course, true)">
                 <div class="courseselection-header">
                     <!-- class isFull -->
                     <div class="course-item-mobile-header isFull" [class.isFull]="course.IsFull">
