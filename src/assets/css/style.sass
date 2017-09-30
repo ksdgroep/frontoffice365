@@ -6,6 +6,16 @@ $tertiaryColor: #FFE4E4
 $textColorMenu: #fff
 $textColorBody: #000
 
+@mixin rowMachine($numPerRow, $margin) 
+  width: ((100% - (($numPerRow - 1) * $margin)) / $numPerRow);
+  &:nth-child(n) 
+    margin-bottom: $margin;
+    margin-right: $margin;
+  &:nth-child(#{$numPerRow}n) 
+    margin-right: 0;
+    margin-bottom: 0;
+
+
 /* Custom font */
 body
   font-family: 'Lato', Segoe UI, Helvetica, sans-serif
@@ -40,6 +50,9 @@ body
 
 ol, ul
   list-style: none
+
+*:focus 
+  outline:none !important
 
 .no-margin-bottom
     margin: 0
@@ -95,12 +108,22 @@ tr.disabled
 .nav-tabs
   border: none
 
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover
+.navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover
   color: $textColorMenu
   background: $primaryColor
   border: none
   border-radius: 0
   cursor: pointer
+  outline: 0
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+    border: 0px
+
+.navbar-default .navbar-nav>li>a.disabled, .navbar-default .navbar-nav> li>a.disabled:focus, .navbar-default .navbar-nav>li>a.disabled:hover
+    color: #ccc
+    background-color: transparent
+    cursor: not-allowed
+    pointer-events: none
 
 .navbar-default .navbar-nav > li > a
   color: $tertiaryColor
@@ -113,6 +136,10 @@ tr.disabled
 /* Form */
 .form-horizontal .control-label
   text-align: left
+  margin-top: 5px
+
+.gender-label
+  display:block
 
 /* Form input */
 input[type=checkbox], input[type=radio]
@@ -243,3 +270,132 @@ ul li
   display: inline
   &:last-child
     margin-right: 0
+
+//course selection items
+
+.header-item, .course-item
+  @include rowMachine(6,1%)
+  padding: 5px
+  float: left
+ 
+  -ms-word-break: break-all
+  word-break: break-all
+  word-break: break-word
+
+  -webkit-hyphens: auto
+  -moz-hyphens: auto
+  -ms-hyphens: auto
+  hyphens: auto
+
+.course-selector
+  margin-bottom: 15px
+
+a.course-selector
+  color: #000
+
+.course-msg
+  padding: 15px 10px
+  border: 1px solid #eee
+  margin-bottom: 5px
+  border-radius: 5px
+
+.courseselection
+  padding: 5px
+  border: 1px solid #eee
+  margin-bottom: 10px
+  border-radius: 5px
+  cursor: pointer
+  &:hover
+    border-color: #565656
+
+.courseselection-header
+  &:hover
+    border-color: #eee
+
+.courseselection-item.active
+  background: $tertiaryColor
+  border: 1px solid #979797
+  &:hover
+    border-color: #565656
+
+.course-selector
+  display: block
+  position: relative
+
+.course-selector.isFull
+  cursor: not-allowed
+  pointer-events: none
+  .courseselection.courseselection-item
+    border-color: #ccc
+    color: #ccc
+
+.isFull .course-full
+  color: #D75473;
+
+.text-right > .btn
+  padding: 0
+
+#error-title
+  margin-bottom: 5px
+
+#error-page
+  h4
+    margin-bottom: 25px
+  p
+    margin-bottom: 10px
+    line-height: 20px
+
+.hide-basket-error
+  display: none
+
+.form-group label.checkbox-inline, .form-group label.radio-inline  
+  margin-top: 6px
+
+.no-seats-margin
+  margin-top: 11px
+
+.courseselection
+  border-color: #979797
+
+.courseselection.courseselection-header 
+  cursor: default
+  background: #EBEBEB
+  font-weight: 900
+  &:hover
+    border: 1px solid #979797
+
+.disabled
+  cursor: not-allowed !important
+
+.btn.btn-default
+  background: $primaryColor
+  padding: 13px 15px
+  color: #fff
+  border-radius: 5px
+
+.btn-default:active:hover
+  background: $primaryColor
+  color: #fff
+  border: 1px solid $primaryColor
+
+.btn[disabled]
+  opacity: 1
+  background: #fff
+  color: #ccc
+  border: 1px solid #ccc
+  &:hover
+    opacity: 1
+    background: #fff
+    color: #ccc
+    border: 1px solid #ccc
+
+.il-block
+  display: inline-block
+  width: 100%
+  .error-msg
+    color: #a94442
+    font-weight: bold
+    margin-bottom: 10px
+
+.navbar-nav 
+    margin: 0px -15px

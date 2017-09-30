@@ -1,55 +1,108 @@
 <h2>Inschrijven cursus</h2>
 <form class="form-horizontal">
     <div class="form-group">
-        <label for="courseSelector" class="col-xs-12 col-sm-3 control-label filter-label">Selecteer cursus</label>
-        <div class="col-xs-12 col-sm-5">
+        <label for="courseSelector" class="col-xs-12 col-sm-5 col-md-3 control-label filter-label">Selecteer cursus</label>
+        <div class="col-xs-12 col-sm-7 col-md-5">
             <select id="courseSelector" class="form-control" [(ngModel)]="selectedCourseTemplate" (ngModelChange)="selectedCourseTemplateChanged($event)" name="CourseSelector">
-                    <option value="null" selected></option>
+                    <option value="null" selected>Alle cursussen</option>
                     <option *ngFor="let ct of courseTemplates" [ngValue]="ct">{{ct.Name}}</option>
             </select>
         </div>
     </div>
     <div class="form-group">
-        <label for="regionSelector" class="col-xs-12 col-sm-3 control-label filter-label">Selecteer regio</label>
-        <div class="col-xs-12 col-sm-5">
+        <label for="regionSelector" class="col-xs-12 col-sm-5 col-md-3 control-label filter-label">Selecteer regio</label>
+        <div class="col-xs-12 col-sm-7 col-md-5">
             <select id="regionSelector" class="form-control" [(ngModel)]="selectedRegion" (ngModelChange)="selectedRegionChanged($event)" name="RegionSelector">
-                    <option value="null" selected></option>
+                    <option value="null" selected>Alle regio's</option>
                     <option *ngFor="let r of regions" [ngValue]="r">{{r.Name}}</option>
             </select>
         </div>
     </div>
 </form>
 <hr class="divider" />
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>
-                    <!--selection-->
-                </th>
-                <th>Startdatum</th>
-                <th>Cursus</th>
-                <th>Regio</th>
-                <th>Duur</th>
-                <th>Prijs</th>
-                <th>
-                    <!--status-->
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let course of courses" [class.disabled]="course.IsFull" [class.active]="course.Id == selectedCourseId">
-                <td>
-                    <input type="radio" name="courseSelector" [value]="course.Id" [(ngModel)]="selectedCourseId" [disabled]="course.IsFull" (change)="selectedCourseChanged(course)"></td>
-                <td>{{course.Date | date: 'dd-MM-yyyy'}}</td>
-                <td>{{course.Name}}</td>
-                <td>{{course.Region}}</td>
-                <td>{{course.DurationInfo}}</td>
-                <td>{{course.Price | currencyFormat}}</td>
-                <td><span *ngIf="course.IsFull">Vol</span></td>
-            </tr>
-        </tbody>
-    </table>
+
+<div class="courseselection-container">
+    <!-- show from 768px and up -->
+    <div class="hide-sm-down">
+        <div class="courseselection courseselection-header clearfix">
+            <span class="header-item">Startdatum</span>
+            <span class="header-item">Cursus</span>
+            <span class="header-item">Regio</span>
+            <span class="header-item">Duur</span>
+            <span class="header-item">Prijs</span>
+            <span class="header-item">Vrije plaatsen</span>
+        </div>
+        <!-- class isFull -->
+        <a *ngFor="let course of courses" class="course-selector" [class.isFull]="course.IsFull" (click)="selectedCourseChanged(course)">
+            <div class="courseselection courseselection-item clearfix active" [class.active]="course.Id === selectedCourse?.Id">
+                <span class="course-item">{{course.Date | date: 'dd-MM-yyyy'}}</span>
+                <span class="course-item">{{course.Name}}</span>
+                <span class="course-item">{{course.Region}}</span>
+                <span class="course-item">{{course.DurationInfo}}</span>
+                <span class="course-item">{{course.Price | currencyFormat}}</span>
+                <span *ngIf="!course.IsFull;else CourseFull" class="course-item">{{ course.AvailableSeats | pluralizeText: 'plaats':'plaatsen' }} vrij</span>
+                <ng-template #CourseFull>
+                    <span class="course-item course-full">Vol</span>
+                </ng-template>
+            </div>
+        </a>
+        <div *ngIf="loadingCourses" class="course-msg">
+            <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
+            <span>Cursussen worden geladen...</span>
+        </div>
+        <div *ngIf="!loadingCourses && (courses?.length === 0 || courses?.length === coursesFullCount)" class="course-msg">
+            <!-- No courses found -->
+            Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
+        </div>
+    </div>
+    <div class="show-xs">
+        <!-- clickDisabled class on: courseselection-container-mobile -->
+        <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile" [class.active]="course.Id === selectedCourse?.Id">
+            <a class="course-selector-mobile" aria-expanded="false" aria-controls="course-collapse" (click)="selectedCourseChanged(course)">
+                <div class="courseselection-header">
+                    <!-- class isFull -->
+                    <div class="course-item-mobile-header isFull" [class.isFull]="course.IsFull">
+                        <div class="di-block">
+                            <span class="mobile-date">{{course.Date | date: 'dd-MM-yyyy'}}</span>
+                            <span>{{course.Name}}</span>
+                        </div>
+                        <span class="mobile-region">{{course.Region}}</span>
+                    </div>
+                </div>
+            </a>
+            <div id="course-collapse" class="courseselection-content-mobile clearfix" [class.collapse]="course.Id != selectedCourse?.Id">
+                <div class="course-content-mobile">
+                    <ul>
+                        <li class="sidebar-item-title">Cursusduur</li>
+                        <li>{{course.DurationInfo}}</li>
+                        <br/>
+                        <li class="sidebar-item-title">Lesdagen</li>
+                        <li *ngFor="let courseDay of course.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
+                        <br/>
+                        <li class="sidebar-item-title">Prijs van de cursus</li>
+                        <li>{{course.Price | currencyFormat}} <span>excl. BTW</span></li>
+                        <br/>
+                        <li class="sidebar-item-title">Aantal deelnemers</li>
+                        <li>
+                            {{ course.AvailableSeats | pluralizeText: 'plaats':'plaatsen' }} vrij
+                        </li>
+                    </ul>
+                </div>
+                <a (click)="nextTab(course)" class="btn btn-block">Inschrijven</a>
+            </div>
+        </div>
+
+        <div *ngIf="loadingCourses" class="course-msg">
+            <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
+            <span>Cursussen worden geladen...</span>
+        </div>
+        <div *ngIf="!loadingCourses && (courses?.length === 0 || courses?.length === coursesFullCount)" class="course-msg">
+            <!-- No courses found -->
+            Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
+        </div>
+    </div>
 </div>
-<span class="btn-spacer"></span>
-<button class="btn btn-default pull-right " aria-controls="contactInfo" role="tab" [disabled]="!selectedCourseId" (click)="nextTab()">Volgende</button>
+<span class="btn-spacer clearfix"></span>
+<div class="hide-sm-down">
+    <button class="btn btn-default pull-right " aria-controls="contactInfo" role="tab" [disabled]="!selectedCourse" (click)="nextTab(null)">Inschrijven</button>
+</div>

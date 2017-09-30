@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { Course } from '../bll/course';
@@ -8,49 +8,70 @@ import { Order } from '../bll/order';
 @Injectable()
 export class GlobalFunctionsService {
 
-    private updateSelectedCourseFunction = new Subject();
-    private enableTabsFunction = new Subject();
-    private activateTabFunction = new Subject();
-    private orderFunction = new Subject();
-    private studentsFunction = new Subject();
-    
-    updateSelectedCourse(selectedCourse: Course) {
-        this.updateSelectedCourseFunction.next(selectedCourse);
-    }
+  appInitialized = false;
+  returnUrl: string;
+  courseTemplateId: number;
+  regionId: string;
 
-    selectedCourseUpdated(): Observable<Course> {
-        return this.updateSelectedCourseFunction.asObservable();
-    }
+  private selectedCourse: Course;
+  private order: Order;
 
-    enableTabs(tabCount: number) {
-        this.enableTabsFunction.next(tabCount);
-    }
+  private updateSelectedCourseFunction = new Subject();
+  private enableTabsFunction = new Subject();
+  private studentsFunction = new Subject();
+  private showBasketFunction = new Subject();
+  private showTabsFunction = new Subject();
 
-    enabledTabsChanged(): Observable<number> {
-        return this.enableTabsFunction.asObservable();
-    }
+  showBasket(showBasket: boolean): void {
+    this.showBasketFunction.next(showBasket);
+  }
 
-    activateTab(tabName: string) {
-        this.activateTabFunction.next(tabName);
-    }
+  showBasketChanged(): Observable<boolean> {
+    return this.showBasketFunction.asObservable();
+  }
 
-    activeTabChanged(): Observable<string> {
-        return this.activateTabFunction.asObservable();
-    }
+  showTabs(showTabs: boolean): void {
+    this.showBasketFunction.next(showTabs);
+  }
 
-    updateOrder(order: Order) {
-        this.orderFunction.next(order);
-    }
+  showTabsChanged(): Observable<boolean> {
+    return this.showBasketFunction.asObservable();
+  }
 
-    orderUpdated(): Observable<Order> {
-        return this.orderFunction.asObservable();
-    }
+  updateSelectedCourse(selectedCourse: Course) {
+    this.selectedCourse = selectedCourse;
+    this.updateSelectedCourseFunction.next(selectedCourse);
+  }
 
-    updateStudentCount(count: number) {
-        this.studentsFunction.next(count);
-    }
+  selectedCourseUpdated(): Observable<Course> {
+    return this.updateSelectedCourseFunction.asObservable();
+  }
 
-    studentCountUpdated(): Observable<number> {
-        return this.studentsFunction.asObservable();
-    }
+  enableTabs(tabCount: number) {
+    this.enableTabsFunction.next(tabCount);
+  }
+
+  enabledTabsChanged(): Observable<number> {
+    return this.enableTabsFunction.asObservable();
+  }
+
+  updateOrder(order: Order) {
+    this.order = order;
+  }
+
+  updateStudentCount(count: number) {
+    this.studentsFunction.next(count);
+  }
+
+  studentCountUpdated(): Observable<number> {
+    return this.studentsFunction.asObservable();
+  }
+
+  getSelectedCourse(): Course {
+    return this.selectedCourse;
+  }
+
+  getOrder(): Order {
+    return this.order;
+  }
 }
