@@ -20,6 +20,7 @@ import { ErrorComponent } from './error/error.component';
 import { RouteGuard } from './route.guard';
 import { GlobalFunctionsService } from './services/global-functions.service';
 import { ValidationGuard } from './validation.guard';
+import { ThanksComponent } from './thanks/thanks.component';
 
 export function initConfig(config: AppConfig) {
   return () => config.load();
@@ -37,7 +38,8 @@ export function initConfig(config: AppConfig) {
     CourseselectionComponent,
     PaymentinfoComponent,
     ValidationErrorDirective,
-    ErrorComponent
+    ErrorComponent,
+    ThanksComponent
   ],
   imports: [
     BrowserModule,

@@ -32,6 +32,8 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
               private globalFunctionsService: GlobalFunctionsService,
               private postalCodeService: PostalCodeService,
               private router: Router) {
+    this.globalFunctionsService.showBasket(true);
+    this.globalFunctionsService.showTabs(true);
   }
 
   getCountries(): void {

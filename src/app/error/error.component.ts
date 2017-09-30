@@ -12,11 +12,11 @@ export class ErrorComponent {
   returnUrl: string;
   errorMessage: string;
 
-  constructor(
-    private globalFunctionsService: GlobalFunctionsService,
-    private config: AppConfig) {
-
+  constructor(private globalFunctionsService: GlobalFunctionsService,
+              private config: AppConfig) {
     this.returnUrl = this.globalFunctionsService.returnUrl;
     this.errorMessage = this.config.getConfig('errorMessage');
+    this.globalFunctionsService.showBasket(false);
+    this.globalFunctionsService.showTabs(false);
   }
 }

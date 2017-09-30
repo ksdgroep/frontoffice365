@@ -1,37 +1,62 @@
 <h2>Uw inschrijving</h2>
-<div class="col-xs-12 col-sm-6">
-    <div class="form-group">
-        <label class="col-xs-12 col-sm-3 control-label">Hartelijk dank</label>
-        <div class="col-xs-12 col-sm-9">
-            <p>U ontvangt een e-mail ter bevestiging.</p>
-            <br/>
-            <p>Uw inschrijving is voltooid voor de cursus:</p>
-            <p class="signupConfirmedTitle">{{course?.Name}}</p>
-            <p class="signupConfirmedTitle">Startdatum</p>
-            <p class="signupConfirmedContent">{{course?.Date | dutchDateFormat }}</p>
-            <p class="signupConfirmedTitle">Regio</p>
-            <p class="signupConfirmedContent">{{course?.Region}}</p>
-            <p class="signupConfirmedTitle">Cursusduur</p>
-            <p class="signupConfirmedContent">{{course?.DurationInfo}}</p>
-            <p class="signupConfirmedTitle">Lesdagen</p>
-            <ul class="signupConfirmedDayList">
-                <li *ngFor="let courseDay of course?.CourseDays">{{courseDay.Date | dutchDateFormat }} <span>{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
-            </ul>
+<form class="form-horizontal" (ngSubmit)="saveInfo(contactForm.valid)" #contactForm="ngForm">
+    <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+            <label class="col-xs-12 col-sm-3 control-label">Hartelijk dank</label>
+            <div class="col-xs-12 col-sm-9">
+                <p>Uw hebt gekozen voor de cursus:</p>
+                <p class="signupConfirmedTitle">{{course?.Name}}</p>
+                <p class="signupConfirmedTitle">Startdatum</p>
+                <p class="signupConfirmedContent">{{course?.Date | dutchDateFormat }}</p>
+                <p class="signupConfirmedTitle">Regio</p>
+                <p class="signupConfirmedContent">{{course?.Region}}</p>
+                <p class="signupConfirmedTitle">Cursusduur</p>
+                <p class="signupConfirmedContent">{{course?.DurationInfo}}</p>
+                <p class="signupConfirmedTitle">Lesdagen</p>
+                <ul class="signupConfirmedDayList">
+                    <li *ngFor="let courseDay of course?.CourseDays">{{courseDay.Date | dutchDateFormat }} <span>{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<div class="col-xs-12 col-sm-6">
-    <div class='form-group'>
-        <div class="col-xs-12 col-sm-9">
-            <p>De volgende deelnemers hebben zich ingeschreven:</p>
-            <br/>
-            <ul class="participants-list" *ngFor="let student of order?.Students; let index = index">
-                <li>Deelnemer {{index + 1}}</li>
-                <li>{{student.Initials}} {{student.Surname}}</li>
-                <li>{{student.Address}} {{student.AddressNumber}}</li>
-                <li>{{student.PostalCode}} {{student.City}}</li>
-                <li>{{student.Email}}</li>
-            </ul>
+    <div class="col-xs-12 col-sm-6">
+        <div class='form-group'>
+            <div class="col-xs-12 col-sm-9">
+                <p>De volgende deelnemers zullen worden ingeschreven:</p>
+                <br/>
+                <ul class="participants-list" *ngFor="let student of studentsList; let index = index">
+                    <li>Deelnemer {{index + 1}}</li>
+                    <li>{{student.Initials}} {{student.Surname}}</li>
+                    <li>{{student.Address}} {{student.AddressNumber}}</li>
+                    <li>{{student.PostalCode}} {{student.City}}</li>
+                    <li>{{student.Email}}</li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+
+    <span class="btn-spacer"></span>
+
+    <div class="form-group"
+         [appValidationError]="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)">
+        <label for="conditions" class="col-xs-12 col-sm-3 control-label">Voorwaarden *</label>
+        <div class="col-xs-12 col-md-6 col-sm-8">
+            <label class="checkbox-inline">
+                <input type="checkbox" id="conditions" [(ngModel)]="conditionsAgreed" name="conditions" required
+                       #conditions="ngModel"> Ik ga akkoord met de <a href="{{conditionsUrl}}" target="_blank">algemene
+                voorwaarden</a>
+            </label>
+            <label *ngIf="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)"
+                   class="control-label">U dient akkoord te gaan met de algemene voorwaarden.</label>
+        </div>
+    </div>
+
+    <div class="il-block">
+        <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect"
+                role="tab">Vorige
+        </button>
+        <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab">Bevestigen
+        </button>
+    </div>
+</form>

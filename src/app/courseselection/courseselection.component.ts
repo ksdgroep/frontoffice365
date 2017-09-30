@@ -7,7 +7,7 @@ import { RegionService } from '../services/region.service';
 import { Course } from '../bll/course';
 import { CourseService } from '../services/course.service';
 import { GlobalFunctionsService } from '../services/global-functions.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -34,6 +34,8 @@ export class CourseselectionComponent implements OnInit {
               private globalFunctionsService: GlobalFunctionsService,
               private route: ActivatedRoute,
               private router: Router) {
+    this.globalFunctionsService.showBasket(true);
+    this.globalFunctionsService.showTabs(true);
   }
 
   getCourseTemplates(): void {
@@ -181,12 +183,6 @@ export class CourseselectionComponent implements OnInit {
   ngOnInit(): void {
     this.selectedCourseTemplate = null;
     this.selectedRegion = null;
-
-    // Get ReturnUrl
-    const returnUrl = this.route.snapshot.queryParams['ReturnUrl'];
-    if (returnUrl != null) {
-      this.globalFunctionsService.returnUrl = returnUrl;
-    }
 
     this.getCourseTemplates();
 

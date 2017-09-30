@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Collect the nav links, forms, and other content for toggling -->
         <!-- show from 768px and up -->
-        <div class="navbar-collapse hide-sm-down">
+        <div *ngIf="showTabs" class="navbar-collapse hide-sm-down">
             <ul class="nav navbar-nav nav-tabs" role="tablist">
                 <li role="presentation">
                     <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab"
@@ -28,7 +28,7 @@
                 </li>
             </ul>
         </div>
-        <div class="navbar-collapse show-xs">
+        <div *ngIf="showTabs" class="navbar-collapse show-xs">
             <ul class="nav navbar-nav nav-tabs" role="tablist">
                 <li role="presentation">
                     <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" #rla1="routerLinkActive"
@@ -59,8 +59,8 @@
 <div class="container course-selection">
     <div class="row">
         <!-- When hiding the sidebar give col-sm-12 to this container -->
-        <div class="col-xs-12" id="main-content" [class.col-sm-8]="enabledTabCount < 4"
-             [class.col-sm-12]="enabledTabCount === 4">
+        <div class="col-xs-12" id="main-content" [class.col-sm-8]="showBasket"
+             [class.col-sm-12]="!showBasket">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="courseSelect">
                     <router-outlet></router-outlet>
@@ -74,7 +74,7 @@
         <!-- Hide sidebar on tab 4 & 5 -->
         <!-- When hiding the sidebar give col-sm-12 to the main content container (line 49)s -->
         <!-- add class: hide-basket-error to hide the basket on the error page -->
-        <div *ngIf="enabledTabCount < 4" class="col-xs-12 col-sm-4 col-md-3 hide-basket-xs">
+        <div *ngIf="showBasket" class="col-xs-12 col-sm-4 col-md-3 hide-basket-xs">
             <fo-basket></fo-basket>
         </div>
 

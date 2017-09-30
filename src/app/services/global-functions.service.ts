@@ -19,6 +19,24 @@ export class GlobalFunctionsService {
   private updateSelectedCourseFunction = new Subject();
   private enableTabsFunction = new Subject();
   private studentsFunction = new Subject();
+  private showBasketFunction = new Subject();
+  private showTabsFunction = new Subject();
+
+  showBasket(showBasket: boolean): void {
+    this.showBasketFunction.next(showBasket);
+  }
+
+  showBasketChanged(): Observable<boolean> {
+    return this.showBasketFunction.asObservable();
+  }
+
+  showTabs(showTabs: boolean): void {
+    this.showBasketFunction.next(showTabs);
+  }
+
+  showTabsChanged(): Observable<boolean> {
+    return this.showBasketFunction.asObservable();
+  }
 
   updateSelectedCourse(selectedCourse: Course) {
     this.selectedCourse = selectedCourse;

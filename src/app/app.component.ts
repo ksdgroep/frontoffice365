@@ -2,9 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { environment } from '../environments/environment';
 import { GlobalFunctionsService } from './services/global-functions.service';
-import { Router } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,23 +15,38 @@ export class AppComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
   subscriptionActiveTab: Subscription;
+  subscriptionShowBasket: Subscription;
+  subscriptionShowTabs: Subscription;
   enabledTabCount = 1;
-  providerContactMail: string;
+  showBasket = true;
+  showTabs = true;
 
   constructor(
     private globalFunctionsService: GlobalFunctionsService,
     private router: Router
   ) {
     this.subscription = this.globalFunctionsService.enabledTabsChanged().subscribe(enabledTabCount => this.enabledTabCount = enabledTabCount);
+    this.subscriptionShowBasket = this.globalFunctionsService.showBasketChanged().subscribe(showBasket => this.showBasket = showBasket);
+    this.subscriptionShowTabs = this.globalFunctionsService.showTabsChanged().subscribe(showTabs => this.showTabs = showTabs);
   }
 
   ngOnInit(): void {
-    this.providerContactMail = environment.contactEmail;
+    this.router.events.subscribe(route => {
+      if (route instanceof RoutesRecognized) {
+        // Get ReturnUrl
+        const returnUrl = route.state.root.firstChild.queryParams['ReturnUrl'];
+        if (returnUrl != null) {
+          console.log(returnUrl);
+          this.globalFunctionsService.returnUrl = returnUrl;
+        }
+      }
+    });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.subscriptionActiveTab.unsubscribe();
+    this.subscriptionShowBasket.unsubscribe();
   }
 
   selectTab(): void {
