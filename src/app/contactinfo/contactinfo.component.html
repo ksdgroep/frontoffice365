@@ -65,9 +65,9 @@
 
     <div class="form-group"
          [appValidationError]="dateofbirthContact.errors && (dateofbirthContact.dirty || dateofbirthContact.touched || contactForm.submitted)">
-        <label for="dateofbirthContact" class="col-xs-12 col-sm-3 control-label">Geboortedatum *</label>
+        <label for="dateofbirthContact" class="col-xs-12 col-sm-3 control-label">Geboortedatum</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input id="dateofbirthContact" DateFormat required placeholder="dd-mm-jjjj" class="form-control"
+            <input id="dateofbirthContact" DateFormat placeholder="dd-mm-jjjj" class="form-control"
                    name="dateofbirthContact" [(ngModel)]="order.ContactPerson.DateOfBirth"
                    #dateofbirthContact="ngModel"/>
             <span *ngIf="dateofbirthContact?.errors && (dateofbirthContact.dirty || dateofbirthContact.touched || contactForm.submitted)"
@@ -294,9 +294,9 @@
 
         <div class="form-group"
              [appValidationError]="studentDateOfBirth.errors && (studentDateOfBirth.dirty || studentDateOfBirth.touched || contactForm.submitted)">
-            <label for="dateofbirth" class="col-xs-12 col-sm-3 control-label">Geboortedatum *</label>
+            <label for="dateofbirth" class="col-xs-12 col-sm-3 control-label">Geboortedatum</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <input id="dateofbirth" DateFormat required placeholder="dd-mm-jjjj" class="form-control"
+                <input id="dateofbirth" DateFormat placeholder="dd-mm-jjjj" class="form-control"
                        name="dateOfBirth_{{index}}" [(ngModel)]="s.DateOfBirth" #studentDateOfBirth="ngModel"/>
                 <span *ngIf="studentDateOfBirth.errors && (studentDateOfBirth.dirty || studentDateOfBirth.touched || contactForm.submitted)"
                       class="glyphicon glyphicon-remove form-control-feedback"></span>
