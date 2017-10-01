@@ -71,7 +71,7 @@ export class ConfirmationComponent implements OnInit {
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);
-    this.router.navigate(['students'], {queryParamsHandling: 'merge'});
+    this.router.navigate(['payment'], {queryParamsHandling: 'merge'});
   }
 
   saveInfo(isValid: boolean): void {
