@@ -180,4 +180,30 @@ export class ConfirmationComponent implements OnInit {
       }
     }
   }
+
+  createFullName(gender: string, initials: string, middleName: string, surname: string, includeTav: boolean): string {
+    let fullName = includeTav ? 'T.a.v. ' : '';
+
+    if (gender) {
+      if (gender === 'M') {
+        fullName += includeTav ? 'de heer ' : 'De heer ';
+      } else {
+        fullName += includeTav ? 'mevrouw ' : 'Mevrouw ';
+      }
+    }
+
+    if (initials) {
+      fullName += initials + ' ';
+    }
+
+    if (middleName) {
+      fullName += middleName + ' ';
+    }
+
+    if (surname) {
+      fullName += surname;
+    }
+
+    return fullName;
+  }
 }
