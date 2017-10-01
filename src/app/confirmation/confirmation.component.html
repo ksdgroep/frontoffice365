@@ -16,7 +16,24 @@
                     <p class="signupConfirmedTitle">Prijs</p>
                     <p class="signupConfirmedContent">{{course?.Price}}</p>
                     <p class="signupConfirmedTitle">Factuuradres</p>
-                    <p class="signupConfirmedContent">xxxx</p>
+                    <ul class="signupConfirmedDayList">
+                        <li *ngIf="order?.Company.Name">
+                            {{order.Company.Name}}
+                        </li>
+                        <li>
+                            {{createFullName(order?.ContactPerson.Gender, order?.ContactPerson.Initials,
+                            order?.ContactPerson.MiddleName, order?.ContactPerson.Surname, order?.Company.Name)}}
+                        </li>
+                        <li>
+                            {{order?.ContactPerson.Address}} {{order?.ContactPerson.AddressNumber}}
+                        </li>
+                        <li>
+                            {{order?.ContactPerson.PostalCode}} {{order?.ContactPerson.City}}
+                        </li>
+                        <li>
+                            {{order?.ContactPerson.Email}}
+                        </li>
+                    </ul>
                     <p class="signupConfirmedTitle">Lesdagen</p>
                     <ul class="signupConfirmedDayList">
                         <li *ngFor="let courseDay of course?.CourseDays">{{courseDay.Date | dutchDateFormat }} <span>{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span>
@@ -43,23 +60,27 @@
     </div>
     <span class="btn-spacer"></span>
     <div class="row">
-        <div class="form-group col-xs-12" [appValidationError]="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)">
+        <div class="form-group col-xs-12"
+             [appValidationError]="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)">
             <label for="conditions" class="col-xs-12 control-label">Voorwaarden *</label>
             <div class="col-xs-12">
                 <label class="checkbox-inline">
-                <input type="checkbox" id="conditions" [(ngModel)]="conditionsAgreed" name="conditions" required
-                       #conditions="ngModel"> Ik ga akkoord met de <a href="{{conditionsUrl}}" target="_blank">algemene
-                voorwaarden</a>
-            </label>
-                <label *ngIf="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)" class="control-label">U dient akkoord te gaan met de algemene voorwaarden.</label>
+                    <input type="checkbox" id="conditions" [(ngModel)]="conditionsAgreed" name="conditions" required
+                           #conditions="ngModel"> Ik ga akkoord met de <a href="{{conditionsUrl}}" target="_blank">algemene
+                    voorwaarden</a>
+                </label>
+                <label *ngIf="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)"
+                       class="control-label">U dient akkoord te gaan met de algemene voorwaarden.</label>
             </div>
         </div>
 
         <div class="il-block">
-            <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect" role="tab">Vorige
-        </button>
-            <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab" [class.disabled]="isClickedOnce">Bevestigen
-        </button>
+            <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect"
+                    role="tab">Vorige
+            </button>
+            <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab"
+                    [class.disabled]="isClickedOnce">Bevestigen
+            </button>
         </div>
     </div>
 </form>
