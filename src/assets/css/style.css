@@ -140,10 +140,13 @@
     border-color: #ccc;
     color: #ccc; }
     .course-item-mobile-header.isFull:hover {
-      border-color: #ccc;
+      border-color: #ccc !important;
       color: #ccc; }
     .course-item-mobile-header.isFull:after {
-      color: #ccc !important; }
+      color: #D75473 !important;
+      content: 'Vol' !important;
+      font-family: 'Lato', Segoe UI, Helvetica, sans-serif !important;
+      font-size: 14px !important; }
   .course-item-mobile-header.isFull:after {
     color: #ccc; } }
 
