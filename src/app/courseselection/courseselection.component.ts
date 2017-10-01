@@ -10,10 +10,10 @@ import { GlobalFunctionsService } from '../services/global-functions.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-    moduleId: module.id,
-    selector: 'fo-courseselection',
-    templateUrl: './courseselection.component.html',
-    providers: [CourseTemplateService, RegionService, CourseService]
+  moduleId: module.id,
+  selector: 'fo-courseselection',
+  templateUrl: './courseselection.component.html',
+  providers: [CourseTemplateService, RegionService, CourseService]
 })
 
 export class CourseselectionComponent implements OnInit {
@@ -191,7 +191,7 @@ export class CourseselectionComponent implements OnInit {
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);
-    this.router.navigate(['students'], { queryParamsHandling: 'merge' });
+    this.router.navigate(['students'], {queryParamsHandling: 'merge'});
   }
 
   ngOnInit(): void {
@@ -212,14 +212,17 @@ export class CourseselectionComponent implements OnInit {
 
       // Get Course
       this.courseService.getCourse(courseId).then(course => {
-
         // Set Template
         this.globalFunctionsService.courseTemplateId = course.TemplateId;
         this.getCourseTemplates();
 
         this.selectedCourse = course;
         this.selectedCourseChanged(course);
-      });
+      })
+        .catch(() => {
+          this.loadingCourses = false;
+          this.courses = [];
+        });
     } else {
       // Default Flow
       this.getCourseTemplates();
