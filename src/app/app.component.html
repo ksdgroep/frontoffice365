@@ -6,18 +6,18 @@
             <ul class="nav navbar-nav nav-tabs" role="tablist">
                 <li role="presentation">
                     <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab"
-                       queryParamsHandling="merge" [class.disabled]="enabledTabCount == 4" (click)="selectTab()">Stap 1:
+                       queryParamsHandling="merge" (click)="selectTab()">Stap 1:
                         Inschrijven
                         cursus</a>
                 </li>
                 <li role="presentation">
                     <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students"
-                       queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2 || enabledTabCount == 4"
+                       queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2"
                        role="tab" (click)="selectTab()">Stap 2: Contactgegevens</a>
                 </li>
                 <li role="presentation">
                     <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment"
-                       queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3 || enabledTabCount == 4"
+                       queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3"
                        role="tab" (click)="selectTab()">Stap 3: Betaalgegevens</a>
                 </li>
                 <li role="presentation">
@@ -32,16 +32,16 @@
             <ul class="nav navbar-nav nav-tabs" role="tablist">
                 <li role="presentation">
                     <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" #rla1="routerLinkActive"
-                       queryParamsHandling="merge" [class.disabled]="enabledTabCount == 4" (click)="selectTab()">{{'Stap 1' + (rla1.isActive ? ': Inschrijven cursus' : '')}}</a>
+                       queryParamsHandling="merge" (click)="selectTab()">{{'Stap 1' + (rla1.isActive ? ': Inschrijven cursus' : '')}}</a>
                 </li>
                 <li role="presentation">
                     <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students" #rla2="routerLinkActive"
-                       queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2 || enabledTabCount == 4"
+                       queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2"
                        role="tab" (click)="selectTab()">{{'Stap 2' + (rla2.isActive ? ': Contactgegevens' : '')}}</a>
                 </li>
                 <li role="presentation">
                     <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment" #rla3="routerLinkActive"
-                       queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3 || enabledTabCount == 4"
+                       queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3"
                        role="tab" (click)="selectTab()">{{'Stap 3' + (rla3.isActive ? ': Betaalgegevens' : '')}}</a>
                 </li>
                 <li role="presentation">
