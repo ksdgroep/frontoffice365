@@ -33,7 +33,7 @@
             <span class="header-item">Vrije plaatsen</span>
         </div>
         <!-- class isFull -->
-        <a *ngFor="let course of courses" class="course-selector isFull" [class.isFull]="course.IsFull" (click)="selectedCourseChanged(course)">
+        <a *ngFor="let course of courses" class="course-selector" [class.isFull]="course.IsFull" (click)="selectedCourseChanged(course)">
             <div class="courseselection courseselection-item clearfix active" [class.active]="course.Id === selectedCourse?.Id">
                 <span class="course-item">{{course.Date | date: 'dd-MM-yyyy'}}</span>
                 <span class="course-item">{{course.Name}}</span>
@@ -50,15 +50,15 @@
             <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
             <span>Cursussen worden geladen...</span>
         </div>
-        <div *ngIf="!loadingCourses && courses?.length === 0" class="course-msg">
+        <div *ngIf="!loadingCourses && (courses?.length === 0 || courses?.length === coursesFullCount)" class="course-msg">
             <!-- No courses found -->
             Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
         </div>
     </div>
     <div class="show-xs">
         <!-- clickDisabled class on: courseselection-container-mobile -->
-        <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile">
-            <a class="course-selector-mobile" aria-expanded="false" aria-controls="course-collapse" (click)="displayMobileInfo(i, course.IsFull)">
+        <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile" [class.active]="course.Id === selectedCourse?.Id">
+            <a class="course-selector-mobile" aria-expanded="false" aria-controls="course-collapse" (click)="selectedCourseChanged(course, true)">
                 <div class="courseselection-header">
                     <!-- class isFull -->
                     <div class="course-item-mobile-header isFull" [class.isFull]="course.IsFull">
@@ -70,33 +70,23 @@
                     </div>
                 </div>
             </a>
-            <div id="course-collapse" class="courseselection-content-mobile clearfix" [class.collapse]="showMobileInfo != i">
+            <div id="course-collapse" class="courseselection-content-mobile clearfix" [class.collapse]="course.Id != selectedCourse?.Id">
                 <div class="course-content-mobile">
                     <ul>
                         <li class="sidebar-item-title">Cursusduur</li>
                         <li>{{course.DurationInfo}}</li>
                         <br/>
-
                         <li class="sidebar-item-title">Lesdagen</li>
-                        <li>x <span class="di-block">x</span></li>
+                        <li *ngFor="let courseDay of course.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
                         <br/>
-
                         <li class="sidebar-item-title">Prijs van de cursus</li>
                         <li>{{course.Price | currencyFormat}} <span>excl. BTW</span></li>
-                        <br/>
-                        <li class="sidebar-item-title">Aantal deelnemers</li>
-                        <li>x</li>
                         <br/>
                         <li class="sidebar-item-title">Aantal deelnemers</li>
                         <li>
                             {{ course.AvailableSeats | pluralizeText: 'plaats':'plaatsen' }} vrij
                         </li>
                     </ul>
-                    <!-- <span class="course-item-mobile">{{course.Date | date: 'dd-MM-yyyy'}}</span>
-                    <span class="course-item-mobile">{{course.Region}}</span>
-                    <span class="course-item-mobile">{{course.DurationInfo}}</span>
-                    <span class="course-item-mobile">{{course.Price | currencyFormat}}</span>
-                    <span class="course-item-mobile">{{ course.AvailableSeats | pluralizeText: 'plaats':'plaatsen' }} vrij</span> -->
                 </div>
                 <a (click)="nextTab(course)" class="btn btn-block">Inschrijven</a>
             </div>
@@ -106,7 +96,7 @@
             <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
             <span>Cursussen worden geladen...</span>
         </div>
-        <div *ngIf="!loadingCourses && courses?.length === 0" class="course-msg">
+        <div *ngIf="!loadingCourses &&  (courses?.length === 0 || courses?.length === coursesFullCount)" class="course-msg">
             <!-- No courses found -->
             Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
         </div>
