@@ -8,14 +8,22 @@ import { Course } from '../bll/course';
 import { CourseService } from '../services/course.service';
 import { GlobalFunctionsService } from '../services/global-functions.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+
+export class ClientCheck {
+  public static get ClientCode(): string {
+    return environment.clientCode;
+  }
+}
 
 @Component({
   moduleId: module.id,
   selector: 'fo-courseselection',
-  templateUrl: './courseselection.component.html',
+  templateUrl: ClientCheck.ClientCode === 'gt'
+                ? './courseselection.component.gt.html'
+                : './courseselection.component.html',
   providers: [CourseTemplateService, RegionService, CourseService]
 })
-
 export class CourseselectionComponent implements OnInit {
 
   selectedCourseTemplate: CourseTemplate;
