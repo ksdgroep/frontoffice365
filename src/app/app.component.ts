@@ -34,9 +34,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.events.subscribe(route => {
       if (route instanceof RoutesRecognized) {
         // Get ReturnUrl
-        const returnUrl = route.state.root.firstChild.queryParams['ReturnUrl'];
+        const returnUrl = route.state.root.firstChild.queryParams['returnurl'];
         if (returnUrl != null) {
-          console.log(returnUrl);
           this.globalFunctionsService.returnUrl = returnUrl;
         }
       }

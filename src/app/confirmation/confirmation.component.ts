@@ -71,7 +71,7 @@ export class ConfirmationComponent implements OnInit {
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);
-    this.router.navigate(['students'], {queryParamsHandling: 'merge'});
+    this.router.navigate(['payment'], {queryParamsHandling: 'merge'});
   }
 
   saveInfo(isValid: boolean): void {
@@ -179,5 +179,31 @@ export class ConfirmationComponent implements OnInit {
         this.router.navigate(['error'], {queryParamsHandling: 'merge'});
       }
     }
+  }
+
+  createFullName(gender: string, initials: string, middleName: string, surname: string, includeTav: boolean): string {
+    let fullName = includeTav ? 'T.a.v. ' : '';
+
+    if (gender) {
+      if (gender === 'M') {
+        fullName += includeTav ? 'de heer ' : 'De heer ';
+      } else {
+        fullName += includeTav ? 'mevrouw ' : 'Mevrouw ';
+      }
+    }
+
+    if (initials) {
+      fullName += initials + ' ';
+    }
+
+    if (middleName) {
+      fullName += middleName + ' ';
+    }
+
+    if (surname) {
+      fullName += surname;
+    }
+
+    return fullName;
   }
 }

@@ -31,11 +31,11 @@ export class GlobalFunctionsService {
   }
 
   showTabs(showTabs: boolean): void {
-    this.showBasketFunction.next(showTabs);
+    this.showTabsFunction.next(showTabs);
   }
 
   showTabsChanged(): Observable<boolean> {
-    return this.showBasketFunction.asObservable();
+    return this.showTabsFunction.asObservable();
   }
 
   updateSelectedCourse(selectedCourse: Course) {
