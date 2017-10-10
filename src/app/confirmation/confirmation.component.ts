@@ -7,11 +7,20 @@ import { Course } from '../bll/course';
 import { Student } from '../bll/student';
 import { EnrolService } from '../services/enrol.service';
 import { AppConfig } from '../app.config';
+import { environment } from '../../environments/environment';
+
+export class ClientCheck {
+  public static get ClientCode(): string {
+    return environment.clientCode;
+  }
+}
 
 @Component({
   moduleId: module.id,
   selector: 'fo-confirmation',
-  templateUrl: './confirmation.component.html',
+  templateUrl: ClientCheck.ClientCode === 'gt'
+  ? './confirmation.component.gt.html'
+  : './confirmation.component.html',
   providers: [EnrolService]
 })
 

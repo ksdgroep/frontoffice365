@@ -10,11 +10,20 @@ import { GlobalFunctionsService } from '../services/global-functions.service';
 import { Router } from '@angular/router';
 import { CanComponentDeactivate } from '../validation.guard';
 import { PostalCodeService } from '../services/postalcode.service';
+import { environment } from '../../environments/environment';
+
+export class ClientCheck {
+  public static get ClientCode(): string {
+    return environment.clientCode;
+  }
+}
 
 @Component({
     moduleId: module.id,
     selector: 'fo-contactinfo',
-    templateUrl: './contactinfo.component.html',
+    templateUrl: ClientCheck.ClientCode === 'gt'
+    ? './contactinfo.component.gt.html'
+    : './contactinfo.component.html',
     providers: [CountryService, PostalCodeService]
 })
 

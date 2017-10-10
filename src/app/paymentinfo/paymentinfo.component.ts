@@ -8,11 +8,20 @@ import { GlobalFunctionsService } from '../services/global-functions.service';
 import { Router } from '@angular/router';
 import { PostalCodeService } from '../services/postalcode.service';
 import { CanComponentDeactivate } from '../validation.guard';
+import { environment } from '../../environments/environment';
+
+export class ClientCheck {
+  public static get ClientCode(): string {
+    return environment.clientCode;
+  }
+}
 
 @Component({
   moduleId: module.id,
   selector: 'fo-paymentinfo',
-  templateUrl: './paymentinfo.component.html',
+  templateUrl: ClientCheck.ClientCode === 'gt'
+  ? './paymentinfo.component.gt.html'
+  : './paymentinfo.component.html',
   providers: [CountryService, PostalCodeService]
 })
 

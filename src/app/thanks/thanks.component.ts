@@ -1,9 +1,18 @@
 import { Component } from '@angular/core';
 import { GlobalFunctionsService } from '../services/global-functions.service';
+import { environment } from '../../environments/environment';
+
+export class ClientCheck {
+  public static get ClientCode(): string {
+    return environment.clientCode;
+  }
+}
 
 @Component({
   selector: 'app-thanks',
-  templateUrl: './thanks.component.html',
+  templateUrl: ClientCheck.ClientCode === 'gt'
+  ? './thanks.component.gt.html'
+  : './thanks.component.html',
   styleUrls: ['./thanks.component.css']
 })
 export class ThanksComponent {

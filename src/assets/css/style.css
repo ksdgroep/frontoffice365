@@ -67,8 +67,8 @@
     .courseselection-container-mobile.active .course-content-mobile {
       border-top-color: #979797; }
     .courseselection-container-mobile.active .courseselection-content-mobile > .btn {
-      border-top-color: #C4002E;
-      background: #C4002E;
+      border-top-color: #00709a;
+      background: #00709a;
       border-radius: 0 0 3px 3px; }
   .courseselection-container-mobile.active > .courseselection-content-mobile > .btn {
     color: #fff; }
@@ -247,7 +247,7 @@ tr.disabled {
 
 .navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover {
   color: #fff;
-  background: #C4002E;
+  background: #00709a;
   border: none;
   border-radius: 0;
   cursor: pointer;
@@ -368,9 +368,9 @@ ul li {
   border-color: transparent;
   background: #D75473; }
   .navbar-default .navbar-toggle:focus {
-    background-color: #C4002E; }
+    background-color: #00709a; }
   .navbar-default .navbar-toggle:hover {
-    background-color: #C4002E; }
+    background-color: #00709a; }
 
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #fff; }
@@ -513,15 +513,15 @@ a.course-selector {
   cursor: not-allowed !important; }
 
 .btn.btn-default {
-  background: #C4002E;
+  background: #00709a;
   padding: 13px 15px;
   color: #fff;
   border-radius: 5px; }
 
 .btn-default:active:hover {
-  background: #C4002E;
+  background: #00709a;
   color: #fff;
-  border: 1px solid #C4002E; }
+  border: 1px solid #00709a; }
 
 .btn[disabled] {
   opacity: 1;
@@ -547,5 +547,161 @@ a.course-selector {
 
 .block {
   display: block; }
+
+@media screen and (min-width: 0px) {
+  body .form-group label {
+    margin-bottom: 10px; }
+  #main-content {
+    margin-bottom: 25px; }
+  .form-horizontal .form-group {
+    margin-bottom: 25px; } }
+
+#signupConfirmed .form-group {
+  margin-left: -15px; }
+
+#signupConfirmed > div {
+  margin-bottom: 25px; }
+
+.margin-bottom-15 {
+  margin-bottom: 15px; }
+
+.participants-list .margin-bottom-15 {
+  margin-bottom: 15px; }
+
+@media (min-width: 768px) {
+  .form-horizontal .form-group {
+    margin-bottom: 15px; }
+  .margin-bottom-15 {
+    margin-bottom: 0; }
+  .participants-list .margin-bottom-15 {
+    margin-bottom: 0px; } }
+
+@media (min-width: 480px) {
+  .hide-basket-xs {
+    display: block; } }
+
+@media (max-width: 480px) {
+  .course-selector .courseselection-item > .course-item {
+    float: left;
+    display: block; }
+  .hide-basket-xs {
+    display: none; } }
+
+@media (min-width: 768px) {
+  .hide-sm-down {
+    display: block; }
+  .show-xs {
+    display: none; } }
+
+@media (min-width: 0) and (max-width: 768px) {
+  .hide-xs-down {
+    display: none; }
+  .hide-sm-down {
+    display: none; }
+  .course-item-mobile {
+    display: block;
+    margin-bottom: 10px; }
+  .courseselection-container-mobile {
+    border: 1px solid #979797;
+    margin-bottom: 10px;
+    border-radius: 5px; }
+    .courseselection-container-mobile:hover {
+      border-color: #565656; }
+  .clickDisabled {
+    cursor: not-allowed;
+    pointer-events: none; }
+  .courseselection-container-mobile.active {
+    background: #FFE4E4; }
+    .courseselection-container-mobile.active:hover {
+      border-color: #979797; }
+    .courseselection-container-mobile.active .course-content-mobile {
+      border-top-color: #979797; }
+    .courseselection-container-mobile.active .courseselection-content-mobile > .btn {
+      border-top-color: #00709a;
+      background: #00709a;
+      border-radius: 0 0 3px 3px; }
+  .courseselection-container-mobile.active > .courseselection-content-mobile > .btn {
+    color: #fff; }
+  .courseselection-container-mobile .courseselection-header {
+    padding: 15px; }
+  .course-content-mobile {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background: #fff; }
+  a:hover {
+    text-decoration: none; }
+  .course-item-mobile-header {
+    color: #000;
+    display: block;
+    position: relative; }
+    .course-item-mobile-header:hover {
+      text-decoration: none; }
+  .course-item-mobile-header:hover {
+    text-decoration: none; }
+  .courseselection-content-mobile > .btn {
+    border-top: 1px solid #eee;
+    border-radius: 0; }
+  .course-item-mobile-header.isFull {
+    border-color: #ccc;
+    color: #ccc; }
+    .course-item-mobile-header.isFull:hover {
+      border-color: #ccc;
+      color: #ccc; }
+  .course-item-mobile-header.isFull:after {
+    color: #ccc; }
+  .nav > li > a {
+    padding: 15px 10px; } }
+
+@media (min-width: 992px) {
+  .sidebar-container > ul > li > span.di-block {
+    display: inline; } }
+
+@media (max-width: 992px) {
+  .navbar-header.show-title-mobile {
+    display: block !important;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px; }
+    .navbar-header.show-title-mobile h3 {
+      color: #FFE4E4; }
+  .sidebar-container > ul > li > span.di-block {
+    display: block; }
+  .mobile-date {
+    font-size: 12px; }
+  .di-block {
+    margin-bottom: 5px; }
+  .di-block > span {
+    padding-right: 10px; }
+  .mobile-region {
+    margin-left: 77px; }
+  .courseselection-container-mobile .courseselection-header {
+    position: relative; }
+  .courseselection-container-mobile .courseselection-header .course-item-mobile-header:after {
+    content: '\f0d7';
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    font-family: 'FontAwesome';
+    font-size: 18px;
+    color: #000; }
+  .courseselection-container-mobile.active .courseselection-header .course-item-mobile-header:after {
+    content: '\f0da'; }
+  .course-item-mobile-header.isFull {
+    border-color: #ccc;
+    color: #ccc; }
+    .course-item-mobile-header.isFull:hover {
+      border-color: #ccc !important;
+      color: #ccc; }
+    .course-item-mobile-header.isFull:after {
+      color: #D75473 !important;
+      content: 'Vol' !important;
+      font-family: 'Lato', Segoe UI, Helvetica, sans-serif !important;
+      font-size: 14px !important; }
+  .course-item-mobile-header.isFull:after {
+    color: #ccc; } }
+
+@media (min-width: 768px) and (max-width: 992px) {
+  body .course-selector.isFull:after {
+    right: 5px; } }
 
 /*# sourceMappingURL=style.css.map */
