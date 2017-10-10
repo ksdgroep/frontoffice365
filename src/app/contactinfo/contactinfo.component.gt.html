@@ -86,9 +86,9 @@
     <!-- -->
 
     <div class="form-group" [appValidationError]="companyName.errors && (companyName.dirty || companyName.touched || contactForm.submitted)">
-        <label for="business" class="col-xs-12 col-sm-3 control-label optional-label">Functie</label>
+        <label for="jobTitle" class="col-xs-12 col-sm-3 control-label optional-label">Functie</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="business" name="companyName" [(ngModel)]="order.Company.Name" required #companyName="ngModel">
+            <input type="text" class="form-control" id="jobTitle" name="jobTitle" [(ngModel)]="order.Company.Name" required #companyName="ngModel">
             <span *ngIf="companyName.errors && (companyName.dirty || companyName.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
             <label *ngIf="companyName.errors && (companyName.dirty || companyName.touched || contactForm.submitted)" class="control-label">Bedrijfsnaam is verplicht.</label>
         </div>
@@ -144,9 +144,9 @@
     </div>
 
     <div class="form-group" [appValidationError]="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)">
-        <label for="phoneBusiness" class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer *</label>
+        <label for="phone" class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer *</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="phoneBusiness" name="phone" [(ngModel)]="order.ContactPerson.Phone" #phoneBusiness="ngModel" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}">
+            <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="order.ContactPerson.Phone" #phoneBusiness="ngModel" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}">
             <span *ngIf="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
             <label *ngIf="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
         </div>
@@ -264,11 +264,11 @@
         </div>
 
         <div class="form-group" [appValidationError]="studentLastName.errors && (studentLastName.dirty || studentLastName.touched || contactForm.submitted)">
-            <label for="lastNameParticipant" class="col-xs-12 col-sm-3 control-label">Functie</label>
+            <label for="jobTitleParticipant" class="col-xs-12 col-sm-3 control-label">Functie</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <input type="text" class="form-control" id="lastNameParticipant" name="lastName_{{index}}" [(ngModel)]="s.Surname" required #studentLastName="ngModel">
-                <span *ngIf="studentLastName.errors && (studentLastName.dirty || studentLastName.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
-                <label *ngIf="studentLastName.errors && (studentLastName.dirty || studentLastName.touched || contactForm.submitted)" class="control-label">Achternaam is verplicht.</label>
+                <input type="text" class="form-control" id="jobTitleParticipant" name="jobTitleParticipant_{{index}}" [(ngModel)]="s.Surname" required #studentLastName="ngModel">
+                <span *ngIf="jobTitleParticipant.errors && (jobTitleParticipant.dirty || jobTitleParticipant.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+
             </div>
         </div>
 
@@ -329,12 +329,12 @@
                 <label *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
             </div>
         </div>
-        <div class="form-group" [appValidationError]="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)">
-            <label for="phoneNumberParticipant" class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer werk</label>
+        <div class="form-group" [appValidationError]="phoneNumberWorkParticipant.errors && (phoneNumberWorkParticipant.dirty || phoneNumberWorkParticipant.touched || contactForm.submitted)">
+            <label for="phoneNumberWorkParticipant" class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer werk</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <input type="text" class="form-control" id="phoneNumberParticipant" name="phone_{{index}}" [(ngModel)]="s.Phone" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}" #phoneNumberParticipant="ngModel">
-                <span *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
-                <label *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
+                <input type="text" class="form-control" id="phoneNumberWorkParticipant" name="phoneWorkParticipant_{{index}}" [(ngModel)]="s.Phone" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}" #phoneNumberParticipant="ngModel">
+                <span *ngIf="phoneNumberWorkParticipant.errors && (phoneNumberWorkParticipant.dirty || phoneNumberWorkParticipant.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <label *ngIf="phoneNumberWorkParticipant.errors && (phoneNumberWorkParticipant.dirty || phoneNumberWorkParticipant.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
             </div>
         </div>
         <div class="form-group participant-control">

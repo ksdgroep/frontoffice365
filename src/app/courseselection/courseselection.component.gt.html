@@ -21,7 +21,7 @@
     <div class="form-group">
         <label for="regionSelector" class="col-xs-12 col-sm-5 col-md-3 control-label filter-label">Selecteer startdatum</label>
         <div class="col-xs-12 col-sm-7 col-md-5">
-            <select id="regionSelector" class="form-control" [(ngModel)]="selectedRegion" (ngModelChange)="selectedRegionChanged($event)" name="RegionSelector">
+            <select id="dateSelector" class="form-control" [(ngModel)]="selectedDate" (ngModelChange)="selectedDateChanged($event)" name="DateSelector">
                     <option value="null" selected>Alle startdata</option>
                     <option *ngFor="let r of regions" [ngValue]="r">{{r.Name}}</option>
             </select>
