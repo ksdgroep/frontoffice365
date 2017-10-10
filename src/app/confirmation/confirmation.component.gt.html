@@ -4,12 +4,12 @@
         <div class="col-xs-12 col-sm-6">
             <div class="form-group">
                 <div class="col-xs-12 col-sm-9">
-                    <p>Uw hebt gekozen voor de cursus:</p>
+                    <p class="bold">Uw hebt gekozen voor de cursus:</p>
                     <p class="signupConfirmedTitle">Cursus</p>
                     <p class="signupConfirmedContent">{{course?.Name}}</p>
                     <p class="signupConfirmedTitle">Startdatum</p>
                     <p class="signupConfirmedContent">{{course?.Date | dutchDateFormat }}</p>
-                    <p class="signupConfirmedTitle">Regio</p>
+                    <p class="signupConfirmedTitle">Locatie</p>
                     <p class="signupConfirmedContent">{{course?.Region}}</p>
                     <p class="signupConfirmedTitle">Cursusduur</p>
                     <p class="signupConfirmedContent">{{course?.DurationInfo}}</p>
@@ -33,8 +33,9 @@
                             {{order?.ContactPerson.Email}}
                         </li>
                     </ul>
-                    <p class="signupConfirmedTitle">Lesdagen</p>
+                    <p class="signupConfirmedTitle">Planning</p>
                     <ul class="signupConfirmedDayList">
+                        <!-- Dagen toevoegen net als op de 1e pagina -->
                         <li *ngFor="let courseDay of course?.CourseDays">{{courseDay.Date | dutchDateFormat }} <span>{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span>
                         </li>
                     </ul>
@@ -44,9 +45,10 @@
         <div class="col-xs-12 col-sm-6">
             <div class='form-group'>
                 <div class="col-xs-12 col-sm-9">
-                    <p>De volgende deelnemers zullen worden ingeschreven:</p>
+                    <p class="bold">De volgende deelnemers zullen worden ingeschreven:</p>
                     <br/>
                     <ul class="participants-list" *ngFor="let student of studentsList; let index = index">
+                        <!-- Aanhef toevoegen -->
                         <li>Deelnemer {{index + 1}}</li>
                         <li>{{student.Initials}} {{student.Surname}}</li>
                         <li>{{student.Address}} {{student.AddressNumber}}</li>
@@ -68,13 +70,14 @@
                     voorwaarden</a>
                 </label>
                 <label *ngIf="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)" class="control-label block">U dient akkoord te gaan met de algemene voorwaarden.</label>
+                <span id="privacy"><i class="fa fa-lock"></i> Uw privacy wordt gerespecteerd</span>
             </div>
         </div>
 
         <div class="il-block">
             <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect" role="tab">Vorige
             </button>
-            <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab" [class.disabled]="isClickedOnce">Bevestigen
+            <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab" [class.disabled]="isClickedOnce">Inschrijven
             </button>
         </div>
     </div>
