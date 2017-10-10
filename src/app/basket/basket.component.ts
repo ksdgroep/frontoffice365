@@ -4,11 +4,20 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Course } from '../bll/course';
 import { GlobalFunctionsService } from '../services/global-functions.service';
+import { environment } from '../../environments/environment';
+
+export class ClientCheck {
+    public static get ClientCode(): string {
+      return environment.clientCode;
+    }
+  }
 
 @Component({
     moduleId: module.id,
     selector: 'fo-basket',
-    templateUrl: './basket.component.html'
+    templateUrl: ClientCheck.ClientCode === 'gt'
+    ? './basket.component.gt.html'
+    : './basket.component.html',
 })
 
 export class BasketComponent implements OnDestroy {
