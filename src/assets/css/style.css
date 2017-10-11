@@ -233,7 +233,7 @@ tr.disabled {
 /* Bootstrap overrides */
 /* Navbar / Tabs overrides */
 .navbar-default {
-  background-color: #D75473;
+  background-color: #335D6F;
   border: none; }
 
 .navbar {
@@ -366,7 +366,7 @@ ul li {
 .navbar-default .navbar-toggle {
   border: none;
   border-color: transparent;
-  background: #D75473; }
+  background: #335D6F; }
   .navbar-default .navbar-toggle:focus {
     background-color: #00709a; }
   .navbar-default .navbar-toggle:hover {
@@ -730,6 +730,69 @@ top-bar .top-bar-text {
   max-height: 70px;
   width: auto;
   padding: 10px 10px 10px 0; }
+
+/* Navbar */
+/* Navbar / Tabs overrides */
+.navbar-default {
+  background-color: #00709a;
+  border: none; }
+
+.navbar {
+  border-radius: 0; }
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border: none; }
+
+.nav-tabs {
+  border: none; }
+
+.navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover {
+  color: #fff;
+  background: #00709a;
+  font-weight: bold;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  outline: 0; }
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+  border: 0px; }
+
+.navbar-default .navbar-nav > li > a.disabled, .navbar-default .navbar-nav > li > a.disabled:focus, .navbar-default .navbar-nav > li > a.disabled:hover {
+  color: #335D6F;
+  font-weight: normal;
+  background-color: transparent;
+  cursor: not-allowed;
+  pointer-events: none; }
+
+.navbar-default .navbar-nav > li > a {
+  color: #FFE4E4;
+  border: none;
+  border-radius: 0; }
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: #fff; }
+
+.navbar-nav > li:after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 0;
+  width: 1px;
+  background: #fff;
+  height: 70%; }
+
+.navbar {
+  min-height: auto; }
+
+.navbar-nav > li:last-child:after {
+  content: none; }
+
+.nav > li > a {
+  padding: 5px 25px; }
+
+.nav > li > a:first-child {
+  margin-left: -25px; }
 
 .header-item, .course-item {
   width: 19.2%;

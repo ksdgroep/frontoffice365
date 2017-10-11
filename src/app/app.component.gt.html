@@ -32,35 +32,40 @@
         <div *ngIf="showTabs" class="navbar-collapse hide-sm-down">
             <ul class="nav navbar-nav nav-tabs" role="tablist">
                 <li role="presentation">
-                    <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" queryParamsHandling="merge" (click)="selectTab()">Stap 1:
-                        Inschrijven
-                        cursus</a>
+                    <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" queryParamsHandling="merge" (click)="selectTab()">
+                        1 Datum &amp; locatie
+                    </a>
                 </li>
                 <li role="presentation">
-                    <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2" role="tab" (click)="selectTab()">Stap 2: Contactgegevens</a>
+                    <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2" role="tab" (click)="selectTab()">
+                        2 Persoonlijke gegevens
+                    </a>
                 </li>
                 <li role="presentation">
-                    <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3" role="tab" (click)="selectTab()">Stap 3: Betaalgegevens</a>
+                    <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3" role="tab" (click)="selectTab()">
+                        3 Betalingsgegevens
+                    </a>
                 </li>
                 <li role="presentation">
-                    <a aria-controls="signupConfirmed" routerLinkActive="active" routerLink="confirm" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 4" role="tab" (click)="selectTab()">Stap 4:
-                        Samenvatting</a>
+                    <a aria-controls="signupConfirmed" routerLinkActive="active" routerLink="confirm" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 4" role="tab" (click)="selectTab()">
+                        4 Controleer uw gegevens
+                    </a>
                 </li>
             </ul>
         </div>
         <div *ngIf="showTabs" class="navbar-collapse show-xs">
             <ul class="nav navbar-nav nav-tabs" role="tablist">
                 <li role="presentation">
-                    <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" #rla1="routerLinkActive" queryParamsHandling="merge" (click)="selectTab()">{{'Stap 1' + (rla1.isActive ? ': Inschrijven cursus' : '')}}</a>
+                    <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" #rla1="routerLinkActive" queryParamsHandling="merge" (click)="selectTab()">{{'1' + (rla1.isActive ? ': Datum &amp; locatie' : '')}}</a>
                 </li>
                 <li role="presentation">
-                    <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students" #rla2="routerLinkActive" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2" role="tab" (click)="selectTab()">{{'Stap 2' + (rla2.isActive ? ': Contactgegevens' : '')}}</a>
+                    <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students" #rla2="routerLinkActive" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2" role="tab" (click)="selectTab()">{{'2' + (rla2.isActive ? ': Persoonlijke gegevens' : '')}}</a>
                 </li>
                 <li role="presentation">
-                    <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment" #rla3="routerLinkActive" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3" role="tab" (click)="selectTab()">{{'Stap 3' + (rla3.isActive ? ': Betaalgegevens' : '')}}</a>
+                    <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment" #rla3="routerLinkActive" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3" role="tab" (click)="selectTab()">{{'3' + (rla3.isActive ? ': Betalingsgegevens' : '')}}</a>
                 </li>
                 <li role="presentation">
-                    <a aria-controls="signupConfirmed" routerLinkActive="active" routerLink="confirm" #rla4="routerLinkActive" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 4" role="tab" (click)="selectTab()">{{'Stap 4' + (rla4.isActive ? ': Samenvatting' : '')}}</a>
+                    <a aria-controls="signupConfirmed" routerLinkActive="active" routerLink="confirm" #rla4="routerLinkActive" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 4" role="tab" (click)="selectTab()">{{'4' + (rla4.isActive ? ': Controleer uw gegevens' : '')}}</a>
                 </li>
             </ul>
         </div>

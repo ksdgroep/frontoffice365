@@ -29,9 +29,73 @@ top-bar .top-bar-text
   width: auto
   padding: 10px 10px 10px 0
 
+/* Navbar */
+/* Navbar / Tabs overrides */
+.navbar-default
+  background-color: $primaryColor
+  border: none
+
+.navbar
+  border-radius: 0
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form
+  border: none
+
+.nav-tabs
+  border: none
+
+.navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover
+  color: $textColorMenu
+  background: $primaryColor
+  font-weight: bold
+  border: none
+  border-radius: 0
+  cursor: pointer
+  outline: 0
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+    border: 0px
+
+.navbar-default .navbar-nav>li>a.disabled, .navbar-default .navbar-nav> li>a.disabled:focus, .navbar-default .navbar-nav>li>a.disabled:hover
+    color: $secondaryColor
+    font-weight: normal
+    background-color: transparent
+    cursor: not-allowed
+    pointer-events: none
+
+.navbar-default .navbar-nav > li > a
+  color: $tertiaryColor
+  border: none
+  border-radius: 0
+
+.navbar-default .navbar-nav > li > a:hover
+  color: $textColorMenu
+
+.navbar-nav>li:after 
+  content: ''
+  position: absolute
+  top: 8px
+  right: 0
+  width: 1px
+  background: #fff
+  height: 70%
+
+.navbar
+  min-height: auto
+
+.navbar-nav>li:last-child:after 
+  content: none
+
+.nav>li>a
+  padding: 5px 25px
+
+.nav>li>a:first-child 
+  margin-left: -25px
+
 
 .header-item, .course-item
   @include rowMachine(5,1%)
   padding: 5px
   float: left
+
 
