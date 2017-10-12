@@ -8,6 +8,32 @@ h2
   margin-bottom: 20px
   font-weight: bold
 
+/* Button styles */
+
+.btn.btn-default
+  background: $buttonColor
+  padding: 13px 15px
+  color: #fff
+  border-color: $buttonColor
+  border-radius: 5px
+
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover
+  background: $buttonColor
+  color: #fff
+  border: 1px solid $buttonColor
+
+.btn[disabled]
+  opacity: 1
+  background: #fff
+  color: #ccc
+  border: 1px solid #ccc
+  &:hover
+    opacity: 1
+    background: #fff
+    color: #ccc
+    border: 1px solid #ccc
+
+
 /* Topbar */
 .top-bar 
   background-color: #00709a
@@ -90,20 +116,74 @@ top-bar .top-bar-text
   padding: 5px
   float: left
 
+.header-item 
+  padding: 0px 5px
+  line-height: 14px
+
 
 .courseselection.courseselection-header
   background: $tertiaryColor
   border: none
   color: $textColorMenu
   font-weight: normal
-  border-radius: 0px
+  border-radius: 3px
   &:hover
     border: none
     border-color: transparent
+
+/* Course selection */
+
+a.course-selector
+  text-decoration: none
+
+.course-item
+  font-weight: 600
+  font-size: 16px
+  color: $primaryColor
+
+.courseselection.courseselection-item
+  padding-top: 10px
+  padding-bottom: 10px
+  border: 2px solid
+  border-color: $fourthColor
+  &:hover
+    border-color: $primaryColor
+
+
+.courseselection-item.active 
+    background: #fff;
+    border-color: $primaryColor
+
+.course-days-content
+  padding: 5px
+  h3
+    color: $secondaryColor
+    font-size: 18px
+    font-weight: 600
+    margin-bottom: 12px
+
+.course-days-list-item
+  font-size: 15px
+  font-weight: 500
+
+.list-days
+  font-weight: 600
+
+.list-date
+  margin-left: 10px
+
+.list-time
+  margin-left: 10px
 
 
 /* Sidebar container */
 .sidebar-container
   background: #fff
-  border: 1px solid
+  border: 2px solid
   border-color: $primaryColor
+  border-radius: 10px
+  h4
+    color: $primaryColor
+    font-size: 24px
+    font-weight: bold
+    margin-bottom: 23px

@@ -7,16 +7,16 @@
         <li class="sidebar-item-title">Startdatum</li>
         <li>{{selectedCourse.Date | date: 'dd-MM-yyyy' }}</li>
         <br/>
-        <li class="sidebar-item-title">Regio</li>
+        <li class="sidebar-item-title">Locatie</li>
         <li>{{selectedCourse.Region}}</li>
         <br/>
         <li class="sidebar-item-title">Cursusduur</li>
         <li>{{selectedCourse.DurationInfo}}</li>
         <br/>
-        <li class="sidebar-item-title">Lesdagen</li>
+        <li class="sidebar-item-title">Planning</li>
         <li *ngFor="let courseDay of selectedCourse.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
         <br/>
-        <li class="sidebar-item-title">Prijs van uw cursus</li>
+        <li class="sidebar-item-title">Prijs</li>
         <li>{{selectedCourse.Price * (studentCount == 0 ? 1 : studentCount) | currencyFormat}} <span>excl. BTW</span></li>
         <br/>
         <li *ngIf="studentCount > 0" class="sidebar-item-title">Aantal deelnemers</li>

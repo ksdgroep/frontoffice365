@@ -43,8 +43,8 @@
         <a *ngFor="let course of courses" class="course-selector" (click)="selectedCourseChanged(course)">
             <div class="courseselection courseselection-item clearfix active" [class.active]="course.Id === selectedCourse?.Id">
                 <div class="header-content clearfix">
-                    <span class="course-item">{{course.Name}}</span>
                     <span class="course-item">{{course.Date | date: 'dd-MM-yyyy'}}</span>
+                    <span class="course-item">{{course.Name}}</span>
                     <span class="course-item">{{course.Region}}</span>
                     <span class="course-item">{{course.DurationInfo}}5 Lesdagen</span>
                     <span class="course-item">{{course.Price | currencyFormat}}</span>

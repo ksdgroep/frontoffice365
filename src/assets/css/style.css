@@ -710,6 +710,30 @@ h2 {
   margin-bottom: 20px;
   font-weight: bold; }
 
+/* Button styles */
+.btn.btn-default {
+  background: #1FCC70;
+  padding: 13px 15px;
+  color: #fff;
+  border-color: #1FCC70;
+  border-radius: 5px; }
+
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open > .dropdown-toggle.btn-default.focus, .open > .dropdown-toggle.btn-default:focus, .open > .dropdown-toggle.btn-default:hover {
+  background: #1FCC70;
+  color: #fff;
+  border: 1px solid #1FCC70; }
+
+.btn[disabled] {
+  opacity: 1;
+  background: #fff;
+  color: #ccc;
+  border: 1px solid #ccc; }
+  .btn[disabled]:hover {
+    opacity: 1;
+    background: #fff;
+    color: #ccc;
+    border: 1px solid #ccc; }
+
 /* Topbar */
 .top-bar {
   background-color: #00709a;
@@ -796,20 +820,72 @@ top-bar .top-bar-text {
     margin-right: 0;
     margin-bottom: 0; }
 
+.header-item {
+  padding: 0px 5px;
+  line-height: 14px; }
+
 .courseselection.courseselection-header {
   background: #00354B;
   border: none;
   color: #fff;
   font-weight: normal;
-  border-radius: 0px; }
+  border-radius: 3px; }
   .courseselection.courseselection-header:hover {
     border: none;
     border-color: transparent; }
 
+/* Course selection */
+a.course-selector {
+  text-decoration: none; }
+
+.course-item {
+  font-weight: 600;
+  font-size: 16px;
+  color: #00709a; }
+
+.courseselection.courseselection-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 2px solid;
+  border-color: #8EB6C8; }
+  .courseselection.courseselection-item:hover {
+    border-color: #00709a; }
+
+.courseselection-item.active {
+  background: #fff;
+  border-color: #00709a; }
+
+.course-days-content {
+  padding: 5px; }
+  .course-days-content h3 {
+    color: #335D6F;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px; }
+
+.course-days-list-item {
+  font-size: 15px;
+  font-weight: 500; }
+
+.list-days {
+  font-weight: 600; }
+
+.list-date {
+  margin-left: 10px; }
+
+.list-time {
+  margin-left: 10px; }
+
 /* Sidebar container */
 .sidebar-container {
   background: #fff;
-  border: 1px solid;
-  border-color: #00709a; }
+  border: 2px solid;
+  border-color: #00709a;
+  border-radius: 10px; }
+  .sidebar-container h4 {
+    color: #00709a;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 23px; }
 
 /*# sourceMappingURL=style.css.map */
