@@ -8,6 +8,9 @@ h2
   margin-bottom: 20px
   font-weight: bold
 
+.filter-label
+  font-weight: normal
+
 /* Button styles */
 
 .btn.btn-default
@@ -87,6 +90,10 @@ h2
 
 .navbar-default .navbar-nav >li:first-child > a
   padding-left: 0
+
+@media screen and (max-width: $screen-md)
+  .navbar-default .navbar-nav > li:first-child > a 
+    padding-left: 15px
 
 .navbar-default .navbar-nav > li > a:hover
   color: $textColorMenu
@@ -235,3 +242,28 @@ a.course-selector
 
 .divider-colored
   border-color: $primaryColor
+
+
+/* Mobile styles */
+/* Navbar */
+
+/* course items */
+.mobile-item-title
+  font-weight: bold
+  font-size: 16px
+  color: $primaryColor
+
+.course-content-mobile
+  border-top-color: transparent
+
+.courseselection-content-mobile > .btn
+  background: $buttonColor
+  border-color: $buttonColor
+  color: $textColorMenu
+
+.course-item-mobile-header span
+  font-size: 14px
+  font-weight: 600
+
+.courseselection-container-mobile .courseselection-header .course-item-mobile-header:after
+  content: none

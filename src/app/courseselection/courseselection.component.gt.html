@@ -97,13 +97,13 @@
             <div id="course-collapse" class="courseselection-content-mobile clearfix">
                 <div class="course-content-mobile">
                     <ul>
-                        <li class="sidebar-item-title">Locatie</li>
+                        <li class="mobile-item-title">Locatie</li>
                         <li>{{course.Region}}</li>
                         <br/>
-                        <li class="sidebar-item-title">Prijs</li>
+                        <li class="mobile-item-title">Prijs</li>
                         <li>{{course.Price | currencyFormat}} <span>excl. BTW</span></li>
                         <br/>
-                        <li class="sidebar-item-title">Lesdagen</li>
+                        <li class="mobile-item-title">Planning</li>
                         <li *ngFor="let courseDay of course.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
 
                     </ul>
