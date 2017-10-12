@@ -877,7 +877,8 @@ a.course-selector {
   margin-left: 10px; }
 
 .list-time {
-  margin-left: 10px; }
+  margin-left: 10px;
+  color: #9B9B9B; }
 
 /* Sidebar container */
 #basket {
@@ -900,7 +901,7 @@ a.course-selector {
 .testimonial {
   position: relative; }
   .testimonial h3 {
-    padding: 80px 30px 50px 30px;
+    padding: 60px 30px 40px 30px;
     text-align: center;
     margin: 0; }
 
@@ -918,5 +919,19 @@ a.course-selector {
     font-size: 50px;
     line-height: 100px;
     margin-left: 32px; }
+
+/* contact page */
+.page-title {
+  font-size: 18px;
+  color: #00709a;
+  margin-bottom: 10px; }
+
+.subtitle {
+  color: #666670;
+  font-size: 14px;
+  margin-bottom: 30px; }
+
+.divider-colored {
+  border-color: #00709a; }
 
 /*# sourceMappingURL=style.css.map */

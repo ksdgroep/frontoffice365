@@ -1,5 +1,9 @@
-<h2 class="no-margin-bottom">Contactgegevens</h2>
-<h4 class="subtitle">Met wie mogen wij contact opnemen?</h4>
+<div class="row">
+    <div class="col-xs-12 col-md-10 col-sm-10">
+        <h2 class="page-title no-margin-bottom">Uw gekozen opleiding: Wordpress voor beginners</h2>
+        <p class="subtitle">Vul hieronder uw gegevens in, zodat wij u goed kunnen adviseren. Onze deskundige opleidingsadviseurs nemen spoedig contact met u op om het opleidingsadvies te bespreken.</p>
+    </div>
+</div>
 <form class="form-horizontal" data-toggle="validator" (ngSubmit)="saveInfo(contactForm.valid && (order.FirstStudentIsContact || order.MultipleStudents))" #contactForm="ngForm">
     <div class="form-group" [appValidationError]="optionGender.errors && (optionGender.dirty || optionGender.touched || contactForm.submitted)">
         <label class="col-xs-12 col-sm-3 col-md-3 control-label">Aanhef *</label>
@@ -161,7 +165,7 @@
         </div>
     </div>
 
-    <hr class="divider" />
+    <hr class="divider divider-colored" />
 
     <h2>Deelnemers</h2>
 
