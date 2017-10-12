@@ -43,6 +43,8 @@ top-bar .top-bar-text
 
 .nav-tabs
   border: none
+  li
+    margin-bottom: 0
 
 .navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover
   color: $textColorMenu
@@ -57,16 +59,19 @@ top-bar .top-bar-text
     border: 0px
 
 .navbar-default .navbar-nav>li>a.disabled, .navbar-default .navbar-nav> li>a.disabled:focus, .navbar-default .navbar-nav>li>a.disabled:hover
-    color: $secondaryColor
-    font-weight: normal
-    background-color: transparent
-    cursor: not-allowed
-    pointer-events: none
+  color: $secondaryColor
+  font-weight: normal
+  background-color: transparent
+  cursor: not-allowed
+  pointer-events: none
 
 .navbar-default .navbar-nav > li > a
-  color: $tertiaryColor
+  color: $textColorMenu
   border: none
   border-radius: 0
+
+.navbar-default .navbar-nav >li:first-child > a
+  padding-left: 0
 
 .navbar-default .navbar-nav > li > a:hover
   color: $textColorMenu
@@ -74,7 +79,7 @@ top-bar .top-bar-text
 .navbar-nav>li:after 
   content: ''
   position: absolute
-  top: 8px
+  top: 5px
   right: 0
   width: 1px
   background: #fff
@@ -90,7 +95,7 @@ top-bar .top-bar-text
   padding: 5px 25px
 
 .nav>li>a:first-child 
-  margin-left: -25px
+  /*margin-left: -25px*/
 
 
 .header-item, .course-item
