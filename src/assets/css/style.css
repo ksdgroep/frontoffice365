@@ -741,9 +741,12 @@ h2 {
   padding: 5px 0;
   text-align: left; }
 
-top-bar .top-bar-text {
+.top-bar .top-bar-text {
   margin: 0;
-  padding: 5px; }
+  padding: 5px;
+  color: #fff; }
+  .top-bar .top-bar-text a {
+    color: #fff; }
 
 .top-bar .top-bar-text .gt-icon-phone {
   position: relative;
@@ -877,6 +880,9 @@ a.course-selector {
   margin-left: 10px; }
 
 /* Sidebar container */
+#basket {
+  margin-bottom: 140px; }
+
 .sidebar-container {
   background: #fff;
   border: 2px solid;
@@ -887,5 +893,30 @@ a.course-selector {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 23px; }
+
+.sidebar-item-title {
+  font-size: 16px; }
+
+.testimonial {
+  position: relative; }
+  .testimonial h3 {
+    padding: 80px 30px 50px 30px;
+    text-align: center;
+    margin: 0; }
+
+#circle {
+  position: absolute;
+  top: -54px;
+  left: 50%;
+  margin-left: -54px;
+  border-radius: 50%;
+  width: 108px;
+  height: 108px;
+  background: #00709a; }
+  #circle i {
+    color: #fff;
+    font-size: 50px;
+    line-height: 100px;
+    margin-left: 32px; }
 
 /*# sourceMappingURL=style.css.map */
