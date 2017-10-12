@@ -61,7 +61,7 @@
     cursor: not-allowed;
     pointer-events: none; }
   .courseselection-container-mobile.active {
-    background: #FFE4E4; }
+    background: #00354B; }
     .courseselection-container-mobile.active:hover {
       border-color: #979797; }
     .courseselection-container-mobile.active .course-content-mobile {
@@ -113,7 +113,7 @@
     text-align: center;
     padding-top: 10px; }
     .navbar-header.show-title-mobile h3 {
-      color: #FFE4E4; }
+      color: #00354B; }
   .sidebar-container > ul > li > span.di-block {
     display: block; }
   .mobile-date {
@@ -263,7 +263,7 @@ tr.disabled {
   pointer-events: none; }
 
 .navbar-default .navbar-nav > li > a {
-  color: #FFE4E4;
+  color: #00354B;
   border: none;
   border-radius: 0; }
 
@@ -288,7 +288,7 @@ input[type=checkbox], input[type=radio] {
 
 /* Sidebar */
 .sidebar-container {
-  background: #FFE4E4;
+  background: #00354B;
   padding: 20px 25px 20px 25px;
   border-radius: 3px;
   border: 1px solid #ddd; }
@@ -458,7 +458,7 @@ a.course-selector {
   border-color: #eee; }
 
 .courseselection-item.active {
-  background: #FFE4E4;
+  background: #00354B;
   border: 1px solid #979797; }
   .courseselection-item.active:hover {
     border-color: #565656; }
@@ -611,7 +611,7 @@ a.course-selector {
     cursor: not-allowed;
     pointer-events: none; }
   .courseselection-container-mobile.active {
-    background: #FFE4E4; }
+    background: #00354B; }
     .courseselection-container-mobile.active:hover {
       border-color: #979797; }
     .courseselection-container-mobile.active .course-content-mobile {
@@ -663,7 +663,7 @@ a.course-selector {
     text-align: center;
     padding-top: 10px; }
     .navbar-header.show-title-mobile h3 {
-      color: #FFE4E4; }
+      color: #00354B; }
   .sidebar-container > ul > li > span.di-block {
     display: block; }
   .mobile-date {
@@ -704,6 +704,12 @@ a.course-selector {
   body .course-selector.isFull:after {
     right: 5px; } }
 
+/* Font styles */
+h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold; }
+
 /* Topbar */
 .top-bar {
   background-color: #00709a;
@@ -734,43 +740,22 @@ top-bar .top-bar-text {
 /* Navbar */
 /* Navbar / Tabs overrides */
 .navbar-default {
-  background-color: #00709a;
+  background-color: #00354B;
   border: none; }
 
-.navbar {
-  border-radius: 0; }
-
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-  border: none; }
-
-.nav-tabs {
-  border: none; }
-  .nav-tabs li {
-    margin-bottom: 0; }
+.nav-tabs li {
+  margin-bottom: 0; }
 
 .navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover {
   color: #fff;
-  background: #00709a;
-  font-weight: bold;
-  border: none;
-  border-radius: 0;
-  cursor: pointer;
-  outline: 0; }
-
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-  border: 0px; }
+  background: #00354B;
+  font-weight: bold; }
 
 .navbar-default .navbar-nav > li > a.disabled, .navbar-default .navbar-nav > li > a.disabled:focus, .navbar-default .navbar-nav > li > a.disabled:hover {
-  color: #335D6F;
-  font-weight: normal;
-  background-color: transparent;
-  cursor: not-allowed;
-  pointer-events: none; }
+  color: #335D6F; }
 
 .navbar-default .navbar-nav > li > a {
-  color: #fff;
-  border: none;
-  border-radius: 0; }
+  color: #fff; }
 
 .navbar-default .navbar-nav > li:first-child > a {
   padding-left: 0; }
@@ -799,6 +784,7 @@ top-bar .top-bar-text {
 .nav > li > a:first-child {
   /*margin-left: -25px*/ }
 
+/* Course headers */
 .header-item, .course-item {
   width: 19.2%;
   padding: 5px;
@@ -809,5 +795,21 @@ top-bar .top-bar-text {
   .header-item:nth-child(5n), .course-item:nth-child(5n) {
     margin-right: 0;
     margin-bottom: 0; }
+
+.courseselection.courseselection-header {
+  background: #00354B;
+  border: none;
+  color: #fff;
+  font-weight: normal;
+  border-radius: 0px; }
+  .courseselection.courseselection-header:hover {
+    border: none;
+    border-color: transparent; }
+
+/* Sidebar container */
+.sidebar-container {
+  background: #fff;
+  border: 1px solid;
+  border-color: #00709a; }
 
 /*# sourceMappingURL=style.css.map */

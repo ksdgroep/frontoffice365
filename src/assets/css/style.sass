@@ -2,6 +2,12 @@
 @import _core.sass
 @import _responsive.sass
 
+/* Font styles */
+h2
+  font-size: 20px
+  margin-bottom: 20px
+  font-weight: bold
+
 /* Topbar */
 .top-bar 
   background-color: #00709a
@@ -32,43 +38,23 @@ top-bar .top-bar-text
 /* Navbar */
 /* Navbar / Tabs overrides */
 .navbar-default
-  background-color: $primaryColor
-  border: none
-
-.navbar
-  border-radius: 0
-
-.navbar-default .navbar-collapse, .navbar-default .navbar-form
+  background-color: $tertiaryColor
   border: none
 
 .nav-tabs
-  border: none
   li
     margin-bottom: 0
 
 .navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover
   color: $textColorMenu
-  background: $primaryColor
+  background: $tertiaryColor
   font-weight: bold
-  border: none
-  border-radius: 0
-  cursor: pointer
-  outline: 0
-
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
-    border: 0px
 
 .navbar-default .navbar-nav>li>a.disabled, .navbar-default .navbar-nav> li>a.disabled:focus, .navbar-default .navbar-nav>li>a.disabled:hover
   color: $secondaryColor
-  font-weight: normal
-  background-color: transparent
-  cursor: not-allowed
-  pointer-events: none
 
 .navbar-default .navbar-nav > li > a
   color: $textColorMenu
-  border: none
-  border-radius: 0
 
 .navbar-default .navbar-nav >li:first-child > a
   padding-left: 0
@@ -97,6 +83,7 @@ top-bar .top-bar-text
 .nav>li>a:first-child 
   /*margin-left: -25px*/
 
+/* Course headers */
 
 .header-item, .course-item
   @include rowMachine(5,1%)
@@ -104,3 +91,19 @@ top-bar .top-bar-text
   float: left
 
 
+.courseselection.courseselection-header
+  background: $tertiaryColor
+  border: none
+  color: $textColorMenu
+  font-weight: normal
+  border-radius: 0px
+  &:hover
+    border: none
+    border-color: transparent
+
+
+/* Sidebar container */
+.sidebar-container
+  background: #fff
+  border: 1px solid
+  border-color: $primaryColor
