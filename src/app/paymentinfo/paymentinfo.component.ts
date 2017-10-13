@@ -1,127 +1,105 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Order } from '../bll/order';
 import { Country } from '../bll/country';
-import { Student } from '../bll/student';
 import { Course } from '../bll/course';
 import { CountryService } from '../services/country.service';
 import { GlobalFunctionsService } from '../services/global-functions.service';
-import { EnrolService } from '../services/enrol.service';
+import { Router } from '@angular/router';
+import { PostalCodeService } from '../services/postalcode.service';
+import { CanComponentDeactivate } from '../validation.guard';
 
 @Component({
-    moduleId: module.id,
-    selector: 'fo-paymentinfo',
-    templateUrl: './paymentinfo.component.html',
-    providers: [CountryService, EnrolService]
+  moduleId: module.id,
+  selector: 'fo-paymentinfo',
+  templateUrl: './paymentinfo.component.html',
+  providers: [CountryService, PostalCodeService]
 })
 
-export class PaymentinfoComponent implements OnInit, OnDestroy {
+export class PaymentinfoComponent implements OnInit, CanComponentDeactivate {
 
-    subscription: Subscription;
-    subscriptionCourse: Subscription;
-    order: Order;
-    alternativeBillingAddress: boolean;
-    countries: Country[];
-    conditionsAgreed: boolean;
-    course: Course;
+  order: Order;
+  countries: Country[];
+  course: Course;
+  formDeactivationCheck = false;
 
-    constructor(
-        private countryService: CountryService,
-        private globalFunctionsService: GlobalFunctionsService,
-        private enrolService: EnrolService
-    ) {
-        this.subscription = this.globalFunctionsService.orderUpdated().subscribe(order => this.order = order);
-        this.subscriptionCourse = this.globalFunctionsService.selectedCourseUpdated().subscribe(course => this.course = course);
+  @ViewChild('contactForm') form;
+
+  constructor(private countryService: CountryService,
+              private globalFunctionsService: GlobalFunctionsService,
+              private postalCodeService: PostalCodeService,
+              private router: Router) {
+    this.globalFunctionsService.showBasket(true);
+    this.globalFunctionsService.showTabs(true);
+  }
+
+  getCountries(): void {
+    this.countryService.getCountries().then(countries => this.countries = countries);
+  }
+
+  saveInfo(isValid: boolean): void {
+    if (isValid) {
+      // Show Summary
+      this.globalFunctionsService.enableTabs(4);
+      // Redirect
+      // TODO: Animate
+      window.scrollTo(0, 0);
+      this.router.navigate(['confirm'], {queryParamsHandling: 'merge'});
+    }
+  }
+
+  previousTab(): void {
+    // Redirect
+    // TODO: Animate
+    window.scrollTo(0, 0);
+    this.router.navigate(['students'], {queryParamsHandling: 'merge'});
+  }
+
+  ngOnInit(): void {
+    this.getCountries();
+    this.order = this.globalFunctionsService.getOrder();
+    this.course = this.globalFunctionsService.getSelectedCourse();
+  }
+
+  getAddress(): void {
+    this.postalCodeService.getAddress(this.order.InvoicePerson.PostalCode, this.order.InvoicePerson.AddressNumber)
+      .then(address => {
+        this.order.InvoicePerson.Address = address.Street;
+        this.order.InvoicePerson.City = address.City;
+      })
+      .catch(() => {
+        // Ignore Errors.
+      });
+  }
+
+  createFullName(gender: string, initials: string, middleName: string, surname: string, includeTav: boolean): string {
+    let fullName = includeTav ? 'T.a.v. ' : '';
+
+    if (gender) {
+      if (gender === 'M') {
+        fullName += includeTav ? 'de heer ' : 'De heer ';
+      } else {
+        fullName += includeTav ? 'mevrouw ' : 'Mevrouw ';
+      }
     }
 
-    getCountries(): void {
-        this.countryService.getCountries().then(countries => this.countries = countries);
+    if (initials) {
+      fullName += initials + ' ';
     }
 
-    saveInfo(isValid: boolean): void {
-        if (isValid) {
-            try {
-
-                // Create Correct Order-Message
-                if (!this.order.Company.Name) {
-                    // Clear Company
-                    this.order.Company = null;
-                }
-                if (!this.order.InvoiceCompany.Name) {
-                    // Clear Invoice Company
-                    this.order.InvoiceCompany = null;
-                } else {
-                    // Copy Address to Invoice Company
-                    this.order.InvoiceCompany.Address = this.order.InvoicePerson.Address;
-                    this.order.InvoiceCompany.AddressNumber = this.order.InvoicePerson.AddressNumber;
-                    this.order.InvoiceCompany.PostalCode = this.order.InvoicePerson.PostalCode;
-                    this.order.InvoiceCompany.City = this.order.InvoicePerson.City;
-                    this.order.InvoiceCompany.CountryId = this.order.InvoicePerson.CountryId;
-                }
-                if (!this.order.InvoicePerson.Surname) {
-                    // Clear Invoice Person
-                    this.order.InvoicePerson = null;
-                }
-                if (this.order.FirstStudentIsContact) {
-                    // Create Student from Contact
-                    const student = new Student();
-                    student.FirstName = this.order.ContactPerson.FirstName;
-                    student.Initials = this.order.ContactPerson.Initials;
-                    student.Surname = this.order.ContactPerson.Surname;
-                    student.MiddleName = this.order.ContactPerson.MiddleName;
-                    student.Gender = this.order.ContactPerson.Gender;
-                    student.Email = this.order.ContactPerson.Email;
-                    student.Phone = this.order.ContactPerson.Phone;
-                    student.Address = this.order.ContactPerson.Address;
-                    student.AddressNumber = this.order.ContactPerson.AddressNumber;
-                    student.PostalCode = this.order.ContactPerson.PostalCode;
-                    student.City = this.order.ContactPerson.City;
-                    student.CountryId = this.order.ContactPerson.CountryId;
-
-                    // Add Contact to Students Array
-                    if (!this.order.Students) {
-                        this.order.Students = [];
-                    }
-                    this.order.Students.splice(0, 0, student);
-                }
-
-                // Set Course for Students
-                this.order.Students.forEach(student => {
-                    student.CourseId = this.course.Id;
-                });
-
-                // Save Order
-                this.enrolService.create(this.order)
-                    .then(response => {
-                        this.globalFunctionsService.updateOrder(this.order);
-
-                        // Show Summary
-                        this.globalFunctionsService.enableTabs(4);
-                        this.globalFunctionsService.activateTab('signupConfirmed');
-                    })
-                    .catch(response => {
-                        this.globalFunctionsService.enableTabs(4);
-                        this.globalFunctionsService.activateTab('signupFailed');
-                    });
-            } catch (error) {
-                this.globalFunctionsService.enableTabs(4);
-                this.globalFunctionsService.activateTab('signupFailed');
-            }
-        }
-    }
-    
-    previousTab(): void {
-        this.globalFunctionsService.activateTab('contactInfo');
-    }
-    
-    ngOnInit(): void {
-        this.getCountries();
+    if (middleName) {
+      fullName += middleName + ' ';
     }
 
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
-        this.subscriptionCourse.unsubscribe();
+    if (surname) {
+      fullName += surname;
     }
+
+    return fullName;
+  }
+
+  canDeactivate(): boolean {
+    this.formDeactivationCheck = true;
+    return this.form.valid;
+  }
 }

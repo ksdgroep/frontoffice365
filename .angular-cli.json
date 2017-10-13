@@ -5,6 +5,7 @@
   },
   "apps": [{
     "root": "src",
+    "genDir": "aot",
     "outDir": "dist",
     "assets": [
       "assets",

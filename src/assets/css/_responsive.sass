@@ -7,7 +7,13 @@ $screen-md: 992px
 //large desktop
 $screen-lg: 1200px
 
-@media(min-width: 0px)
+$primaryColor: #C4002E
+$secondaryColor: #D75473
+$tertiaryColor: #FFE4E4
+$textColorMenu: #fff
+$textColorBody: #000
+
+@media screen and (min-width: 0px)
   body
     .form-group label
       margin-bottom: 10px
@@ -32,7 +38,6 @@ $screen-lg: 1200px
     margin-bottom: 15px
 
 @media (min-width: $screen-sm)
-
   .form-horizontal .form-group
     margin-bottom: 15px
 
@@ -43,6 +48,165 @@ $screen-lg: 1200px
     .margin-bottom-15
       margin-bottom: 0px
 
+
 @media (min-width: $screen-md)
   body
     //background: purple !important
+
+@media (min-width: $screen-xs)
+  .hide-basket-xs
+    display: block
+
+
+@media (max-width: $screen-xs)
+  .course-selector .courseselection-item > .course-item
+    float: left
+    display: block
+  .hide-basket-xs
+    display: none
+
+@media (min-width: $screen-sm)
+  .hide-sm-down
+    display: block
+
+  .show-xs
+    display: none 
+
+@media (min-width: 0) and (max-width: $screen-sm)
+  .hide-xs-down
+    display: none
+
+  .hide-sm-down
+    display: none
+
+  .course-item-mobile
+    display: block 
+    margin-bottom: 10px
+
+  .courseselection-container-mobile
+    border: 1px solid #979797
+    padding 5px
+    margin-bottom: 10px
+    border-radius: 5px
+    &:hover
+      border-color: #565656
+      
+  .clickDisabled
+    cursor: not-allowed
+    pointer-events: none
+
+  .courseselection-container-mobile.active
+    background: $tertiaryColor
+    &:hover
+      border-color: #979797
+    .course-content-mobile
+      border-top-color: #979797;
+    .courseselection-content-mobile > .btn
+      border-top-color: $primaryColor
+      background: $primaryColor
+      border-radius: 0 0 3px 3px
+
+  .courseselection-container-mobile.active > .courseselection-content-mobile > .btn
+    color: #fff
+
+  .courseselection-container-mobile .courseselection-header
+    padding: 15px
+
+  .course-content-mobile
+    padding: 15px
+    border-top: 1px solid #eee
+    background: #fff
+  
+  a:hover
+    text-decoration: none
+
+  .course-item-mobile-header
+    color: #000
+    display: block
+    position: relative
+    &:hover
+      text-decoration: none
+
+  .course-item-mobile-header:hover
+    text-decoration: none
+
+  .courseselection-content-mobile > .btn
+    border-top: 1px solid #eee
+    border-radius: 0
+
+  .course-item-mobile-header.isFull 
+    border-color: #ccc
+    color: #ccc
+    &:hover
+      border-color: #ccc
+      color: #ccc
+  .course-item-mobile-header.isFull:after
+    color: #ccc
+
+  .nav>li>a
+    padding: 15px 10px 
+@media (min-width: $screen-md)
+  
+  .sidebar-container > ul > li > span.di-block
+    display: inline
+
+@media (max-width: $screen-md)
+  .navbar-header.show-title-mobile
+    display: block !important
+    width: 100%
+    text-align: center
+    padding-top: 10px
+    h3
+      color: $tertiaryColor
+
+  .sidebar-container > ul > li > span.di-block 
+    display: block
+
+  .mobile-date
+    font-size: 12px
+
+  .course-item-mobile-header
+  .di-block
+    margin-bottom: 5px
+  .di-block > span
+    padding-right: 10px
+  .mobile-region
+    margin-left: 77px
+
+  .courseselection-container-mobile .courseselection-header
+    position: relative
+
+  .courseselection-container-mobile .courseselection-header .course-item-mobile-header:after
+    content: '\f0d7'
+    position: absolute
+    top: 0px
+    right: 20px
+    font-family: 'FontAwesome'
+    font-size: 18px
+    color: #000
+
+  .courseselection-container-mobile.active .courseselection-header .course-item-mobile-header:after
+    content: '\f0da'
+
+  .course-item-mobile-header.isFull 
+    border-color: #ccc
+    color: #ccc
+    &:hover
+      border-color: #ccc !important
+      color: #ccc
+    &:after
+      color: #D75473 !important
+      content: 'Vol' !important
+      font-family: 'Lato', Segoe UI, Helvetica, sans-serif !important
+      font-size: 14px !important
+
+  .course-item-mobile-header.isFull:after
+    color: #ccc
+
+@media (min-width: $screen-sm) and (max-width: $screen-md)
+  body .course-selector.isFull:after
+    right: 5px
+
+  #hide-sm-down
+    display:none
+  
