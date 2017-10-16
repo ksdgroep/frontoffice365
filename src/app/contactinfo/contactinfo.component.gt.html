@@ -168,7 +168,7 @@
     <hr class="divider divider-colored" />
 
     <h2>Deelnemers</h2>
-
+    <!-- Deze helemaal hiden als er geen error is (vanwege whitespace) -->
     <div class="form-group" [appValidationError]="!order.FirstStudentIsContact && !order.MultipleStudents && (contactForm.submitted || formDeactivationCheck)">
         <label class="col-xs-12 col-sm-3 control-label"></label>
         <div class="col-xs-12 col-sm-6">
