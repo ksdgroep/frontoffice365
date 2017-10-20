@@ -46,26 +46,16 @@
                     <span class="course-item">{{course.Date | date: 'dd-MM-yyyy'}}</span>
                     <span class="course-item">{{course.Name}}</span>
                     <span class="course-item">{{course.Region}}</span>
-                    <span class="course-item">{{course.DurationInfo}}5 Lesdagen</span>
+                    <span class="course-item">{{course.CourseDays.length | pluralizeText : 'Lesdag' : 'Lesdagen'}}</span>
                     <span class="course-item">{{course.Price | currencyFormat}}</span>
                 </div>
                 <div class="course-days-content clearfix">
                     <h3>Planning</h3>
                     <ul class="list-unstyled">
-                        <li>
-                            <span class="course-days-list-item list-days">Maandag</span>
-                            <span class="course-days-list-item list-date">01-01-2018</span>
-                            <span class="course-days-list-item list-time">12:00 - 15:00</span>
-                        </li>
-                        <li>
-                            <span class="course-days-list-item list-days">Maandag</span>
-                            <span class="course-days-list-item list-date">01-01-2018</span>
-                            <span class="course-days-list-item list-time">12:00 - 15:00</span>
-                        </li>
-                        <li>
-                            <span class="course-days-list-item list-days">Maandag</span>
-                            <span class="course-days-list-item list-date">01-01-2018</span>
-                            <span class="course-days-list-item list-time">12:00 - 15:00</span>
+                        <li *ngFor="let courseDay of course.CourseDays">
+                            <span class="course-days-list-item list-days">{{courseDay.Date | dutchDateFormat : 'true'}}</span>
+                            <span class="course-days-list-item list-date">{{courseDay.Date | date: 'dd-MM-yyyy'}}</span>
+                            <span class="course-days-list-item list-time">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span>
                         </li>
                     </ul>
                 </div>
