@@ -10,9 +10,6 @@
         <li class="sidebar-item-title">Locatie</li>
         <li>{{selectedCourse.Region}}</li>
         <br/>
-        <li class="sidebar-item-title">Cursusduur</li>
-        <li>{{selectedCourse.DurationInfo}}</li>
-        <br/>
         <li class="sidebar-item-title">Planning</li>
         <li *ngFor="let courseDay of selectedCourse.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
         <br/>
