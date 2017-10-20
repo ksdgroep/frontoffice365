@@ -197,7 +197,7 @@ export class CourseselectionComponent implements OnInit {
       this.globalFunctionsService.enableTabs(2);
     }
 
-    if (this.selectedCourse.IsFull) {
+    if (this.selectedCourse.IsFull && environment.clientCode !== 'gt') {
       // Block Enrolment
       return;
     }
