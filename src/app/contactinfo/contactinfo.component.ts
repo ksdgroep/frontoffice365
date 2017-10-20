@@ -19,12 +19,12 @@ export class ClientCheck {
 }
 
 @Component({
-    moduleId: module.id,
-    selector: 'fo-contactinfo',
-    templateUrl: ClientCheck.ClientCode === 'gt'
+  moduleId: module.id,
+  selector: 'fo-contactinfo',
+  templateUrl: ClientCheck.ClientCode === 'gt'
     ? './contactinfo.component.gt.html'
     : './contactinfo.component.html',
-    providers: [CountryService, PostalCodeService]
+  providers: [CountryService, PostalCodeService]
 })
 
 export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
@@ -66,7 +66,7 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
   }
 
   addStudent(): void {
-    if ((this.seatsAvailable - (this.order.Students.length + (this.order.FirstStudentIsContact ? 1 : 0))) > 0) {
+    if ((this.seatsAvailable - (this.order.Students.length + (this.order.FirstStudentIsContact ? 1 : 0))) > 0 && environment.clientCode !== 'gt') {
       const student = new Student();
       student.CountryId = 'NL';
       this.order.Students.push(student);
@@ -90,7 +90,7 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
       // Redirect
       // TODO: Animate
       window.scrollTo(0, 0);
-      this.router.navigate(['payment'], { queryParamsHandling: 'merge' });
+      this.router.navigate(['payment'], {queryParamsHandling: 'merge'});
     }
   }
 
@@ -98,7 +98,7 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
     // Redirect
     // TODO: Animate
     window.scrollTo(0, 0);
-    this.router.navigate(['courses'], { queryParamsHandling: 'merge' });
+    this.router.navigate(['courses'], {queryParamsHandling: 'merge'});
   }
 
   ngOnInit(): void {
