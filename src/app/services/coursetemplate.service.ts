@@ -5,11 +5,12 @@ import 'rxjs/add/operator/toPromise';
 
 import { CourseTemplate } from '../bll/coursetemplate';
 import {AppConfig} from '../app.config';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CourseTemplateService {
 
-  private courseTemplateApiUrl = this.config.getConfig('apiUrl') + '/v1/CourseTemplates';
+  private courseTemplateApiUrl = this.config.getConfig('apiUrl') + '/v1' + (environment.usePortals ? '/Portals/' + this.config.getConfig('portalId') : '') + '/CourseTemplates';
   private headers = new Headers(
     {
       'Content-Type': 'application/json',

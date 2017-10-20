@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  clientCode: 'gt'
+  clientCode: 'gt',
+  usePortals: true
 };
