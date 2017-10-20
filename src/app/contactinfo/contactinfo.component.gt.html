@@ -230,19 +230,19 @@
                 <label *ngIf="studentGender.errors && (studentGender.dirty || studentGender.touched || contactForm.submitted)" class="control-label">Gelieve een aanhef te selecteren.</label>
             </div>
         </div>
-        <div class="form-group" [appValidationError]="studentInitials.errors && (studentInitials.dirty || studentInitials.touched || contactForm.submitted)">
+        <div class="form-group">
             <label for="initialsParticipant" class="col-xs-12 col-sm-3 control-label">Voorletters</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <input type="text" class="form-control" id="initialsParticipant" name="initials_{{index}}" [(ngModel)]="s.Initials" required #studentInitials="ngModel" UpperCaseText>
-                <span *ngIf="studentInitials.errors && (studentInitials.dirty || studentInitials.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
-                <label *ngIf="studentInitials.errors && (studentInitials.dirty || studentInitials.touched || contactForm.submitted)" class="control-label">Voorletters zijn verplicht.</label>
+                <input type="text" class="form-control" id="initialsParticipant" name="initials_{{index}}" [(ngModel)]="s.Initials" #studentInitials="ngModel" UpperCaseText>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" [appValidationError]="studentFirstName.errors && (studentFirstName.dirty || studentFirstName.touched || contactForm.submitted)">
             <label for="firstNameParticipant" class="col-xs-12 col-sm-3 control-label optional-label">Voornaam *</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <input type="text" class="form-control" id="firstNameParticipant" name="firstName_{{index}}" [(ngModel)]="s.FirstName">
+                <input type="text" class="form-control" id="firstNameParticipant" name="firstName_{{index}}" [(ngModel)]="s.FirstName" #studentFirstName="ngModel" required>
+                <span *ngIf="studentFirstName.errors && (studentFirstName.dirty || studentFirstName.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <label *ngIf="studentFirstName.errors && (studentFirstName.dirty || studentFirstName.touched || contactForm.submitted)" class="control-label">Voornaam is verplicht.</label>
             </div>
         </div>
 
@@ -273,41 +273,48 @@
             </div>
         </div>
 
-        <div class="form-group" [appValidationError]="studentLastName.errors && (studentLastName.dirty || studentLastName.touched || contactForm.submitted)">
+        <div class="form-group">
             <label for="jobTitleParticipant" class="col-xs-12 col-sm-3 control-label">Functie</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <input type="text" class="form-control" id="jobTitleParticipant" name="jobTitleParticipant_{{index}}" [(ngModel)]="s.Surname" required #studentLastName="ngModel">
-                <span *ngIf="jobTitleParticipant.errors && (jobTitleParticipant.dirty || jobTitleParticipant.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
-
+                <input type="text" class="form-control" id="jobTitleParticipant" name="jobTitleParticipant_{{index}}" [(ngModel)]="s.Function" #studentFunction="ngModel">
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" [appValidationError]="(studentPostalCode.errors && (studentPostalCode.dirty || studentPostalCode.touched || contactForm.submitted))
+                                                        || (studentNumber.errors && (studentNumber.dirty || studentNumber.touched || contactForm.submitted))">
             <label for="privatePostalcodeParticipant" class="col-xs-12 col-sm-3 control-label optional-label">Postcode *</label>
             <div class="col-md-6 col-sm-8">
                 <div class="form-group row">
                     <div class="col-sm-5 col-xs-12 margin-bottom-15">
-                        <input id="privatePostalcodeParticipant" type="text" class="form-control" name="postalCode_{{index}}" [(ngModel)]="s.PostalCode" PostalCodeFormat (blur)="getStudentAddress(s)">
+                        <input id="privatePostalcodeParticipant" type="text" class="form-control" name="postalCode_{{index}}" [(ngModel)]="s.PostalCode" PostalCodeFormat (blur)="getStudentAddress(s)" required #studentPostalCode="ngModel">
+                        <span *ngIf="studentPostalCode.errors && (studentPostalCode.dirty || studentPostalCode.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <label *ngIf="studentPostalCode.errors && (studentPostalCode.dirty || studentPostalCode.touched || contactForm.submitted)" class="control-label">Postcode is verplicht.</label>
                     </div>
                     <label for="privateNumberParticipant" class="col-xs-12 col-sm-3 control-label optional-label margin-bottom-15">Nummer</label>
                     <div class="col-sm-4 col-xs-12">
-                        <input id="privateNumberParticipant" type="text" class="form-control" name="addressNumber_{{index}}" [(ngModel)]="s.AddressNumber" (blur)="getStudentAddress(s)">
+                        <input id="privateNumberParticipant" type="text" class="form-control" name="addressNumber_{{index}}" [(ngModel)]="s.AddressNumber" (blur)="getStudentAddress(s)" required #studentNumber="ngModel">
+                        <span *ngIf="studentNumber.errors && (studentNumber.dirty || studentNumber.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        <label *ngIf="studentNumber.errors && (studentNumber.dirty || studentNumber.touched || contactForm.submitted)" class="control-label">Nummer is verplicht.</label>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" [appValidationError]="studentStreet.errors && (studentStreet.dirty || studentStreet.touched || contactForm.submitted)">
             <label for="privateAddressParticipant" class="col-xs-12 col-sm-3 control-label optional-label">Straat *</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <input type="text" class="form-control" id="privateAddressParticipant" name="address_{{index}}" [(ngModel)]="s.Address">
+                <input type="text" class="form-control" id="privateAddressParticipant" name="address_{{index}}" [(ngModel)]="s.Address" required #studentStreet="ngModel">
+                <span *ngIf="studentStreet.errors && (studentStreet.dirty || studentStreet.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <label *ngIf="studentStreet.errors && (studentStreet.dirty || studentStreet.touched || contactForm.submitted)" class="control-label">Straat is verplicht.</label>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" [appValidationError]="studentPlace.errors && (studentPlace.dirty || studentPlace.touched || contactForm.submitted)">
             <label for="privatePlaceParticipant" class="col-xs-12 col-sm-3 control-label optional-label">Plaats *</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <input type="text" class="form-control" id="privatePlaceParticipant" name="place_{{index}}" [(ngModel)]="s.City">
+                <input type="text" class="form-control" id="privatePlaceParticipant" name="place_{{index}}" [(ngModel)]="s.City" required #studentPlace="ngModel">
+                <span *ngIf="studentPlace.errors && (studentPlace.dirty || studentPlace.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <label *ngIf="studentPlace.errors && (studentPlace.dirty || studentPlace.touched || contactForm.submitted)" class="control-label">Plaats is verplicht.</label>
             </div>
         </div>
 
@@ -334,15 +341,16 @@
         <div class="form-group" [appValidationError]="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)">
             <label for="phoneNumberParticipant" class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer *</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <input type="text" class="form-control" id="phoneNumberParticipant" name="phone_{{index}}" [(ngModel)]="s.Phone" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}" #phoneNumberParticipant="ngModel">
+                <input type="text" class="form-control" id="phoneNumberParticipant" name="phone_{{index}}" [(ngModel)]="s.Mobile" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}" #phoneNumberParticipant="ngModel" required>
                 <span *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
-                <label *ngIf="phoneNumberParticipant.errors && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
+                <label *ngIf="phoneNumberParticipant.hasError('required') && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)" class="control-label">Telefoonnummer is verplicht.</label>
+                <label *ngIf="phoneNumberParticipant.hasError('pattern') && (phoneNumberParticipant.dirty || phoneNumberParticipant.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
             </div>
         </div>
         <div class="form-group" [appValidationError]="phoneNumberWorkParticipant.errors && (phoneNumberWorkParticipant.dirty || phoneNumberWorkParticipant.touched || contactForm.submitted)">
             <label for="phoneNumberWorkParticipant" class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer werk</label>
             <div class="col-xs-12 col-md-6 col-sm-8">
-                <input type="text" class="form-control" id="phoneNumberWorkParticipant" name="phoneWorkParticipant_{{index}}" [(ngModel)]="s.Phone" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}" #phoneNumberParticipant="ngModel">
+                <input type="text" class="form-control" id="phoneNumberWorkParticipant" name="phoneWorkParticipant_{{index}}" [(ngModel)]="s.PhoneWork" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}" #phoneNumberWorkParticipant="ngModel">
                 <span *ngIf="phoneNumberWorkParticipant.errors && (phoneNumberWorkParticipant.dirty || phoneNumberWorkParticipant.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
                 <label *ngIf="phoneNumberWorkParticipant.errors && (phoneNumberWorkParticipant.dirty || phoneNumberWorkParticipant.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
             </div>

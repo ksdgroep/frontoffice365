@@ -8,10 +8,13 @@ export class Student {
   PlaceOfBirth: string;
   Email: string;
   Phone: string;
+  PhoneWork: string;
+  Mobile: string;
   Address: string;
   AddressNumber: string;
   PostalCode: string;
   City: string;
   CountryId: string;
   CourseId: number;
+  Function: string;
 }
