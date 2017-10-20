@@ -8,7 +8,7 @@
                     {{order.Company.Name}}
                 </li>
                 <li>
-                    {{createFullName(order?.ContactPerson.Gender, order?.ContactPerson.Initials, order?.ContactPerson.MiddleName, order?.ContactPerson.Surname, order?.Company.Name)}}
+                    {{createFullName(order?.ContactPerson.Gender, order?.ContactPerson.FirstName, order?.ContactPerson.MiddleName, order?.ContactPerson.Surname, order?.Company.Name)}}
                 </li>
                 <li>
                     {{order?.ContactPerson.Address}} {{order?.ContactPerson.AddressNumber}}
@@ -191,17 +191,25 @@
         </table>
     </div>
     <!-- BTW nummer verplicht op BE site -->
-    <div class="form-group">
+    <div *ngIf="vatRequired" class="form-group" [appValidationError]="vatNumber.errors && (vatNumber.dirty || vatNumber.touched || contactForm.submitted)">
+        <label for="vatNumber" class="col-xs-12 col-sm-3 control-label optional-label">BTW nummer *</label>
+        <div class="col-xs-12 col-md-6 col-sm-8">
+            <input type="text" class="form-control" id="vatNumberRequired" [(ngModel)]="order.Company.VATNumber" name="vatNumber" #vatNumber="ngModel" required="vatRequired">
+            <span *ngIf="vatNumber.errors && (vatNumber.dirty || vatNumber.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <label *ngIf="vatNumber.errors && (vatNumber.dirty || vatNumber.touched || contactForm.submitted)" class="control-label">BTW nummer is verplicht.</label>
+        </div>
+    </div>
+    <div *ngIf="!vatRequired" class="form-group">
         <label for="vatNumber" class="col-xs-12 col-sm-3 control-label optional-label">BTW nummer</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="vatNumber" [(ngModel)]="order.InvoicePerson.FirstName" name="vatNumber">
+            <input type="text" class="form-control" id="vatNumber" [(ngModel)]="order.Company.VATNumber" name="vatNumber" #vatNumber="ngModel">
         </div>
     </div>
 
     <div class="form-group">
         <label for="invoiceReference" class="col-xs-12 col-sm-3 control-label optional-label">Betalingskenmerk</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="invoiceReference" [(ngModel)]="order.InvoicePerson.FirstName" name="invoiceReference">
+            <input type="text" class="form-control" id="invoiceReference" [(ngModel)]="order.InvoiceReference" name="invoiceReference">
         </div>
     </div>
 
@@ -212,21 +220,6 @@
         </div>
     </div>
 
-    <!--<span class="btn-spacer"></span>-->
-
-    <!--<div class="form-group"-->
-    <!--[appValidationError]="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)">-->
-    <!--<label for="conditions" class="col-xs-12 col-sm-3 control-label">Voorwaarden *</label>-->
-    <!--<div class="col-xs-12 col-md-6 col-sm-8">-->
-    <!--<label class="checkbox-inline">-->
-    <!--<input type="checkbox" id="conditions" [(ngModel)]="conditionsAgreed" name="conditions" required-->
-    <!--#conditions="ngModel"> Ik ga akkoord met de <a href="{{conditionsUrl}}" target="_blank">algemene-->
-    <!--voorwaarden</a>-->
-    <!--</label>-->
-    <!--<label *ngIf="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)"-->
-    <!--class="control-label">U dient akkoord te gaan met de algemene voorwaarden.</label>-->
-    <!--</div>-->
-    <!--</div>-->
     <div class="il-block" *ngIf="!contactForm.valid && (contactForm.submitted || formDeactivationCheck)">
         <span class="pull-right clearfix error-msg">Niet alle velden zijn correct ingevuld</span>
     </div>

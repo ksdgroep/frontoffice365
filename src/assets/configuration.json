@@ -7,5 +7,6 @@
   "contactEmail": "info@ksdgroep.nl",
   "termsUrl": "http://www.vipersoftware.nl/info",
   "errorMessage": "Neem contact op met onze support-afdeling: 06-123456789 of stuur een e-mail naar <a href='mailto:servicedesk@ksdgroep.nl'>servicedesk@ksdgroep.nl</a>",
-  "portalId": 1
+  "portalId": 1,
+  "VATNumberRequired": true
 }

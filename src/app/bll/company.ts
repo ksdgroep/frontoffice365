@@ -5,4 +5,5 @@ export class Company {
     PostalCode: string;
     City: string;
     CountryId: string;
+    VATNumber: string;
 }
