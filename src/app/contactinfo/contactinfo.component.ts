@@ -106,7 +106,7 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
     if (!this.order) {
       // Initial Values
       this.order = new Order();
-      this.order.OrderType = 'Private';
+      this.order.OrderType = environment.clientCode === 'gt' ? 'Company' : 'Private';
       this.order.ContactPerson = new ContactPerson();
       this.order.ContactPerson.CountryId = 'NL';
       this.order.Company = new Company();

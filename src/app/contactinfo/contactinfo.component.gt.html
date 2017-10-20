@@ -21,19 +21,19 @@
             <label *ngIf="optionGender.errors && (optionGender.dirty || optionGender.touched || contactForm.submitted)" class="control-label gender-label">Gelieve een aanhef te selecteren.</label>
         </div>
     </div>
-    <div class="form-group" [appValidationError]="initials.errors && (initials.dirty || initials.touched || contactForm.submitted)">
+    <div class="form-group">
         <label for="initials" class="col-xs-12 col-sm-3 control-label">Voorletters</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="initials" name="initials" [(ngModel)]="order.ContactPerson.Initials" required #initials="ngModel" UpperCaseText>
-            <span *ngIf="initials.errors && (initials.dirty || initials.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
-            <label *ngIf="initials.errors && (initials.dirty || initials.touched || contactForm.submitted)" class="control-label">Voorletters zijn verplicht.</label>
+            <input type="text" class="form-control" id="initials" name="initials" [(ngModel)]="order.ContactPerson.Initials" #initials="ngModel" UpperCaseText>
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [appValidationError]="firstName.errors && (firstName.dirty || firstName.touched || contactForm.submitted)">
         <label for="firstName" class="col-xs-12 col-sm-3 control-label optional-label">Voornaam *</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="order.ContactPerson.FirstName">
+            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="order.ContactPerson.FirstName" required #firstName="ngModel">
+            <span *ngIf="firstName.errors && (firstName.dirty || firstName.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <label *ngIf="firstName.errors && (firstName.dirty || firstName.touched || contactForm.submitted)" class="control-label">Voornaam is verplicht.</label>
         </div>
     </div>
 
@@ -89,48 +89,55 @@
 
     <!-- -->
 
-    <div class="form-group" [appValidationError]="companyName.errors && (companyName.dirty || companyName.touched || contactForm.submitted)">
+    <div class="form-group">
         <label for="jobTitle" class="col-xs-12 col-sm-3 control-label optional-label">Functie</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="jobTitle" name="jobTitle" [(ngModel)]="order.Company.Name" required #companyName="ngModel">
-            <span *ngIf="companyName.errors && (companyName.dirty || companyName.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
-            <label *ngIf="companyName.errors && (companyName.dirty || companyName.touched || contactForm.submitted)" class="control-label">Bedrijfsnaam is verplicht.</label>
+            <input type="text" class="form-control" id="jobTitle" name="jobTitle" [(ngModel)]="order.ContactPerson.Function">
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [appValidationError]="(postalCodeBusiness.errors && (postalCodeBusiness.dirty || postalCodeBusiness.touched || contactForm.submitted))
+                                                    || (addressNumberBusiness.errors && (addressNumberBusiness.dirty || addressNumberBusiness.touched || contactForm.submitted))">
         <label for="postalcodeBusiness" class="col-xs-12 col-sm-3 control-label optional-label">Postcode *</label>
         <div class="col-md-6 col-sm-8">
             <div class="form-group row">
                 <div class="col-sm-5 col-xs-12 margin-bottom-15">
-                    <input id="postalcodeBusiness" type="text" class="form-control" name="postalCode" [(ngModel)]="order.ContactPerson.PostalCode" PostalCodeFormat (blur)="getAddress()">
+                    <input id="postalcodeBusiness" type="text" class="form-control" name="postalCode" [(ngModel)]="order.ContactPerson.PostalCode" PostalCodeFormat (blur)="getAddress()" required #postalCodeBusiness="ngModel">
+                    <span *ngIf="postalCodeBusiness.errors && (postalCodeBusiness.dirty || postalCodeBusiness.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    <label *ngIf="postalCodeBusiness.errors && (postalCodeBusiness.dirty || postalCodeBusiness.touched || contactForm.submitted)" class="control-label">Postcode is verplicht.</label>
                 </div>
                 <label for="numberBusiness" class="col-xs-12 col-sm-3 control-label optional-label margin-bottom-15">Nummer *</label>
                 <div class="col-sm-4 col-xs-12">
-                    <input id="numberBusiness" type="text" class="form-control" name="number" [(ngModel)]="order.ContactPerson.AddressNumber" (blur)="getAddress()">
+                    <input id="numberBusiness" type="text" class="form-control" name="number" [(ngModel)]="order.ContactPerson.AddressNumber" (blur)="getAddress()" required #addressNumberBusiness="ngModel">
+                    <span *ngIf="addressNumberBusiness.errors && (addressNumberBusiness.dirty || addressNumberBusiness.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    <label *ngIf="addressNumberBusiness.errors && (addressNumberBusiness.dirty || addressNumberBusiness.touched || contactForm.submitted)" class="control-label">Nummer is verplicht.</label>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [appValidationError]="addressBusiness.errors && (addressBusiness.dirty || addressBusiness.touched || contactForm.submitted)">
         <label for="addressBusiness" class="col-xs-12 col-sm-3 control-label optional-label">Straat *</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="addressBusiness" name="address" [(ngModel)]="order.ContactPerson.Address" #addressBusiness="ngModel">
+            <input type="text" class="form-control" id="addressBusiness" name="address" [(ngModel)]="order.ContactPerson.Address" required #addressBusiness="ngModel">
+            <span *ngIf="addressBusiness.errors && (addressBusiness.dirty || addressBusiness.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <label *ngIf="addressBusiness.errors && (addressBusiness.dirty || addressBusiness.touched || contactForm.submitted)" class="control-label">Straat is verplicht.</label>
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [appValidationError]="placeBusiness.errors && (placeBusiness.dirty || placeBusiness.touched || contactForm.submitted)">
         <label for="placeBusiness" class="col-xs-12 col-sm-3 control-label optional-label">Plaats *</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="placeBusiness" name="place" [(ngModel)]="order.ContactPerson.City" #placeBusiness="ngModel">
+            <input type="text" class="form-control" id="placeBusiness" name="place" [(ngModel)]="order.ContactPerson.City" required #placeBusiness="ngModel">
+            <span *ngIf="placeBusiness.errors && (placeBusiness.dirty || placeBusiness.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <label *ngIf="placeBusiness.errors && (placeBusiness.dirty || placeBusiness.touched || contactForm.submitted)" class="control-label">Plaats is verplicht.</label>
         </div>
     </div>
 
     <div class="form-group">
         <label for="countryBusiness" class="col-xs-12 col-sm-3 control-label optional-label">Land *</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <select class="form-control" id="countryBusiness" [(ngModel)]="order.ContactPerson.CountryId" name="countrySelection">
+            <select class="form-control" id="countryBusiness" [(ngModel)]="order.ContactPerson.CountryId" name="countrySelection" #country="ngModel">
                 <option *ngFor="let c of countries" [ngValue]="c.Id">{{c.Name}}</option>
             </select>
         </div>
@@ -147,19 +154,20 @@
         </div>
     </div>
 
-    <div class="form-group" [appValidationError]="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)">
+    <div class="form-group" [appValidationError]="phonePrivate.errors && (phonePrivate.dirty || phonePrivate.touched || contactForm.submitted)">
         <label for="phone" class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer *</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="order.ContactPerson.Phone" #phoneBusiness="ngModel" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}">
-            <span *ngIf="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
-            <label *ngIf="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
+            <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="order.ContactPerson.Mobile" required #phonePrivate="ngModel" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}">
+            <span *ngIf="phonePrivate.errors && (phonePrivate.dirty || phonePrivate.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <label *ngIf="phonePrivate.hasError('required') && (phonePrivate.dirty || phonePrivate.touched || contactForm.submitted)" class="control-label">Telefoonnummer is verplicht.</label>
+            <label *ngIf="phonePrivate.hasError('pattern') && (phonePrivate.dirty || phonePrivate.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
         </div>
     </div>
 
     <div *ngIf="order.OrderType == 'Company'" class="form-group" [appValidationError]="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)">
         <label for="phoneBusiness" class="col-xs-12 col-sm-3 control-label optional-label">Telefoonnummer werk</label>
         <div class="col-xs-12 col-md-6 col-sm-8">
-            <input type="text" class="form-control" id="phoneBusiness" name="phone" [(ngModel)]="order.ContactPerson.Phone" #phoneBusiness="ngModel" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}">
+            <input type="text" class="form-control" id="phoneBusiness" name="phone" [(ngModel)]="order.ContactPerson.PhoneWork" #phoneBusiness="ngModel" pattern="([\s]|[+]|[()]|[-]|[0-9]){0,15}">
             <span *ngIf="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)" class="glyphicon glyphicon-remove form-control-feedback"></span>
             <label *ngIf="phoneBusiness.errors && (phoneBusiness.dirty || phoneBusiness.touched || contactForm.submitted)" class="control-label">Geen geldig telefoonnummer opgegeven.</label>
         </div>
