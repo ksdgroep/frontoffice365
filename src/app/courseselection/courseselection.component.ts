@@ -82,8 +82,14 @@ export class CourseselectionComponent implements OnInit {
         this.selectedRegion = regions[regionIndex];
       }
 
-      // Get Courses
-      this.getCourses(this.selectedCourseTemplate ? this.selectedCourseTemplate.Id : null, this.selectedRegion ? this.selectedRegion.Id : null);
+      // GT Function
+      if (environment.clientCode === 'gt' && this.selectedCourse) {
+        this.courses = [this.selectedCourse];
+        this.loadingCourses = false;
+      } else {
+        // Get Courses
+        this.getCourses(this.selectedCourseTemplate ? this.selectedCourseTemplate.Id : null, this.selectedRegion ? this.selectedRegion.Id : null);
+      }
 
       // Set Region
       if (this.selectedCourse) {
@@ -168,7 +174,7 @@ export class CourseselectionComponent implements OnInit {
   }
 
   selectedCourseChanged(course: Course, toggleMobile = false): void {
-    if (course.IsFull) {
+    if (course.IsFull && environment.clientCode !== 'gt') {
       return;
     }
 
@@ -239,4 +245,17 @@ export class CourseselectionComponent implements OnInit {
     // Set AppInitialized
     this.globalFunctionsService.appInitialized = true;
   }
+
+  // GT Functions
+
+  getCourse(course: Course) {
+    if (course.Id !== undefined) {
+      this.selectedCourse = course;
+      this.courses = [course];
+    } else {
+      this.getCourses(this.selectedCourseTemplate ? this.selectedCourseTemplate.Id : null, this.selectedRegion ? this.selectedRegion.Id : null);
+    }
+  }
+
+  // ------------
 }
