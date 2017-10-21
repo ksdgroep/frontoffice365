@@ -3,9 +3,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Country } from '../bll/country';
 import { CountryService } from '../services/country.service';
 import { Order } from '../bll/order';
-import { ContactPerson } from '../bll/contactperson';
 import { Company } from '../bll/company';
-import { Student } from '../bll/student';
+import { Person } from '../bll/person';
 import { GlobalFunctionsService } from '../services/global-functions.service';
 import { Router } from '@angular/router';
 import { CanComponentDeactivate } from '../validation.guard';
@@ -55,7 +54,7 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
 
   toggleStudents(): void {
     if (this.order.MultipleStudents) {
-      const student = new Student();
+      const student = new Person();
       student.CountryId = 'NL';
       this.order.Students = [student];
       this.globalFunctionsService.updateStudentCount(this.order.Students.length + (this.order.FirstStudentIsContact ? 1 : 0));
@@ -67,7 +66,7 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
 
   addStudent(): void {
     if ((this.seatsAvailable - (this.order.Students.length + (this.order.FirstStudentIsContact ? 1 : 0))) > 0 && environment.clientCode !== 'gt') {
-      const student = new Student();
+      const student = new Person();
       student.CountryId = 'NL';
       this.order.Students.push(student);
 
@@ -75,7 +74,7 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
     }
   }
 
-  removeStudent(student: Student): void {
+  removeStudent(student: Person): void {
     this.order.Students = this.order.Students.filter(s => s !== student);
     this.order.MultipleStudents = this.order.Students.length > 0;
 
@@ -107,11 +106,11 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
       // Initial Values
       this.order = new Order();
       this.order.OrderType = environment.clientCode === 'gt' ? 'Company' : 'Private';
-      this.order.ContactPerson = new ContactPerson();
+      this.order.ContactPerson = new Person();
       this.order.ContactPerson.CountryId = 'NL';
       this.order.Company = new Company();
       this.order.Company.CountryId = 'NL';
-      this.order.InvoicePerson = new ContactPerson();
+      this.order.InvoicePerson = new Person();
       this.order.InvoicePerson.CountryId = 'NL';
       this.order.InvoiceCompany = new Company();
       this.order.InvoiceCompany.CountryId = 'NL';
@@ -143,7 +142,7 @@ export class ContactinfoComponent implements OnInit, CanComponentDeactivate {
       });
   }
 
-  getStudentAddress(student: Student): void {
+  getStudentAddress(student: Person): void {
     this.postalCodeService.getAddress(student.PostalCode, student.AddressNumber)
       .then(address => {
         student.Address = address.Street;

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { GlobalFunctionsService } from '../services/global-functions.service';
 import { Order } from '../bll/order';
 import { Course } from '../bll/course';
-import { Student } from '../bll/student';
+import { Person } from '../bll/person';
 import { EnrolService } from '../services/enrol.service';
 import { AppConfig } from '../app.config';
 import { environment } from '../../environments/environment';
@@ -30,7 +30,7 @@ export class ConfirmationComponent implements OnInit {
   course: Course;
   conditionsUrl: string;
   conditionsAgreed: boolean;
-  studentsList: Student[];
+  studentsList: Person[];
   isClickedOnce = false;
 
   constructor(private globalFunctionsService: GlobalFunctionsService,
@@ -52,7 +52,7 @@ export class ConfirmationComponent implements OnInit {
     }
     if (this.order.FirstStudentIsContact) {
       // Create Student from Contact
-      const student = new Student();
+      const student = new Person();
       student.FirstName = this.order.ContactPerson.FirstName;
       student.Initials = this.order.ContactPerson.Initials;
       student.Surname = this.order.ContactPerson.Surname;
@@ -91,7 +91,7 @@ export class ConfirmationComponent implements OnInit {
         // Create Correct Order-Message
         if (this.order.FirstStudentIsContact) {
           // Create Student from Contact
-          const student = new Student();
+          const student = new Person();
           student.FirstName = this.order.ContactPerson.FirstName;
           student.Initials = this.order.ContactPerson.Initials;
           student.Surname = this.order.ContactPerson.Surname;

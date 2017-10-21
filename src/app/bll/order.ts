@@ -1,15 +1,14 @@
-import { ContactPerson } from './contactperson';
 import { Company } from './company';
-import { Student } from './student';
+import { Person } from './person';
 
 export class Order {
   OrderType: string;
   InvoiceReference: string;
-  ContactPerson: ContactPerson;
+  ContactPerson: Person;
   Company: Company;
-  InvoicePerson: ContactPerson;
+  InvoicePerson: Person;
   InvoiceCompany: Company;
-  Students: Student[];
+  Students: Person[];
   Remarks: string;
   FirstStudentIsContact: boolean;
   AlternateInvoiceAddress: boolean;
