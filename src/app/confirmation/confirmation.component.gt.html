@@ -11,28 +11,8 @@
                     <p class="signupConfirmedContent">{{course?.Date | dutchDateFormat }}</p>
                     <p class="signupConfirmedTitle">Locatie</p>
                     <p class="signupConfirmedContent">{{course?.Region}}</p>
-                    <p class="signupConfirmedTitle">Cursusduur</p>
-                    <p class="signupConfirmedContent">{{course?.DurationInfo}}</p>
                     <p class="signupConfirmedTitle">Prijs</p>
-                    <p class="signupConfirmedContent">{{course?.Price}}</p>
-                    <p class="signupConfirmedTitle">Factuuradres</p>
-                    <ul class="signupConfirmedDayList">
-                        <li *ngIf="order?.Company.Name">
-                            {{order.Company.Name}}
-                        </li>
-                        <li>
-                            {{createFullName(order?.ContactPerson.Gender, order?.ContactPerson.Initials, order?.ContactPerson.MiddleName, order?.ContactPerson.Surname, order?.Company.Name)}}
-                        </li>
-                        <li>
-                            {{order?.ContactPerson.Address}} {{order?.ContactPerson.AddressNumber}}
-                        </li>
-                        <li>
-                            {{order?.ContactPerson.PostalCode}} {{order?.ContactPerson.City}}
-                        </li>
-                        <li>
-                            {{order?.ContactPerson.Email}}
-                        </li>
-                    </ul>
+                    <p class="signupConfirmedContent">{{course?.Price | currencyFormat}}</p>
                     <p class="signupConfirmedTitle">Planning</p>
                     <ul class="signupConfirmedDayList">
                         <!-- Dagen toevoegen net als op de 1e pagina -->
@@ -50,7 +30,9 @@
                     <ul class="participants-list" *ngFor="let student of studentsList; let index = index">
                         <!-- Aanhef toevoegen -->
                         <li>Deelnemer {{index + 1}}</li>
-                        <li>{{student.Initials}} {{student.Surname}}</li>
+                        <li>
+                            {{createFullName(student.Gender, student.FirstName, student.MiddleName, student.Surname, false)}}
+                        </li>
                         <li>{{student.Address}} {{student.AddressNumber}}</li>
                         <li>{{student.PostalCode}} {{student.City}}</li>
                         <li>{{student.Email}}</li>
