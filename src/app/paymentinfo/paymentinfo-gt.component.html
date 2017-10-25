@@ -44,10 +44,6 @@
                 <label *ngIf="optionGender.errors && (optionGender.dirty || optionGender.touched || contactForm.submitted)"
                        class="control-label gender-label">Gelieve een aanhef te selecteren.</label>
             </div>
-            <span *ngIf="phoneBillAddress.errors && (phoneBillAddress.dirty || phoneBillAddress.touched || contactForm.submitted)"
-                  class="glyphicon glyphicon-remove form-control-feedback"></span>
-            <label *ngIf="phoneBillAddress.errors && (phoneBillAddress.dirty || phoneBillAddress.touched || contactForm.submitted)"
-                   class="control-label">Geen geldig telefoonnummer opgegeven.</label>
         </div>
         <div class="form-group">
             <label for="initialsBillAddress" class="col-xs-12 col-sm-3 control-label optional-label">Voorletters</label>
