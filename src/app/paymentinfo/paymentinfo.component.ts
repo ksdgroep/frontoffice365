@@ -8,21 +8,12 @@ import { GlobalFunctionsService } from '../services/global-functions.service';
 import { Router } from '@angular/router';
 import { PostalCodeService } from '../services/postalcode.service';
 import { CanComponentDeactivate } from '../validation.guard';
-import { environment } from '../../environments/environment';
 import { AppConfig } from '../app.config';
-
-export class ClientCheck {
-  public static get ClientCode(): string {
-    return environment.clientCode;
-  }
-}
 
 @Component({
   moduleId: module.id,
   selector: 'fo-paymentinfo',
-  templateUrl: ClientCheck.ClientCode === 'gt'
-  ? './paymentinfo.component.gt.html'
-  : './paymentinfo.component.html',
+  templateUrl: './paymentinfo.component.html',
   providers: [CountryService, PostalCodeService]
 })
 
@@ -33,19 +24,13 @@ export class PaymentinfoComponent implements OnInit, CanComponentDeactivate {
   course: Course;
   formDeactivationCheck = false;
 
-  // GT Functions
-
-  vatRequired: boolean;
-
-  // ------------
-
   @ViewChild('contactForm') form;
 
-  constructor(private countryService: CountryService,
-              private globalFunctionsService: GlobalFunctionsService,
-              private postalCodeService: PostalCodeService,
-              private router: Router,
-              private config: AppConfig) {
+  constructor(protected countryService: CountryService,
+              protected globalFunctionsService: GlobalFunctionsService,
+              protected postalCodeService: PostalCodeService,
+              protected router: Router,
+              protected config: AppConfig) {
     this.globalFunctionsService.showBasket(true);
     this.globalFunctionsService.showTabs(true);
   }
@@ -76,13 +61,6 @@ export class PaymentinfoComponent implements OnInit, CanComponentDeactivate {
     this.getCountries();
     this.order = this.globalFunctionsService.getOrder();
     this.course = this.globalFunctionsService.getSelectedCourse();
-
-    // GT Functions
-
-    this.vatRequired = this.config.getConfig('VATNumberRequired');
-
-    // ------------
-
   }
 
   getAddress(): void {

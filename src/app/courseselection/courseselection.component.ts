@@ -10,18 +10,10 @@ import { GlobalFunctionsService } from '../services/global-functions.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
-export class ClientCheck {
-  public static get ClientCode(): string {
-    return environment.clientCode;
-  }
-}
-
 @Component({
   moduleId: module.id,
   selector: 'fo-courseselection',
-  templateUrl: ClientCheck.ClientCode === 'gt'
-                ? './courseselection.component.gt.html'
-                : './courseselection.component.html',
+  templateUrl: './courseselection.component.html',
   providers: [CourseTemplateService, RegionService, CourseService]
 })
 export class CourseselectionComponent implements OnInit {
@@ -245,17 +237,4 @@ export class CourseselectionComponent implements OnInit {
     // Set AppInitialized
     this.globalFunctionsService.appInitialized = true;
   }
-
-  // GT Functions
-
-  getCourse(course: Course) {
-    if (course.Id !== undefined) {
-      this.selectedCourse = course;
-      this.courses = [course];
-    } else {
-      this.getCourses(this.selectedCourseTemplate ? this.selectedCourseTemplate.Id : null, this.selectedRegion ? this.selectedRegion.Id : null);
-    }
-  }
-
-  // ------------
 }

@@ -1,23 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
 import { GlobalFunctionsService } from './services/global-functions.service';
 import { Router, RoutesRecognized } from '@angular/router';
-import { environment } from '../environments/environment';
-
-export class ClientCheck {
-  public static get ClientCode(): string {
-    return environment.clientCode;
-  }
-}
 
 @Component({
   selector: 'app-root',
-  templateUrl: ClientCheck.ClientCode === 'gt'
-  ? './app.component.gt.html'
-  : './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css', '../assets/css/style.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class AppComponent implements OnInit, OnDestroy {
