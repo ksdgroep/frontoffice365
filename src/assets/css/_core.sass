@@ -2,13 +2,13 @@
 @import _variables.sass
 
 @mixin rowMachine($numPerRow, $margin) 
-  width: ((100% - (($numPerRow - 1) * $margin)) / $numPerRow);
+  width: ((100% - (($numPerRow - 1) * $margin)) / $numPerRow)
   &:nth-child(n) 
-    margin-bottom: $margin;
-    margin-right: $margin;
+    margin-bottom: $margin
+    margin-right: $margin
   &:nth-child(#{$numPerRow}n) 
-    margin-right: 0;
-    margin-bottom: 0;
+    margin-right: 0
+    margin-bottom: 0
 
 
 /* Custom font */
@@ -47,7 +47,7 @@ ol, ul
   list-style: none
 
 *:focus 
-  outline:none !important
+  outline: none !important
 
 .no-margin-bottom
     margin: 0
@@ -325,7 +325,7 @@ a.course-selector
     color: #ccc
 
 .isFull .course-full
-  color: #D75473;
+  color: #D75473
 
 .text-right > .btn
   padding: 0
