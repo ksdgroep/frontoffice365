@@ -62,14 +62,14 @@
     cursor: not-allowed;
     pointer-events: none; }
   .courseselection-container-mobile.active {
-    background: #00354B; }
+    background: #FFE4E4; }
     .courseselection-container-mobile.active:hover {
       border-color: #979797; }
     .courseselection-container-mobile.active .course-content-mobile {
       border-top-color: #979797; }
     .courseselection-container-mobile.active .courseselection-content-mobile > .btn {
-      border-top-color: #00709a;
-      background: #00709a;
+      border-top-color: #C4002E;
+      background: #C4002E;
       border-radius: 0 0 3px 3px; }
   .courseselection-container-mobile.active > .courseselection-content-mobile > .btn {
     color: #fff; }
@@ -114,7 +114,7 @@
     text-align: center;
     padding-top: 10px; }
     .navbar-header.show-title-mobile h3 {
-      color: #00354B; }
+      color: #FFE4E4; }
   .sidebar-container > ul > li > span.di-block {
     display: block; }
   .mobile-date {
@@ -234,7 +234,7 @@ tr.disabled {
 /* Bootstrap overrides */
 /* Navbar / Tabs overrides */
 .navbar-default {
-  background-color: #335D6F;
+  background-color: #D75473;
   border: none; }
 
 .navbar {
@@ -248,7 +248,7 @@ tr.disabled {
 
 .navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover {
   color: #fff;
-  background: #00709a;
+  background: #C4002E;
   border: none;
   border-radius: 0;
   cursor: pointer;
@@ -264,7 +264,7 @@ tr.disabled {
   pointer-events: none; }
 
 .navbar-default .navbar-nav > li > a {
-  color: #00354B;
+  color: #FFE4E4;
   border: none;
   border-radius: 0; }
 
@@ -289,7 +289,7 @@ input[type=checkbox], input[type=radio] {
 
 /* Sidebar */
 .sidebar-container {
-  background: #00354B;
+  background: #FFE4E4;
   padding: 20px 25px 20px 25px;
   border-radius: 3px;
   border: 1px solid #ddd; }
@@ -367,11 +367,11 @@ ul li {
 .navbar-default .navbar-toggle {
   border: none;
   border-color: transparent;
-  background: #335D6F; }
+  background: #D75473; }
   .navbar-default .navbar-toggle:focus {
-    background-color: #00709a; }
+    background-color: #C4002E; }
   .navbar-default .navbar-toggle:hover {
-    background-color: #00709a; }
+    background-color: #C4002E; }
 
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #fff; }
@@ -459,7 +459,7 @@ a.course-selector {
   border-color: #eee; }
 
 .courseselection-item.active {
-  background: #00354B;
+  background: #FFE4E4;
   border: 1px solid #979797; }
   .courseselection-item.active:hover {
     border-color: #565656; }
@@ -514,15 +514,15 @@ a.course-selector {
   cursor: not-allowed !important; }
 
 .btn.btn-default {
-  background: #00709a;
+  background: #C4002E;
   padding: 13px 15px;
   color: #fff;
   border-radius: 5px; }
 
 .btn-default:active:hover {
-  background: #00709a;
+  background: #C4002E;
   color: #fff;
-  border: 1px solid #00709a; }
+  border: 1px solid #C4002E; }
 
 .btn[disabled] {
   opacity: 1;
@@ -612,14 +612,14 @@ a.course-selector {
     cursor: not-allowed;
     pointer-events: none; }
   .courseselection-container-mobile.active {
-    background: #00354B; }
+    background: #FFE4E4; }
     .courseselection-container-mobile.active:hover {
       border-color: #979797; }
     .courseselection-container-mobile.active .course-content-mobile {
       border-top-color: #979797; }
     .courseselection-container-mobile.active .courseselection-content-mobile > .btn {
-      border-top-color: #00709a;
-      background: #00709a;
+      border-top-color: #C4002E;
+      background: #C4002E;
       border-radius: 0 0 3px 3px; }
   .courseselection-container-mobile.active > .courseselection-content-mobile > .btn {
     color: #fff; }
@@ -664,7 +664,7 @@ a.course-selector {
     text-align: center;
     padding-top: 10px; }
     .navbar-header.show-title-mobile h3 {
-      color: #00354B; }
+      color: #FFE4E4; }
   .sidebar-container > ul > li > span.di-block {
     display: block; }
   .mobile-date {
@@ -705,6 +705,8 @@ a.course-selector {
   body .course-selector.isFull:after {
     right: 5px; } }
 
+/* Import client specific styling */
+/* Global Training specific */
 body {
   font-family: 'Source Sans Pro', sans-serif !important; }
 
