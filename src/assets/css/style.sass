@@ -1,382 +1,34 @@
-@import responsive
+@import _variables.sass
+@import _core.sass
+@import _responsive.sass
 
-$primaryColor: #C4002E
-$secondaryColor: #D75473
-$tertiaryColor: #FFE4E4
-$textColorMenu: #fff
-$textColorBody: #000
-
-@mixin rowMachine($numPerRow, $margin) 
-  width: ((100% - (($numPerRow - 1) * $margin)) / $numPerRow);
-  &:nth-child(n) 
-    margin-bottom: $margin;
-    margin-right: $margin;
-  &:nth-child(#{$numPerRow}n) 
-    margin-right: 0;
-    margin-bottom: 0;
-
-
-/* Custom font */
-body
-  font-family: 'Lato', Segoe UI, Helvetica, sans-serif
-  font-size: 14px
-
-/* Overrides/reset */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video
-  margin: 0
-  padding: 0
-  border: 0
-  vertical-align: baseline
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section
-  display: block
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700')
 
 body
-  line-height: 1
+  font-family: 'Source Sans Pro', sans-serif !important
 
-ol, ul
-  list-style: none
-
-*:focus 
-  outline:none !important
-
-.no-margin-bottom
-    margin: 0
-
-/* Headings & text */
+/****** Font styles *******/
 h2
-  font-size: 36px
-  margin-bottom: 50px
-
-h4
-  font-size: 24px
-  margin-bottom: 24px
-
-.subtitle
-    margin-top: 5px
-    color: #4A4A4A
+  font-size: 20px
+  margin-bottom: 20px
+  font-weight: bold
 
 .filter-label
-  font-size: 16px
+  font-weight: normal
 
-.optional-label > span, .optional
-  color: #ccc
-
-.payment-option
-  font-weight: 600
-
-.participant-title
-  font-size: 18px
-
-.participant-control
-  a:hover
-    text-decoration: none
-  .delete-participant
-    color: #C4002E
-
-/* Disabled & other utility classes */
-
-tr.disabled
-  color: #ccc
-
-/* Bootstrap overrides */
-/* Navbar / Tabs overrides */
-.navbar-default
-  background-color: $secondaryColor
-  border: none
-
-.navbar
-  border-radius: 0
-
-.navbar-default .navbar-collapse, .navbar-default .navbar-form
-  border: none
-
-.nav-tabs
-  border: none
-
-.navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover
-  color: $textColorMenu
-  background: $primaryColor
-  border: none
-  border-radius: 0
-  cursor: pointer
-  outline: 0
-
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
-    border: 0px
-
-.navbar-default .navbar-nav>li>a.disabled, .navbar-default .navbar-nav> li>a.disabled:focus, .navbar-default .navbar-nav>li>a.disabled:hover
-    color: #ccc
-    background-color: transparent
-    cursor: not-allowed
-    pointer-events: none
-
-.navbar-default .navbar-nav > li > a
-  color: $tertiaryColor
-  border: none
-  border-radius: 0
-
-.navbar-default .navbar-nav > li > a:hover
-  color: $textColorMenu
-
-/* Form */
-.form-horizontal .control-label
-  text-align: left
-  margin-top: 5px
-
-.gender-label
-  display:block
-
-/* Form input */
-input[type=checkbox], input[type=radio]
-  margin: 1px 0 0
-
-.form-group.row
-  margin-bottom: 0
-
-/* Table */
-.table > thead > tr > th
-  border-bottom: 1px
-
-/* Sidebar */
-.sidebar-container
-  background: $tertiaryColor
-  padding: 20px 25px 20px 25px
-  border-radius: 3px
-  border: 1px solid #ddd
-
-.sidebar-item-title
-  font-weight: 700
-
-.sidebar-container > ul > li > span
-  color: #9B9B9B
-
-/* Positioning & sizing */
-.navbar
-  margin: 0 0 30px 0
-
-.center
-  text-align: center
-
-p
-  margin-bottom: 5px
-
-ul li
-  margin-bottom: 5px
-
-.divider
-  margin: 25px 0 25px 0
-
-.optional-label
-  margin-top: -4px
-
-.payment-img
-  max-width: 105px
-  max-height: 35px
-
-#payment-table tbody tr td
-  vertical-align: middle
-
-/* Gives the next sibling of .participant-block a top border, to better separate the different blocks */
-.participant-block + .participant-block
-  border-top: 1px solid #eee
-  padding: 25px 0 25px 0
-
-#signupConfirmed p
-  margin-bottom: 5px
-
-.signupConfirmedTitle
-  font-weight: 600
-  margin-top: 15px
-
-.signupConfirmedDayList li span
-  color: #9B9B9B
-
-.participants-list
-  li:first-child
-    font-weight: 700
-
-.course-selection
-  padding-bottom: 50px
-
-.btn-spacer
-  padding: 25px 0 25px 0
-  display: block
-
-
-.navbar-toggle
-  border: none
-  float: left
-  margin: 0
-  height: 50px
-  width: 50px
-  border-radius: 0
-  z-index: 1
-  -webkit-transition: 0.3s linear
-  /* Safari */
-  transition: rotate 0.3s
-  transition: rotate 0.3s linear
-
-.navbar-default .navbar-toggle
-  border: none
-  border-color: transparent
-  &:focus
-    background-color: $primaryColor
-  &:hover
-    background-color: $primaryColor
-  .icon-bar
-  background: $secondaryColor
-
-.navbar-default .navbar-toggle .icon-bar
-  background-color: #fff
-
-.navbar-toggle .icon-bar
-  width: 28px
-  -webkit-transition: rotate 0.3s linear
-  /* Safari */
-  transition: rotate 0.3s
-  transition: rotate 0.3s linear
-
-.navbar-toggle.collapsed .icon-bar:nth-child(2)
-  transform: rotate(0)translateY(0)translateX(0)
-.navbar-toggle.collapsed .icon-bar:nth-child(3)
-  opacity: 1
-.navbar-toggle.collapsed .icon-bar:nth-child(4)
-  transform: rotate(0) translateY(0) translateX(0)
-.navbar-toggle .icon-bar:nth-child(2)
-  transform: rotate(-45deg) translateY(5px) translateX(-5px)
-.navbar-toggle .icon-bar:nth-child(3)
-  opacity: 0
-.navbar-toggle .icon-bar:nth-child(4)
-  transform: rotate(45deg) translateY(-4px) translateX(-3px)
-
-.dob-width 
-  width: 31.55%
-  margin-right: 5px
-  display: inline
-  &:last-child
-    margin-right: 0
-
-//course selection items
-
-.header-item, .course-item
-  @include rowMachine(6,1%)
-  padding: 5px
-  float: left
- 
-  -ms-word-break: break-all
-  word-break: break-all
-  word-break: break-word
-
-  -webkit-hyphens: auto
-  -moz-hyphens: auto
-  -ms-hyphens: auto
-  hyphens: auto
-
-.course-selector
-  margin-bottom: 15px
-
-a.course-selector
-  color: #000
-
-.course-msg
-  padding: 15px 10px
-  border: 1px solid #eee
-  margin-bottom: 5px
-  border-radius: 5px
-
-.courseselection
-  padding: 5px
-  border: 1px solid #eee
-  margin-bottom: 10px
-  border-radius: 5px
-  cursor: pointer
-  &:hover
-    border-color: #565656
-
-.courseselection-header
-  &:hover
-    border-color: #eee
-
-.courseselection-item.active
-  background: $tertiaryColor
-  border: 1px solid #979797
-  &:hover
-    border-color: #565656
-
-.course-selector
-  display: block
-  position: relative
-
-.course-selector.isFull
-  cursor: not-allowed
-  pointer-events: none
-  .courseselection.courseselection-item
-    border-color: #ccc
-    color: #ccc
-
-.isFull .course-full
-  color: #D75473;
-
-.text-right > .btn
-  padding: 0
-
-#error-title
-  margin-bottom: 5px
-
-#error-page
-  h4
-    margin-bottom: 25px
-  p
-    margin-bottom: 10px
-    line-height: 20px
-
-.hide-basket-error
-  display: none
-
-.form-group label.checkbox-inline, .form-group label.radio-inline  
-  margin-top: 6px
-
-.no-seats-margin
-  margin-top: 11px
-
-.courseselection
-  border-color: #979797
-
-.courseselection.courseselection-header 
-  cursor: default
-  background: #EBEBEB
-  font-weight: 900
-  &:hover
-    border: 1px solid #979797
-
-.disabled
-  cursor: not-allowed !important
+/****** Button styles *******/
 
 .btn.btn-default
-  background: $primaryColor
-  padding: 13px 15px
+  background: $buttonColor
+  padding: 8px 15px
   color: #fff
+  border-color: $buttonColor
   border-radius: 5px
 
-.btn-default:active:hover
-  background: $primaryColor
+.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover
+  background: $buttonColor
   color: #fff
-  border: 1px solid $primaryColor
+  border: 1px solid $buttonColor
 
 .btn[disabled]
   opacity: 1
@@ -389,17 +41,287 @@ a.course-selector
     color: #ccc
     border: 1px solid #ccc
 
-.il-block
+.btn.btn-outline
+  border: 2px solid #00344A
+  padding: 5px 15px
+  font-weight: 800
+  color: #00344A
+
+/******* Topbar ******/
+.top-bar 
+  background-color: #00709a
+  color: #fff
+  line-height: 20px;
+  height: 30px
+  text-align: left
+
+.top-bar .top-bar-text .fa
   display: inline-block
-  width: 100%
-  .error-msg
-    color: #a94442
+  height: 12px
+  font-size: 14px
+  margin-right: 5px
+  vertical-align: middle
+
+.top-bar .top-bar-text 
+  margin: 0
+  padding: 5px
+  color: #fff
+  a
+    color: #fff
+  .fa
+    line-height: 10px
+
+.top-bar .top-bar-text .fa-phone
+  position: relative
+  top: -1px
+  left: 0
+
+.top-bar .top-bar-text .fa-envelope 
+  position: relative
+  top: -2px
+  left: 0
+
+/****** Logo ******/
+.logo-container .logo
+  max-height: 70px
+  width: auto
+  padding: 10px 10px 10px 0
+
+/****** Navbar *******/
+/******** Navbar / Tabs overrides *******/
+.navbar-default
+  background-color: $tertiaryColor
+  border: none
+  min-height: 0 !important
+  height: 30px
+
+.nav-tabs
+  li
+    margin-bottom: 0
+
+.navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover
+  color: $textColorMenu
+  background: $tertiaryColor
+  font-weight: bold
+
+.navbar-default .navbar-nav>li>a.disabled, .navbar-default .navbar-nav> li>a.disabled:focus, .navbar-default .navbar-nav>li>a.disabled:hover
+  color: $secondaryColor
+
+.navbar-default .navbar-nav > li > a
+  color: $textColorMenu
+
+.navbar-default .navbar-nav >li:first-child > a
+  padding-left: 0
+
+@media screen and (max-width: $screen-md)
+  .navbar-default .navbar-nav > li:first-child > a 
+    padding-left: 15px
+
+.navbar-default .navbar-nav > li > a:hover
+  color: $textColorMenu
+
+.navbar-nav>li:after 
+  content: ''
+  position: absolute
+  top: 5px
+  right: 0
+  width: 1px
+  background: #fff
+  height: 70%
+
+.navbar
+  min-height: auto
+
+.navbar-nav>li:last-child:after 
+  content: none
+
+.nav>li>a
+  padding: 5px 25px
+
+/****** Course headers *******/
+
+.header-item, .course-item
+  @include rowMachine(5,1%)
+  padding: 5px
+  float: left
+
+.header-item:nth-child(n)
+  margin-bottom: 0
+
+.header-item 
+  padding: 0px 5px
+  line-height: 17px
+  margin-bottom: 3px
+
+
+.courseselection.courseselection-header
+  background: $tertiaryColor
+  border: none
+  color: $textColorMenu
+  font-weight: normal
+  border-radius: 3px
+  height: 30px
+  &:hover
+    border: none
+    border-color: transparent
+
+/****** Course selection ******/
+
+a.course-selector
+  text-decoration: none
+
+.course-item
+  font-weight: 600
+  font-size: 16px
+  color: $primaryColor
+
+.courseselection.courseselection-item
+  padding-top: 10px
+  padding-bottom: 10px
+  border: 2px solid
+  border-color: $fourthColor
+  &:hover
+    border-color: $primaryColor
+
+
+.courseselection-item.active 
+    background: #fff;
+    border-color: $primaryColor
+
+.course-days-content
+  padding: 5px
+  h3
+    color: $secondaryColor
+    font-size: 18px
+    font-weight: 600
+    margin-bottom: 12px
+
+.course-days-list-item
+  font-size: 15px
+  font-weight: 500
+
+.list-days
+  font-weight: 600
+
+.list-date
+  margin-left: 10px
+
+.list-time
+  margin-left: 10px
+  color: #9B9B9B;
+
+
+/***** Sidebar container ******/
+#basket
+  margin-bottom: 140px
+
+.sidebar-container
+  background: #fff
+  border: 2px solid
+  border-color: $primaryColor
+  border-radius: 10px
+  position:relative
+  h4
+    color: $primaryColor
+    font-size: 24px
     font-weight: bold
-    margin-bottom: 10px
+    margin-bottom: 23px
 
-.navbar-nav 
-    margin: 0px -15px
+.sidebar-item-title
+  font-size: 16px
+
+.testimonial
+  position: relative
+  h3
+    padding: 60px 30px 40px 30px
+    text-align: center
+    margin: 0
+
+#circle
+  position: absolute
+  top: -44px;
+  left: 50%;
+  margin-left: -44px;
+  border-radius: 50%;
+  width: 88px;
+  height: 88px;
+  background: $primaryColor
+  i
+    color: #fff
+    font-size: 30px
+    margin-left: 31px;
+    margin-top: 26px;
+
+/****** contact page ******/
+.page-title
+  font-size: 18px
+  color: $primaryColor
+  margin-bottom: 10px
+
+.subtitle
+  color: $subtitleColor
+  font-size: 14px
+  margin-bottom: 30px
 
 
-.block
+.divider-colored
+  border-color: $primaryColor
+
+
+/****** Mobile styles ******/
+/****** Navbar ******/
+
+/***** course items ******/
+.mobile-item-title
+  font-weight: bold
+  font-size: 16px
+  color: $primaryColor
+
+.course-content-mobile
+  border-top-color: transparent
+
+.courseselection-content-mobile > .btn
+  background: $buttonColor
+  border-color: $buttonColor
+  color: $textColorMenu
+
+.course-item-mobile-header span
+  font-size: 14px
+  font-weight: 600
+
+.courseselection-container-mobile .courseselection-header .course-item-mobile-header:after
+  content: none
+
+/****** contactinfo ******/
+.form-horizontal .form-group.row
+  margin-bottom: 0
+
+/****** Summary ******/
+#privacy
   display: block
+  padding: 10px 5px 10px 0px
+  color: #9B9B9B
+
+.signupConfirmedTitle
+  font-weight: 700
+
+p.bold
+  font-weight: 700
+
+
+/****** Thanks & Error *****/
+#error-title > h1
+  font-size: 18px
+  font-weight: 800
+
+/****** Mobile only ******/
+@media (max-width: $screen-xs)
+  .top-bar
+    height: auto
+  
+  .top-bar-text
+    font-size: 12px
+
+@media (max-width: $screen-md)
+  .top-bar
+    height: auto

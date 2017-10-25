@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -8,7 +8,8 @@ import { Router, RoutesRecognized } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css', '../assets/css/style.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class AppComponent implements OnInit, OnDestroy {

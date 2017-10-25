@@ -8,6 +8,7 @@ import { GlobalFunctionsService } from '../services/global-functions.service';
 import { Router } from '@angular/router';
 import { PostalCodeService } from '../services/postalcode.service';
 import { CanComponentDeactivate } from '../validation.guard';
+import { AppConfig } from '../app.config';
 
 @Component({
   moduleId: module.id,
@@ -25,10 +26,11 @@ export class PaymentinfoComponent implements OnInit, CanComponentDeactivate {
 
   @ViewChild('contactForm') form;
 
-  constructor(private countryService: CountryService,
-              private globalFunctionsService: GlobalFunctionsService,
-              private postalCodeService: PostalCodeService,
-              private router: Router) {
+  constructor(protected countryService: CountryService,
+              protected globalFunctionsService: GlobalFunctionsService,
+              protected postalCodeService: PostalCodeService,
+              protected router: Router,
+              protected config: AppConfig) {
     this.globalFunctionsService.showBasket(true);
     this.globalFunctionsService.showTabs(true);
   }

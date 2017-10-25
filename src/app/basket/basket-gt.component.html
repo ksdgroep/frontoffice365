@@ -1,5 +1,5 @@
-<div class="sidebar-container">
-    <h4>Uw keuze</h4>
+<div id="basket" class="sidebar-container">
+    <h4>Uw keuze - GT</h4>
     <ul *ngIf="selectedCourse">
         <li class="sidebar-item-title">Geselecteerde cursus</li>
         <li>{{selectedCourse.Name}}</li>
@@ -9,9 +9,6 @@
         <br/>
         <li class="sidebar-item-title">Locatie</li>
         <li>{{selectedCourse.Region}}</li>
-        <br/>
-        <li class="sidebar-item-title">Cursusduur</li>
-        <li>{{selectedCourse.DurationInfo}}</li>
         <br/>
         <li class="sidebar-item-title">Planning</li>
         <li *ngFor="let courseDay of selectedCourse.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
@@ -27,4 +24,13 @@
         <br/>
         <li>Selecteer een cursus om verder te gaan</li>
     </ul>
+</div>
+
+<div class="testimonial">
+    <div class="sidebar-container">
+        <div id="circle">
+            <i class="fa fa-thumbs-up"></i>
+        </div>
+        <h3>Al 20 jaar blije klanten</h3>
+    </div>
 </div>
