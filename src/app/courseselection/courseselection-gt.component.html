@@ -1,7 +1,7 @@
 <form class="form-horizontal">
     <h2>Uw selectie:</h2>
     <div class="form-group">
-        <label for="courseSelector" class="col-xs-12 col-sm-5 col-md-3 control-label filter-label">Cursus</label>
+        <label for="courseSelector" class="col-xs-12 col-sm-5 col-md-4 control-label filter-label">Cursus</label>
         <div class="col-xs-12 col-sm-7 col-md-5">
             <select id="courseSelector" class="form-control" [(ngModel)]="selectedCourseTemplate" (ngModelChange)="selectedCourseTemplateChanged($event)" name="CourseSelector">
                     <option value="null" selected>Alle cursussen</option>
@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="regionSelector" class="col-xs-12 col-sm-5 col-md-3 control-label filter-label">Selecteer locatie</label>
+        <label for="regionSelector" class="col-xs-12 col-sm-5 col-md-4 control-label filter-label">Selecteer locatie</label>
         <div class="col-xs-12 col-sm-7 col-md-5">
             <select id="regionSelector" class="form-control" [(ngModel)]="selectedRegion" (ngModelChange)="selectedRegionChanged($event)" name="RegionSelector">
                     <option value="null" selected>Alle locaties</option>
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="regionSelector" class="col-xs-12 col-sm-5 col-md-3 control-label filter-label">Selecteer startdatum</label>
+        <label for="regionSelector" class="col-xs-12 col-sm-5 col-md-4 control-label filter-label">Selecteer startdatum</label>
         <div class="col-xs-12 col-sm-7 col-md-5">
             <select id="dateSelector" class="form-control" [(ngModel)]="selectedCourse" (ngModelChange)="getCourse($event)" name="DateSelector">
                     <option value="null" selected>Alle startdata</option>

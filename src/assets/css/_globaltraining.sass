@@ -9,6 +9,7 @@ $textColorBody: #000
 $buttonColor: #1FCC70
 $subtitleColor: #666670
 
+
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700')
 
 body
@@ -18,7 +19,8 @@ body
 h2
   font-size: 20px
   margin-bottom: 20px
-  font-weight: bold
+  font-weight: normal
+  color: $primaryColor
 
 .filter-label
   font-weight: normal
@@ -58,14 +60,14 @@ h2
 .top-bar 
   background-color: #00709a
   color: #fff
-  line-height: 20px
-  height: 30px
+  line-height: 28px
+  height: 41px
   text-align: left
 
 .top-bar .top-bar-text .fa
   display: inline-block
   height: 12px
-  font-size: 14px
+  font-size: 16px
   margin-right: 5px
   vertical-align: middle
 
@@ -148,7 +150,7 @@ h2
 /****** Course headers *******/
 
 .header-item, .course-item
-  @include rowMachine(5,1%)
+  @include rowMachine(5, 1%)
   padding: 5px
   float: left
 
@@ -185,7 +187,7 @@ a.course-selector
 .courseselection.courseselection-item
   padding-top: 10px
   padding-bottom: 10px
-  border: 2px solid
+  border: 1px solid
   border-color: $fourthColor
   &:hover
     border-color: $primaryColor
@@ -224,42 +226,53 @@ a.course-selector
 
 .sidebar-container
   background: #fff
-  border: 2px solid
-  border-color: $primaryColor
-  border-radius: 10px
   position: relative
+  padding: 15px
+  border: solid 1px $primaryColor
+  border-radius: 10px
   h4
     color: $primaryColor
-    font-size: 24px
-    font-weight: bold
+    font-size: 1.5em
+    font-weight: normal
     margin-bottom: 23px
 
 .sidebar-item-title
   font-size: 16px
+  font-weight: 600
 
 .testimonial
   position: relative
   h3
-    padding: 60px 30px 40px 30px
+    padding: 40px 30px 40px 30px
     text-align: center
     margin: 0
 
-#circle
-  position: absolute
-  top: -44px
-  left: 50%
-  margin-left: -44px
-  border-radius: 50%
-  width: 88px
-  height: 88px
-  background: $primaryColor
-  i
-    color: #fff
-    font-size: 30px
-    margin-left: 31px
-    margin-top: 26px
+  #testimonial-container
+    display: inline-block
+
+
+  .icon-container
+    position: relative
+    margin: -37px auto 0
+    padding: 10px
+    width: 44px
+    height: 44px
+    background-color: #00709a
+    border-radius: 50%
+    i
+      color: #fff
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%,-50%)
+      margin-right: 5px
+      font-size: 1.2em
+
 
 /****** contact page ******/
+.number-pad
+  padding-right: 0
+
 .page-title
   font-size: 18px
   color: $primaryColor
@@ -284,6 +297,12 @@ a.course-selector
   font-size: 16px
   color: $primaryColor
 
+.courseselection-container-mobile
+  border-color: $fourthColor
+  padding: 0
+  &:hover
+    border-color: $primaryColor
+
 .course-content-mobile
   border-top-color: transparent
 
@@ -291,9 +310,10 @@ a.course-selector
   background: $buttonColor
   border-color: $buttonColor
   color: $textColorMenu
+  border-radius: 0px 0px 5px 5px
 
 .course-item-mobile-header span
-  font-size: 14px
+  font-size: 16px !important
   font-weight: 600
 
 .courseselection-container-mobile .courseselection-header .course-item-mobile-header:after
@@ -315,6 +335,8 @@ a.course-selector
 p.bold
   font-weight: 700
 
+.participants-list
+  margin-bottom: 15px
 
 /****** Thanks & Error *****/
 #error-title > h1
