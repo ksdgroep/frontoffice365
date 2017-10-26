@@ -5,12 +5,14 @@ import 'rxjs/add/operator/toPromise';
 
 import { Course } from '../bll/course';
 import { AppConfig } from '../app.config';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CourseService {
 
 
   private courseApiUrl = this.config.getConfig('apiUrl') + '/v1/Courses';
+  private coursePortalsApiUrl = this.config.getConfig('apiUrl') + '/v1' + (environment.usePortals ? '/portals/' + this.config.getConfig('portalId') : '') + '/Courses';
   private courseTemplateApiUrl = this.config.getConfig('apiUrl') + '/v1/CourseTemplates';
   private regionsApiUrl = this.config.getConfig('apiUrl') + '/v1/Regions';
   private headers = new Headers(
@@ -36,7 +38,7 @@ export class CourseService {
   }
 
   public getCourses(): Promise<Course[]> {
-    return this.http.get(this.courseApiUrl, {headers: this.headers})
+    return this.http.get(this.coursePortalsApiUrl, {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Course[])
       .catch(CourseService.handleError);

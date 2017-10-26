@@ -1,0 +1,65 @@
+<h2>Samenvatting</h2>
+<form class="form-horizontal" (ngSubmit)="saveInfo(contactForm.valid)" #contactForm="ngForm">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-9">
+                    <p class="bold">Uw hebt gekozen voor de cursus:</p>
+                    <p class="signupConfirmedTitle">Cursus</p>
+                    <p class="signupConfirmedContent">{{course?.Name}}</p>
+                    <p class="signupConfirmedTitle">Startdatum</p>
+                    <p class="signupConfirmedContent">{{course?.Date | dutchDateFormat }}</p>
+                    <p class="signupConfirmedTitle">Locatie</p>
+                    <p class="signupConfirmedContent">{{course?.Region}}</p>
+                    <p class="signupConfirmedTitle">Prijs</p>
+                    <p class="signupConfirmedContent">{{course?.Price | currencyFormat}}</p>
+                    <p class="signupConfirmedTitle">Planning</p>
+                    <ul class="signupConfirmedDayList">
+                        <!-- Dagen toevoegen net als op de 1e pagina -->
+                        <li *ngFor="let courseDay of course?.CourseDays">{{courseDay.Date | dutchDateFormat }} <span>{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class='form-group'>
+                <div class="col-xs-12 col-sm-9">
+                    <p class="bold">De volgende deelnemers zullen worden ingeschreven:</p>
+                    <br/>
+                    <ul class="participants-list" *ngFor="let student of studentsList; let index = index">
+                        <!-- Aanhef toevoegen -->
+                        <li>Deelnemer {{index + 1}}</li>
+                        <li>
+                            {{createFullName(student.Gender, student.FirstName, student.MiddleName, student.Surname, false)}}
+                        </li>
+                        <li>{{student.Address}} {{student.AddressNumber}}</li>
+                        <li>{{student.PostalCode}} {{student.City}}</li>
+                        <li>{{student.Email}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-xs-12" [appValidationError]="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)">
+            <label for="conditions" class="col-xs-12 control-label">Voorwaarden *</label>
+            <div class="col-xs-12">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="conditions" [(ngModel)]="conditionsAgreed" name="conditions" required
+                           #conditions="ngModel"> Ik ga akkoord met de <a href="{{conditionsUrl}}" target="_blank">algemene
+                    voorwaarden</a>
+                </label>
+                <label *ngIf="conditions.errors && (conditions.dirty || conditions.touched || contactForm.submitted)" class="control-label block">U dient akkoord te gaan met de algemene voorwaarden.</label>
+                <span id="privacy"><i class="fa fa-lock"></i> Uw privacy wordt gerespecteerd</span>
+            </div>
+        </div>
+
+        <div class="il-block">
+            <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect" role="tab">Vorige
+            </button>
+            <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab" [class.disabled]="isClickedOnce">Inschrijven
+            </button>
+        </div>
+    </div>
+</form>
