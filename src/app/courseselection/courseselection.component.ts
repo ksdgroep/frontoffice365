@@ -8,6 +8,7 @@ import { Course } from '../bll/course';
 import { CourseService } from '../services/course.service';
 import { GlobalFunctionsService } from '../services/global-functions.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   moduleId: module.id,
@@ -15,7 +16,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './courseselection.component.html',
   providers: [CourseTemplateService, RegionService, CourseService]
 })
-
 export class CourseselectionComponent implements OnInit {
 
   selectedCourseTemplate: CourseTemplate;
@@ -74,8 +74,14 @@ export class CourseselectionComponent implements OnInit {
         this.selectedRegion = regions[regionIndex];
       }
 
-      // Get Courses
-      this.getCourses(this.selectedCourseTemplate ? this.selectedCourseTemplate.Id : null, this.selectedRegion ? this.selectedRegion.Id : null);
+      // GT Function
+      if (environment.clientCode === 'gt' && this.selectedCourse) {
+        this.courses = [this.selectedCourse];
+        this.loadingCourses = false;
+      } else {
+        // Get Courses
+        this.getCourses(this.selectedCourseTemplate ? this.selectedCourseTemplate.Id : null, this.selectedRegion ? this.selectedRegion.Id : null);
+      }
 
       // Set Region
       if (this.selectedCourse) {
@@ -160,7 +166,7 @@ export class CourseselectionComponent implements OnInit {
   }
 
   selectedCourseChanged(course: Course, toggleMobile = false): void {
-    if (course.IsFull) {
+    if (course.IsFull && environment.clientCode !== 'gt') {
       return;
     }
 
@@ -183,7 +189,7 @@ export class CourseselectionComponent implements OnInit {
       this.globalFunctionsService.enableTabs(2);
     }
 
-    if (this.selectedCourse.IsFull) {
+    if (this.selectedCourse.IsFull && environment.clientCode !== 'gt') {
       // Block Enrolment
       return;
     }

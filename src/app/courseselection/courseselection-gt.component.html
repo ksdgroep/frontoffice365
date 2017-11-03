@@ -1,0 +1,123 @@
+<form class="form-horizontal">
+    <h2>Uw selectie:</h2>
+    <div class="form-group">
+        <label for="courseSelector" class="col-xs-12 col-sm-5 col-md-4 control-label filter-label">Cursus</label>
+        <div class="col-xs-12 col-sm-7 col-md-5">
+            <select id="courseSelector" class="form-control" [(ngModel)]="selectedCourseTemplate" (ngModelChange)="selectedCourseTemplateChanged($event)" name="CourseSelector">
+                    <option value="null" selected>Alle cursussen</option>
+                    <option *ngFor="let ct of courseTemplates" [ngValue]="ct">{{ct.Name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="regionSelector" class="col-xs-12 col-sm-5 col-md-4 control-label filter-label">Selecteer locatie</label>
+        <div class="col-xs-12 col-sm-7 col-md-5">
+            <select id="regionSelector" class="form-control" [(ngModel)]="selectedRegion" (ngModelChange)="selectedRegionChanged($event)" name="RegionSelector">
+                    <option value="null" selected>Alle locaties</option>
+                    <option *ngFor="let r of regions" [ngValue]="r">{{r.Name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="regionSelector" class="col-xs-12 col-sm-5 col-md-4 control-label filter-label">Selecteer startdatum</label>
+        <div class="col-xs-12 col-sm-7 col-md-5">
+            <select id="dateSelector" class="form-control" [(ngModel)]="selectedCourse" (ngModelChange)="getCourse($event)" name="DateSelector">
+                    <option value="null" selected>Alle startdata</option>
+                    <option *ngFor="let c of courses" [ngValue]="c">{{c.Date | dutchDateFormat}}</option>
+            </select>
+        </div>
+    </div>
+</form>
+<hr class="divider" />
+
+<div class="courseselection-container">
+    <!-- show from 768px and up -->
+    <div class="hide-sm-down">
+        <div class="courseselection courseselection-header clearfix">
+            <span class="header-item">Cursus</span>
+            <span class="header-item">Startdatum</span>
+            <span class="header-item">Locatie</span>
+            <span class="header-item">Aantal dagen</span>
+            <span class="header-item">Prijs</span>
+        </div>
+        <a *ngFor="let course of courses" class="course-selector" (click)="selectedCourseChanged(course)">
+            <div class="courseselection courseselection-item clearfix active" [class.active]="course.Id === selectedCourse?.Id">
+                <div class="header-content clearfix">
+                    <span class="course-item">{{course.Date | date: 'dd-MM-yyyy'}}</span>
+                    <span class="course-item">{{course.Name}}</span>
+                    <span class="course-item">{{course.Region}}</span>
+                    <span class="course-item">{{course.CourseDays.length | pluralizeText : 'Lesdag' : 'Lesdagen'}}</span>
+                    <span class="course-item">{{course.Price | currencyFormat}}</span>
+                </div>
+                <div class="course-days-content clearfix">
+                    <h3>Planning</h3>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let courseDay of course.CourseDays">
+                            <span class="course-days-list-item list-days">{{courseDay.Date | dutchDateFormat : 'true'}}</span>
+                            <span class="course-days-list-item list-date">{{courseDay.Date | date: 'dd-MM-yyyy'}}</span>
+                            <span class="course-days-list-item list-time">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+        <div *ngIf="loadingCourses" class="course-msg">
+            <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
+            <span>Cursussen worden geladen...</span>
+        </div>
+        <div *ngIf="!loadingCourses && courses?.length === 0" class="course-msg">
+            <!-- No courses found -->
+            Er kunnen geen cursussen gevonden worden met deze selectie.
+        </div>
+    </div>
+    <div class="show-xs">
+        <!-- clickDisabled class on: courseselection-container-mobile -->
+        <div *ngFor="let course of courses; let i = index" class="courseselection-container-mobile" [class.active]="course.Id === selectedCourse?.Id">
+            <div class="course-selector-mobile">
+                <div class="courseselection-header">
+                    <!-- class isFull -->
+                    <div class="course-item-mobile-header">
+                        <div class="di-block">
+                            <span class="mobile-date">{{course.Date | date: 'dd-MM-yyyy'}}</span>
+                            <span>{{course.Name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="course-collapse" class="courseselection-content-mobile clearfix">
+                <div class="course-content-mobile">
+                    <ul>
+                        <li class="mobile-item-title">Locatie</li>
+                        <li>{{course.Region}}</li>
+                        <br/>
+                        <li class="mobile-item-title">Prijs</li>
+                        <li>{{course.Price | currencyFormat}} <span>excl. BTW</span></li>
+                        <br/>
+                        <li class="mobile-item-title">Planning</li>
+                        <li *ngFor="let courseDay of course.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
+
+                    </ul>
+                </div>
+                <a (click)="nextTab(course)" class="btn btn-block">Volgende</a>
+            </div>
+        </div>
+
+        <div *ngIf="loadingCourses" class="course-msg">
+            <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>
+            <span>Cursussen worden geladen...</span>
+        </div>
+        <div *ngIf="!loadingCourses && courses?.length === 0" class="course-msg">
+            <!-- No courses found -->
+            Er zijn geen cursussen gevonden met deze filters, pas de filters aan en probeer het opnieuw.
+        </div>
+        <!-- Back to course page -->
+        <a class="btn btn-link" href="#">Vorige</a>
+
+    </div>
+</div>
+<span class="btn-spacer clearfix"></span>
+<div class="hide-sm-down">
+    <!-- Back to course page -->
+    <a class="btn btn-link" href="#">Vorige</a>
+    <button class="btn btn-default pull-right " aria-controls="contactInfo" role="tab" [disabled]="!selectedCourse" (click)="nextTab(null)">Volgende</button>
+</div>

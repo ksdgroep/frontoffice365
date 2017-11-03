@@ -5,12 +5,13 @@ import 'rxjs/add/operator/toPromise';
 
 import { Region } from '../bll/region';
 import { AppConfig } from '../app.config';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class RegionService {
 
 
-  private regionApiUrl = this.config.getConfig('apiUrl') + '/v1/Regions';
+  private regionApiUrl = this.config.getConfig('apiUrl') + '/v1' + (environment.usePortals ? '/Portals/' + this.config.getConfig('portalId') : '') + '/Regions';
   private courseTemplateApiUrl = this.config.getConfig('apiUrl') + '/v1/CourseTemplates';
   private headers = new Headers(
     {
