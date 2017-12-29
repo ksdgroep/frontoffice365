@@ -13,6 +13,6 @@ export class Order {
   FirstStudentIsContact: boolean;
   AlternateInvoiceAddress: boolean;
   MultipleStudents: boolean;
-  UserField1: string; 
-  UserField2: string;
+  UserField8: string; 
+  UserField9: string;
 }
