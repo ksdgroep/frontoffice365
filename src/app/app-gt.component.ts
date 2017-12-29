@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app-gt.component.html',
-  styleUrls: ['./app.component.css', '../assets/css/style.css'],
+  styleUrls: ['./app.component.css', '../assets/css/style.css', '../assets/css/globaltraining.css'],
   encapsulation: ViewEncapsulation.None
 })
 
