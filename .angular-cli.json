@@ -26,7 +26,8 @@
     "environments": {
       "dev": "environments/environment.ts",
       "prod": "environments/environment.prod.ts",
-      "gt": "environments/environment.globaltraining.ts"
+      "gt": "environments/environment.globaltraining.ts",
+      "ev": "environments/environment.evean.ts"
     }
   }],
   "e2e": {
