@@ -15,6 +15,7 @@ import { ConfirmationGtComponent } from './confirmation/confirmation-gt.componen
 import { ConfirmationEvComponent } from './confirmation/confirmation-ev.component';
 import { ErrorComponent } from './error/error.component';
 import { ErrorGtComponent } from './error/error-gt.component';
+import { ErrorEvComponent } from './error/error-ev.component';
 import { ThanksComponent } from './thanks/thanks.component';
 import { ThanksGtComponent } from './thanks/thanks-gt.component';
 import { ThanksEvComponent } from './thanks/thanks-ev.component';
@@ -51,7 +52,7 @@ const appEVRoutes: Routes = [
   {path: 'payment', canActivate: [RouteGuard], canDeactivate: [ValidationGuard], component: PaymentinfoEvComponent},
   {path: 'confirm', canActivate: [RouteGuard], component: ConfirmationEvComponent},
   {path: 'thanks', component: ThanksEvComponent},
-  {path: 'error', component: ErrorGtComponent},
+  {path: 'error', component: ErrorEvComponent},
   {path: 'courses', component: CourseselectionEvComponent}
 ];
 

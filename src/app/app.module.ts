@@ -21,6 +21,7 @@ import { PluralizeText } from './helpers/pluralizetext-pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppConfig } from './app.config';
 import { ErrorComponent } from './error/error.component';
+import { ErrorEvComponent } from './error/error-ev.component';
 import { RouteGuard } from './route.guard';
 import { GlobalFunctionsService } from './services/global-functions.service';
 import { ValidationGuard } from './validation.guard';
@@ -67,6 +68,7 @@ export function initConfig(config: AppConfig) {
     PaymentinfoGtComponent,
     ErrorComponent,
     ErrorGtComponent,
+    ErrorEvComponent,
     ThanksComponent,
     ThanksGtComponent,
     ThanksEvComponent,

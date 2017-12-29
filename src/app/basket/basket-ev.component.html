@@ -11,7 +11,7 @@
             <li>{{selectedCourse.Region}}</li>
             <br/>
             <li class="sidebar-item-title">Planning</li>
-            <li *ngFor="let courseDay of selectedCourse.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
+            <li *ngFor="let courseDay of selectedCourse.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block timeRight">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
             <br/>
             <li class="sidebar-item-title">Prijs</li>
             <li>{{selectedCourse.Price * (studentCount == 0 ? 1 : studentCount) | currencyFormat}} <span>excl. BTW</span></li>

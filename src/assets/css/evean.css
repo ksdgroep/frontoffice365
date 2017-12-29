@@ -64,3 +64,53 @@ h2 , h1{
     color: #fff;
     background: #159987;
     font-weight: bold; }
+
+    .bol{
+        position: absolute;
+        z-index: 150;
+        right: 2.9em;
+        top: 1vw;
+        width: 150px;
+        width: 15vw;
+        height: 150px;
+        height: 15vw;
+        max-width: 175px;
+        max-height: 175px;
+    }
+
+    .bol-circle{
+        border-radius: 50%;
+        background: #ffc827;
+        position: absolute;
+        z-index: 150;
+        right: 2.9em;
+        top: 1vw;
+        width: 150px;
+        width: 15vw;
+        height: 150px;
+        height: 15vw;
+        max-width: 175px;
+        max-height: 175px;
+    }
+    
+    .bol-container{
+        height: 250px;
+        right: 0;
+        margin: 0 auto;
+        position: absolute;
+    }
+
+    .titleBox{
+        background:#942a82;
+        padding-top:35px;
+        padding-bottom:35px;
+        padding-left:5vw;
+    }
+
+    .titleBox, .titleBox h1{
+        color:rgba(255,255,255,0.85);
+    }
+
+    .timeRight {
+        float: right;
+    }
