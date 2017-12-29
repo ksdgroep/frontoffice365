@@ -7,6 +7,8 @@ import { Course } from '../bll/course';
 import { Person } from '../bll/person';
 import { EnrolService } from '../services/enrol.service';
 import { AppConfig } from '../app.config';
+import { ColdObservable } from 'rxjs/testing/ColdObservable';
+import { combineAll } from 'rxjs/operator/combineAll';
 
 @Component({
   moduleId: module.id,
@@ -153,6 +155,8 @@ export class ConfirmationComponent implements OnInit {
         }
 
         // Save Order
+        console.log(this.order);
+        console.log(copiedOrder);
         this.enrolService.create(copiedOrder)
           .then(() => {
             this.globalFunctionsService.updateOrder(copiedOrder);

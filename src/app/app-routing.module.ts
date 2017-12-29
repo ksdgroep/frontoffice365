@@ -3,19 +3,27 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CourseselectionComponent } from './courseselection/courseselection.component';
 import { CourseselectionGtComponent } from './courseselection/courseselection-gt.component';
+import { CourseselectionEvComponent} from './courseselection/courseselection-ev.component';
 import { ContactinfoComponent } from './contactinfo/contactinfo.component';
 import { ContactinfoGtComponent } from './contactinfo/contactinfo-gt.component';
+import { ContactinfoEvComponent } from './contactinfo/contactinfo-ev.component';
 import { PaymentinfoComponent } from './paymentinfo/paymentinfo.component';
 import { PaymentinfoGtComponent } from './paymentinfo/paymentinfo-gt.component';
+import { PaymentinfoEvComponent } from './paymentinfo/paymentinfo-ev.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ConfirmationGtComponent } from './confirmation/confirmation-gt.component';
+import { ConfirmationEvComponent } from './confirmation/confirmation-ev.component';
 import { ErrorComponent } from './error/error.component';
 import { ErrorGtComponent } from './error/error-gt.component';
 import { ThanksComponent } from './thanks/thanks.component';
 import { ThanksGtComponent } from './thanks/thanks-gt.component';
+import { ThanksEvComponent } from './thanks/thanks-ev.component';
 import { RouteGuard } from './route.guard';
 import { ValidationGuard } from './validation.guard';
 import { environment } from '../environments/environment';
+
+
+
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'courses', pathMatch: 'full'},
@@ -37,9 +45,19 @@ const appGTRoutes: Routes = [
   {path: 'courses', component: CourseselectionGtComponent}
 ];
 
+const appEVRoutes: Routes = [
+  {path: '', redirectTo: 'courses', pathMatch: 'full'},
+  {path: 'students', canActivate: [RouteGuard], canDeactivate: [ValidationGuard], component: ContactinfoEvComponent},
+  {path: 'payment', canActivate: [RouteGuard], canDeactivate: [ValidationGuard], component: PaymentinfoEvComponent},
+  {path: 'confirm', canActivate: [RouteGuard], component: ConfirmationEvComponent},
+  {path: 'thanks', component: ThanksEvComponent},
+  {path: 'error', component: ErrorGtComponent},
+  {path: 'courses', component: CourseselectionEvComponent}
+];
+
 @NgModule({
   imports: [
-    RouterModule.forRoot(environment.clientCode === 'gt' ? appGTRoutes : appRoutes)
+    RouterModule.forRoot(environment.clientCode === 'gt' ? appGTRoutes : environment.clientCode === 'ev' ? appEVRoutes : appRoutes)
   ],
   exports: [RouterModule]
 })

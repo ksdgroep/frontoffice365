@@ -1,0 +1,66 @@
+.logo {
+    float:right; 
+    width:250px; 
+    height:auto;
+}
+
+p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 14px;
+}
+
+.courseselection.courseselection-header {
+    background: #159987;
+    border: none;
+    color: #fff;
+    font-weight: normal;
+    border-radius: 3px;
+    height: 30px; 
+}
+
+.navbar-default .navbar-nav > li > a.active{ 
+    background: #159987;
+    color: #e1fffa;
+    font-weight: bold;
+    text-shadow: grey 1px;
+}
+
+.navbar-default .navbar-nav > li > a.active:hover{ 
+    background: #159987;
+    color: #e1fffa;
+    font-weight: bold;
+    text-shadow: grey 1px;
+}
+.navbar-default {
+    background: #159987;
+}
+
+.course-item {
+    font-weight: 600;
+    font-size: 16px;
+    color: #159987;
+}
+
+.courseselection.courseselection-item {
+    border-color: #8ec8af;
+}
+.courseselection.courseselection-item:hover {
+    border: 2px solid #77c7a4 ;
+}
+
+.sidebar-container {
+    border: solid 1px #8ec8af;
+}
+
+.sidebar-container h4{
+    color: #159987;
+}
+
+h2 , h1{
+    color: #159987;
+}
+
+.navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover {
+    color: #fff;
+    background: #159987;
+    font-weight: bold; }
