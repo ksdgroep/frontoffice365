@@ -114,3 +114,31 @@ h2 , h1{
     .timeRight {
         float: right;
     }
+
+    .sidebar-container{
+        background: white;
+    }
+
+    .courseselection-item.active{
+        background: #8ec8af45;
+    }
+    .courseselection.courseselection-header:hover {
+        border:none;
+    }
+    
+
+    .btn.btn-default{
+        background: #159987;
+    }
+
+    .btn[disabled] {
+        opacity: 1;
+        background: #fff;
+        color: #ccc;
+        border: 1px solid #ccc;
+    }
+
+    .btn-default:active:hover{
+        background: #15992e;
+        border:none;
+    }
