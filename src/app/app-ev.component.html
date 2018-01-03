@@ -1,0 +1,107 @@
+<div class="logo-container container-fluid">
+    <div class="row">
+        <div class="col-xs-12" style="background-color:#942a82;">
+        <div class="bol-container">
+            <div class="bol-circle" ></div>
+           <div class="bol" ><svg version="1.1" id="Laag_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 170.8 170.8" style="enable-background:new 0 0 170.8 170.8;" xml:space="preserve">
+            <style type="text/css">
+                .st0{fill:none;}
+                .st1{fill:#FFF;}
+            </style>
+            <path class="st0" d="M85.4,170.8c47.2,0,85.4-38.2,85.4-85.4S132.6,0,85.4,0S0,38.2,0,85.4C0,132.5,38.2,170.8,85.4,170.8"></path>
+            <g>
+                <path class="st1" d="M37.7,116.7l3.7-26.2v-0.2l-10.5-13c0.1-6.1,0.6-12.8,1.3-13.3c1-0.8,15.1-4.1,18.2-4.1c0.3,0,0.4,0,0.4,0
+                    c1.2,0.6,8.5,8.5,11.4,15.1c3,6.8,3.8,20,2.9,20.8c-0.9,0.9-5.7,2.9-7.5,3.6l-0.2,0.1l-1.7,22l36,19.3l4-8.1l-31-19l0.3-7.5
+                    l9.9-5.5v-0.2c0-0.3,2.3-26-9-39.2c-0.6-0.7-1.2-1.4-1.9-2.2c-5.5-6.5-9.2-10.7-10.9-10.7l0,0c-3.4,0.3-27.9,7.7-30.4,10.2
+                    C22.1,59.2,20,80.9,20,81.1c0.1,0.7,7.5,7.8,12,12.1l-1.8,10.3c-1.1-0.2-4.9-0.9-11.8-2.8C14,99.6,4.3,97.3,0.9,96.6H0.8
+                    c0.6,4.9,1.7,9.6,3.1,14.2c5.2,0.8,33.1,5.6,33.4,5.7L37.7,116.7z"></path>
+                <path class="st1" d="M150.2,64.3l-9.7-7.2l2.8-17.1l-0.1-0.1c-1-1.1-18.5-16.3-19.6-16.7h-0.2c-1.7,0-25,11-27.6,12.2l-0.2,0.1v0.2
+                    c0,0.3-4.8,26.9,2.6,42.3c2.2,4.6,7.1,7.7,10.6,8c4,0.4,8.3-2.1,9.4-2.7l3.6,2.9l-29.2,36l7.8,6.9l0.2-0.3
+                    c0.1-0.2,12.9-16.1,17.1-21.1c4.2-5.1,16.6-19.6,16.7-19.8l0.2-0.3l-15.5-15.4l-0.3,0.4c0,0-3.4,4.9-7.8,4.9
+                    c-0.7,0-1.4-0.1-2.1-0.4c-4.7-1.8-5.5-8.6-6-18c-0.3-9.2,1.5-15.8,1.8-16.8c6.2-3.2,15.7-7.8,17.1-7.8c1,0.1,6.5,6,10.1,10.2
+                    l-2.3,16.1L148.8,78l19.7-12c-0.9-4-2.1-7.8-3.6-11.6h-0.1C161.6,56.5,151.8,63.2,150.2,64.3z"></path>
+            </g>
+            </svg></div>     
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-xs-12 titleBox">
+        <h1>Cursussen</h1>
+        <em>'Ik wilde altijd al een cursus tekenen en schilderen volgen. Nu heb ik er tijd voor' </em>
+
+    </div>
+</div>
+    </div>
+</div>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- show from 768px and up -->
+        <div *ngIf="showTabs" class="navbar-collapse hide-sm-down">
+            <ul class="nav navbar-nav nav-tabs" role="tablist">
+                <li role="presentation">
+                    <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" queryParamsHandling="merge" (click)="selectTab()">
+                       1. Inschrijven Cursus
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2" role="tab" (click)="selectTab()">
+                        2. Contactgegevens
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3" role="tab" (click)="selectTab()">
+                        3. Betalingsgegevens
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a aria-controls="signupConfirmed" routerLinkActive="active" routerLink="confirm" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 4" role="tab" (click)="selectTab()">
+                        4. Samenvatting
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="showTabs" class="navbar-collapse show-xs">
+            <ul class="nav navbar-nav nav-tabs" role="tablist">
+                <li role="presentation">
+                    <a aria-controls="courseSelect" routerLinkActive="active" routerLink="courses" role="tab" #rla1="routerLinkActive" queryParamsHandling="merge" (click)="selectTab()">{{'1' + (rla1.isActive ? ': Datum &amp; locatie' : '')}}</a>
+                </li>
+                <li role="presentation">
+                    <a aria-controls="contactInfo" routerLinkActive="active" routerLink="students" #rla2="routerLinkActive" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 2" role="tab" (click)="selectTab()">{{'2' + (rla2.isActive ? ': Persoonlijke gegevens' : '')}}</a>
+                </li>
+                <li role="presentation">
+                    <a aria-controls="paymentInfo" routerLinkActive="active" routerLink="payment" #rla3="routerLinkActive" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 3" role="tab" (click)="selectTab()">{{'3' + (rla3.isActive ? ': Betalingsgegevens' : '')}}</a>
+                </li>
+                <li role="presentation">
+                    <a aria-controls="signupConfirmed" routerLinkActive="active" routerLink="confirm" #rla4="routerLinkActive" queryParamsHandling="merge" [class.disabled]="enabledTabCount < 4" role="tab" (click)="selectTab()">{{'4' + (rla4.isActive ? ': Controleer uw gegevens' : '')}}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="container course-selection">
+    <div class="row">
+        <!-- When hiding the sidebar give col-sm-12 to this container -->
+        <div class="col-xs-12" id="main-content" [class.col-sm-8]="showBasket" [class.col-sm-12]="!showBasket">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="courseSelect">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-xs col-sm-1">
+            <!-- Spacing -->
+        </div>
+
+        <!-- Hide sidebar on tab 4 & 5 -->
+        <!-- When hiding the sidebar give col-sm-12 to the main content container (line 49)s -->
+        <!-- add class: hide-basket-error to hide the basket on the error page -->
+        <div *ngIf="showBasket" class="col-xs-12 col-sm-4 col-md-3 hide-basket-xs">
+            <fo-ev-basket></fo-ev-basket>
+        </div>
+
+    </div>
+</div>

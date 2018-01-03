@@ -1,0 +1,20 @@
+
+<form class="form-horizontal" (ngSubmit)="saveInfo(contactForm.valid)" #contactForm="ngForm">
+    
+    <div class="form-group">
+        <label class="col-xs-12 col-sm-3 control-label" for="questions">Vragen en opmerkingen</label>
+        <div class="col-xs-12 col-md-6 col-sm-8">
+            <textarea class="form-control" id="questions" rows="10" [(ngModel)]="order.Remarks" name="remarks"></textarea>
+        </div>
+    </div>
+
+    <div class="il-block" *ngIf="!contactForm.valid && (contactForm.submitted || formDeactivationCheck)">
+        <span class="pull-right clearfix error-msg">Niet alle velden zijn correct ingevuld</span>
+    </div>
+    <div class="il-block">
+        <button type="button" (click)="previousTab()" class="btn btn-link pull-left" aria-controls="courseSelect" role="tab">Vorige
+        </button>
+        <button type="submit" class="btn btn-default pull-right" aria-controls="paymentInfo" role="tab">Volgende
+        </button>
+    </div>
+</form>

@@ -7,6 +7,8 @@ import { Course } from '../bll/course';
 import { Person } from '../bll/person';
 import { EnrolService } from '../services/enrol.service';
 import { AppConfig } from '../app.config';
+import { ColdObservable } from 'rxjs/testing/ColdObservable';
+import { combineAll } from 'rxjs/operator/combineAll';
 
 @Component({
   moduleId: module.id,
@@ -57,6 +59,8 @@ export class ConfirmationComponent implements OnInit {
       student.City = this.order.ContactPerson.City;
       student.CountryId = this.order.ContactPerson.CountryId;
       student.DateOfBirth = this.order.ContactPerson.DateOfBirth;
+      student.UserField8 = this.order.ContactPerson.UserField8;
+      student.UserField9 = this.order.ContactPerson.UserField9;
 
       // Add Contact to Students Array
       this.studentsList.splice(0, 0, student);
@@ -96,6 +100,8 @@ export class ConfirmationComponent implements OnInit {
           student.City = this.order.ContactPerson.City;
           student.CountryId = this.order.ContactPerson.CountryId;
           student.DateOfBirth = this.order.ContactPerson.DateOfBirth;
+          student.UserField8 = this.order.ContactPerson.UserField8;
+          student.UserField9 = this.order.ContactPerson.UserField9;
 
           // Add Contact to Students Array
           if (!this.order.Students) {
@@ -111,7 +117,7 @@ export class ConfirmationComponent implements OnInit {
 
         // Create Copy for clean-up purpose
         const copiedOrder = Object.assign({}, this.order);
-
+  
         // Create Correct Order-Message
         if (!copiedOrder.Company.Name) {
           // Clear Company

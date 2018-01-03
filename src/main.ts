@@ -8,6 +8,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-console.info('FrontOffice 365 Version 2017.10.1');
+console.info('FrontOffice 365 Version 2017.12.1');
 
 platformBrowserDynamic().bootstrapModule(AppModule);

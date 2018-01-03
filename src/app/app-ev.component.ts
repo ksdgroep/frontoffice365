@@ -4,11 +4,11 @@ import { AppComponent } from './app.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app-gt.component.html',
-  styleUrls: ['./app.component.css', '../assets/css/style.css', '../assets/css/globaltraining.css'],
+  templateUrl: './app-ev.component.html',
+  styleUrls: ['./app.component.css', '../assets/css/style.css', '../assets/css/evean.css'],
   encapsulation: ViewEncapsulation.None
 })
 
-export class AppGtComponent extends AppComponent {
+export class AppEvComponent extends AppComponent {
 
 }

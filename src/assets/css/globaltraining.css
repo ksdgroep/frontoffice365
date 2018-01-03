@@ -1,0 +1,63 @@
+/*
+Error: Undefined variable: "$screen-md".
+        on line 125 of globaltraining.sass
+
+120:   color: $textColorMenu
+121: 
+122: .navbar-default .navbar-nav >li:first-child > a
+123:   padding-left: 0
+124: 
+125: @media screen and (max-width: $screen-md)
+126:   .navbar-default .navbar-nav > li:first-child > a 
+127:     padding-left: 15px
+128: 
+129: .navbar-default .navbar-nav > li > a:hover
+130:   color: $textColorMenu
+
+Backtrace:
+globaltraining.sass:125
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/script/tree/variable.rb:49:in `_perform'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:555:in `block in run_interp_no_strip'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:553:in `map'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:553:in `run_interp_no_strip'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:560:in `run_interp'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:525:in `visit_media'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `map'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:171:in `block in visit_children'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:170:in `visit_children'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:190:in `visit_root'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:161:in `visit'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:10:in `visit'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/root_node.rb:36:in `css_tree'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/plugin/compiler.rb:209:in `each'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/plugin.rb:82:in `update_stylesheets'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:340:in `watch_or_update'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
+/usr/local/lib/ruby/gems/2.4.0/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$screen-md\".\A         on line 125 of globaltraining.sass\A \A 120:   color: $textColorMenu\A 121: \A 122: .navbar-default .navbar-nav >li:first-child > a\A 123:   padding-left: 0\A 124: \A 125: @media screen and (max-width: $screen-md)\A 126:   .navbar-default .navbar-nav > li:first-child > a \A 127:     padding-left: 15px\A 128: \A 129: .navbar-default .navbar-nav > li > a:hover\A 130:   color: $textColorMenu"; }

@@ -1,0 +1,29 @@
+<div id="basket" class="sidebar-container">
+        <h4>Uw keuze</h4>
+        <ul *ngIf="selectedCourse">
+            <li class="sidebar-item-title">Geselecteerde cursus</li>
+            <li>{{selectedCourse.Name}}</li>
+            <br/>
+            <li class="sidebar-item-title">Startdatum</li>
+            <li>{{selectedCourse.Date | date: 'dd-MM-yyyy' }}</li>
+            <br/>
+            <li class="sidebar-item-title">Locatie</li>
+            <li>{{selectedCourse.Region}}</li>
+            <br/>
+            <li class="sidebar-item-title">Planning</li>
+            <li *ngFor="let courseDay of selectedCourse.CourseDays">{{courseDay.Date | dutchDateFormat }} <span class="di-block timeRight">{{courseDay.TimeFrom}} - {{courseDay.TimeTill}}</span></li>
+            <br/>
+            <li class="sidebar-item-title">Prijs</li>
+            <li>{{selectedCourse.Price * (studentCount == 0 ? 1 : studentCount) | currencyFormat}} <span>excl. BTW</span></li>
+            <br/>
+            <li *ngIf="studentCount > 0" class="sidebar-item-title">Aantal deelnemers</li>
+            <li *ngIf="studentCount > 0">{{studentCount}}</li>
+        </ul>
+        <ul *ngIf="!selectedCourse">
+            <li>U heeft nog geen cursus geselecteerd.</li>
+            <br/>
+            <li>Selecteer een cursus om verder te gaan</li>
+        </ul>
+    </div>
+    
+    

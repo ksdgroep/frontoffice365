@@ -17,4 +17,6 @@ export class Person {
   CountryId: string;
   CourseId: number;
   Function: string;
+  UserField8: string;
+  UserField9: string;
 }
